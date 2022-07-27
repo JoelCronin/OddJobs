@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/My-Account.css"
+import "../../styles/My-Account.css";
 
 function MyAccount() {
 

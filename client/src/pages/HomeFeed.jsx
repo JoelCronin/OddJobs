@@ -2,9 +2,6 @@ import React from 'react'
 import { useQuery } from '@apollo/client';
 import { GET_POSTING } from '../utils/queries';
 
-
-
-
 function HomeFeed() {
 
     const {loading, data } = useQuery(GET_POSTING);

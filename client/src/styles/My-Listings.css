@@ -1,0 +1,22 @@
+#myListingsContainer {
+    width: 100%;
+}
+
+#myListingsHeader {
+    justify-content: space-between;
+}
+
+#myListingHeaderListingsItem {
+    margin-left: 10px;
+}
+
+#myListingHeaderHomeItem {
+    margin-right: 10px;
+
+}
+
+.listingCard {
+    border: solid black 3px;
+    flex-flow: column;
+    padding: 5px 10px;
+}
