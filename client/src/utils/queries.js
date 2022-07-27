@@ -8,36 +8,11 @@ export const GET_ME = gql`
             email
             address
             postCode
-            jobApplications {
-                _id
-                title
-                description
-                price
-                user {
-                    _id
-                    name
-                    email
-                    address
-                }
             }
-            activeJobs {
-                _id
-                title
-                description
-                price
-                user {
-                    _id
-                    name
-                    email
-                    address
-                }
-            }
-        }
     }
 `;
 
 export const GET_POSTING = gql`
-
     query posting {
         posting {
             owner {
@@ -46,24 +21,19 @@ export const GET_POSTING = gql`
             }
             cost
             title
-            image
             status
             createdAt
+            image
         }
     }
 `;
 
 // export const GET_SINGLE_POSTING = gql`
-
 //     query singlePosting($id: ID!) {
 //         singlePosting(id: $id) {
 
+
 // `;
-
-
-
-
-
 
 // export const GET_SINGLE_USER = gql`
 //     query singlePosting($id: ID!) {
