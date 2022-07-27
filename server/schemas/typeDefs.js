@@ -18,7 +18,7 @@ const typeDefs = gql`
         _id: ID
         title: String
         description: String
-        price: Int
+        cost: Int
         userId: ID
         user: User
         ratings: [Rating]
@@ -39,7 +39,7 @@ const typeDefs = gql`
       }
 
     type Query {
-        posting: [Posting]
+        posting(username: String): [Posting]
         singlePosting(id: ID!): Posting
         me: User
         singleUser(id: ID!): User
