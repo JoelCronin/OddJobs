@@ -1,10 +1,12 @@
-const { User } = require('../models');
-const { signToken } = require('../utils/auth');
-const { AuthenticationError } = require('apollo-server-express');
+import { Posting, User, Rating } from '../models';
 
 const resolvers = {
   Query: {
-
+    posting: async () => {
+      const posting = await Posting.find();
+      return posting;
+    },
+    
   },
 
   Mutation: {

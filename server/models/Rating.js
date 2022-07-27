@@ -29,4 +29,4 @@ const ratingSchema = new Schema({
 
 const Rating = model('Rating', ratingSchema);
 
-module.exports = Rating;
+module.exports = ratingSchema;
