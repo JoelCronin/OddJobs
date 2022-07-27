@@ -5,21 +5,21 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     posting: async () => {
-      const posting = await Posting.find();
+      const posting = await Posting.find().populate('owner').populate('chosenWorker').populate('applications');
       return posting;
     },
     singlePosting: async (parent, args) => {
-      const posting = await Posting.findById(args.id);
+      const posting = await Posting.findById(args.id).populate('owner').populate('chosenWorker').populate('applications');
       return posting;
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return Posting.findAll({ _id: context.user._id });
+        return Posting.findAll({ _id: context.user._id }).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     singleUser: async (parent, args) => {
-      const user = await User.findById(args.id);
+      const user = await User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
       return user;
     }    
   },
