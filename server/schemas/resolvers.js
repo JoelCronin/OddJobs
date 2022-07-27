@@ -1,4 +1,4 @@
-import { Posting, User, Rating } from '../models';
+const { Posting, User, Rating } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
