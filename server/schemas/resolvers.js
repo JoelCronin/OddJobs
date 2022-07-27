@@ -5,7 +5,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     posting: async () => {
-      const posting = await Posting.find();
+      const posting = await Posting.find().populate('owner');
       return posting;
     },
     singlePosting: async (parent, args) => {

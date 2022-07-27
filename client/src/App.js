@@ -21,7 +21,9 @@ function App() {
       <Account />
 
       {/* <Login /> */}
-      {/* <HomeFeed /> */}
+
+      <HomeFeed />
+
 
       {/* <Router>
         <>

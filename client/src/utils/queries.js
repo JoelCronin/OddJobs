@@ -37,7 +37,8 @@ export const GET_ME = gql`
 `;
 
 export const GET_POSTING = gql`
-    query GetPosting {
+
+    query posting {
         posting {
             owner {
                 _id
@@ -45,6 +46,7 @@ export const GET_POSTING = gql`
             }
             cost
             title
+            image
             status
             createdAt
         }
@@ -52,12 +54,18 @@ export const GET_POSTING = gql`
 `;
 
 // export const GET_SINGLE_POSTING = gql`
-//     query GetSinglePosting($id: ID!) {
+
+//     query singlePosting($id: ID!) {
 //         singlePosting(id: $id) {
 
 // `;
 
+
+
+
+
+
 // export const GET_SINGLE_USER = gql`
-//     query GetSingleUser($id: ID!) {
+//     query singlePosting($id: ID!) {
 //         singleUser(id: $id) {
 // `;
