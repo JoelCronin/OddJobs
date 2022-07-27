@@ -4,9 +4,12 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    posting: async () => {
-      const posting = await Posting.find();
-      return posting;
+    posting: async (parent, { username }) => {
+      if (username) {
+        return await Posting.find({ user: username });
+      } else {
+        return await Posting.find();
+      }      
     },
     singlePosting: async (parent, args) => {
       const posting = await Posting.findById(args.id);
