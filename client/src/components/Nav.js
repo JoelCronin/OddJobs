@@ -1,0 +1,2 @@
+
+const hello = "Hi mate"
