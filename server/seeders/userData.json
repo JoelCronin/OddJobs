@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Joel",
+        "email": "test@gmail.com", 
+        "password": "123456",
+        "address": "12 Queen Street",
+        "postCode": "M4L 3H8"
+    },
+    {
+        "name": "Yuchen",
+        "email": "tes1t@gmail.com", 
+        "password": "1234567",
+        "address": "14 Queen Street",
+        "postCode": "M4L 3H8"
+    },
+    {
+        "name": "Chris",
+        "email": "test2@gmail.com", 
+        "password": "1234568",
+        "address": "16 Queen Street",
+        "postCode": "M4L 3H8"
+    },
+    {
+        "name": "Connor",
+        "email": "test3@gmail.com", 
+        "password": "1234569",
+        "address": "18 Queen Street",
+        "postCode": "M4L 3H8"
+    }
+]
