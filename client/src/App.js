@@ -4,7 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import Login from "./components/Login"
+
 import Account from "./pages/Account"
+
+import HomeFeed from './pages/HomeFeed';
+
 
 
 
@@ -16,7 +20,12 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+
       {/* <Account /> */}
+
+      <Login />
+      <HomeFeed />
+
       {/* <Router>
         <>
 
