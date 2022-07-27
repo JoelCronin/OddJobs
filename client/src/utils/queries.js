@@ -54,6 +54,11 @@ export const GET_POSTING = gql`
 export const GET_SINGLE_POSTING = gql`
     query GetSinglePosting($id: ID!) {
         singlePosting(id: $id) {
-            
 
+
+`;
+
+export const GET_SINGLE_USER = gql`
+    query GetSingleUser($id: ID!) {
+        singleUser(id: $id) {
 `;
