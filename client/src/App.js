@@ -9,9 +9,6 @@ import Account from "./pages/Account"
 
 import HomeFeed from './pages/HomeFeed';
 
-
-
-
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
   cache: new InMemoryCache(),
@@ -21,10 +18,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      {/* <Account /> */}
+      <Account />
 
-      <Login />
-      <HomeFeed />
+      {/* <Login /> */}
+      {/* <HomeFeed /> */}
 
       {/* <Router>
         <>

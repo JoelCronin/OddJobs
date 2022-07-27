@@ -1,0 +1,9 @@
+#applicationsReceivedContainer {
+    width: 100%;
+}
+
+.applicationsCard {
+    border: solid black 3px;
+    flex-flow: column;
+    padding: 5px 10px;
+}
