@@ -63,6 +63,10 @@ function SignUp() {
                 <label className="label" htmlFor="inputPassword">Message</label>
                 <input type="password" name="password" value={password} onChange ={handleInputChange} className="form-control" placeholder="Password"/>
             </div>
+            <div className="form-group">
+                <label className="label" htmlFor="inputImage">Image</label>
+                <input type="image" name="Image" className="form-control" placeholder="Image Upload"/>
+            </div>
                 <button type="submit" onClick={handleContactSubmit} className="signup-button" id='send'>Submit</button>
         </form>
         {errorCheck && (
