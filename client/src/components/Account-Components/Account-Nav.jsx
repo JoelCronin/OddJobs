@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Account-Nav.css"
+import "../../styles/Account-Nav.css";
 
 function AccountNav() {
 

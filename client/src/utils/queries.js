@@ -8,31 +8,7 @@ export const GET_ME = gql`
             email
             address
             postCode
-            jobApplications {
-                _id
-                title
-                description
-                price
-                user {
-                    _id
-                    name
-                    email
-                    address
-                }
             }
-            activeJobs {
-                _id
-                title
-                description
-                price
-                user {
-                    _id
-                    name
-                    email
-                    address
-                }
-            }
-        }
     }
 `;
 
@@ -47,6 +23,7 @@ export const GET_POSTING = gql`
             title
             status
             createdAt
+            image
         }
     }
 `;

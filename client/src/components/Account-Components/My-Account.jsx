@@ -1,7 +1,12 @@
 import React from "react";
-import "../styles/My-Account.css"
+import "../../styles/My-Account.css";
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../../utils/queries';
 
 function MyAccount() {
+
+    const {loading, data} = useQuery(GET_ME);
+    const mine = data?.GetMe || [];
 
     return (
         <div id="myAccountContainer">
@@ -16,7 +21,7 @@ function MyAccount() {
                 </div>
                 <div id="myAccountInfoRightColumn" className="flex">
                     <h3>Name:</h3>
-                    <h3>Display Name Here</h3>
+                    <h3>{mine.name} {mine._id}</h3>
                     <h3>Email:</h3>
                     <h3>Display Email Here</h3>
                     <h3>Password:</h3>

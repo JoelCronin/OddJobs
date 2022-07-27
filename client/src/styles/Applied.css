@@ -1,0 +1,22 @@
+#appliedContainer {
+    width: 100%;
+}
+
+#appliedHeader {
+    justify-content: space-between;
+}
+
+#appliedAccountItem {
+    margin-left: 10px;
+}
+
+#appliedHeaderHomeItem {
+    margin-right: 10px;
+
+}
+
+.appliedCard {
+    border: solid black 3px;
+    flex-flow: column;
+    padding: 5px 10px;
+}

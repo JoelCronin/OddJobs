@@ -3,14 +3,11 @@ import "./styles/App.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-import Login from "./components/Login"
+import Login from "./components/Login.jsx"
 
-import Account from "./pages/Account"
+import Account from "./pages/Account.jsx"
 
 import HomeFeed from './pages/HomeFeed';
-
-
-
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
@@ -21,10 +18,12 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      {/* <Account /> */}
+      <Account />
 
       {/* <Login /> */}
+
       <HomeFeed />
+
 
       {/* <Router>
         <>
