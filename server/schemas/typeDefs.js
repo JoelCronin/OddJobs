@@ -6,6 +6,7 @@ const typeDefs = gql`
         name: String
         email: String
         password: String
+        image: String
         address: String
         postCode: String
         jobApplications: [Posting]
@@ -16,21 +17,25 @@ const typeDefs = gql`
 
     type Posting {
         _id: ID
+        owner: User
+        cost: Int
         title: String
         description: String
-        cost: Int
-        userId: ID
-        user: User
-        ratings: [Rating]
+        image: String
+        status: String
+        season: String
+        createdAt: String
+        applications: [User]
+        chosenWorker: User
     }
 
     type Rating {
         _id: ID
-        rating: Int
-        userId: ID
-        user: User
-        postingId: ID
-        posting: Posting
+        stars: Int
+        comment: String
+        createdAt: String
+        byUser: User
+        forUser: User
     }
 
     type Auth {
@@ -39,7 +44,7 @@ const typeDefs = gql`
       }
 
     type Query {
-        posting(username: String): [Posting]
+        posting: [Posting]
         singlePosting(id: ID!): Posting
         me: User
         singleUser(id: ID!): User
@@ -57,15 +62,13 @@ const typeDefs = gql`
     input PostingInput {
         title: String
         description: String
-        price: Int
+        cost: Int
     }
 
     input UserInput {
         name: String
         email: String
         password: String
-        address: String
-        postCode: String
     }
 
     input RatingInput {
