@@ -18,7 +18,7 @@ const typeDefs = gql`
         _id: ID
         title: String
         description: String
-        price: Int
+        cost: Int
         userId: ID
         user: User
         ratings: [Rating]
