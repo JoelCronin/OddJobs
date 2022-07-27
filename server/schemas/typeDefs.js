@@ -50,6 +50,8 @@ const typeDefs = gql`
         createPosting(input: PostingInput!): Posting
         createUser(input: UserInput!): Auth
         createRating(input: RatingInput!): Rating
+        removePosting(id: ID!): Posting
+        updatePosting(id: ID!, input: PostingInput!): Posting
     }
 
     input PostingInput {
