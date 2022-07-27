@@ -10,7 +10,15 @@ const postingSchema = new Schema({
         type: Number,
         required: true
     },
+    title:{
+        type: String,
+        required: true
+    },
     description: {
+        type: String,
+        required: true
+    },
+    image: {
         type: String,
         required: true
     },
@@ -20,7 +28,7 @@ const postingSchema = new Schema({
     },
     season: {
         type: String,
-        required: true
+        required: false
     },
     createdAt: {
         type: Date,
