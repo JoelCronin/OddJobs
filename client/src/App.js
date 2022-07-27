@@ -23,7 +23,7 @@ function App() {
 
       {/* <Account /> */}
 
-      <Login />
+      {/* <Login /> */}
       <HomeFeed />
 
       {/* <Router>
