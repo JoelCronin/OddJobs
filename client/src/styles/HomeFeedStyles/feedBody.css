@@ -131,7 +131,9 @@ body{
 
 
 
-
+.feed-post-link{
+    text-decoration: none;
+}
 
 
 .job-post-img{
@@ -268,6 +270,8 @@ body{
     width: 191px;
     margin-right: 14px;
     text-align: right;
+    position: relative;
+    bottom: 10px;
 
 }
 
