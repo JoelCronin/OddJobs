@@ -1,72 +1,89 @@
 import React, { useState } from "react";
+// import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
+
 
 function Login() {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [login] = useMutation(LOGIN_USER);
 
-    const handleInputChange = (e) => {
-        const {target} = e;
-        const inputType = target.name;
-        const inputValue = target.value;
+    const handleChange = (event) => {
+        const { name, value } = event.target;
 
-        if (inputType === "Email") {
-            setEmail(inputValue)
-        } else if (inputType === "Password") {
-            setPassword(inputValue);
+        setFormState({
+        ...formState,
+        [name]: value,
+        });
+    };
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+
+            Auth.login(data.login.token);
+
+        } catch (e) {
+            console.error(e);
         }
-    }
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-
-        if (!email) {
-            setErrorMessage('Please enter a login email')
-        } else if (!password) {
-            setErrorMessage('Please enter a password')
-        }
-
-        setEmail();
-        setPassword();
-}
+        setFormState({
+            email: '',
+            password: '',
+        });
+    };
 
     return (
-        <div id="loginForm">
-            <form>
-                <div className="formItem">
-                    <label>Email</label>
-                    <input
-                    value={email}
-                    type="text"
-                    name="Email"
-                    onChange={handleInputChange}
-                    />
-                </div>
-                <div className="formItem">
-                    <label>Password</label>
-                    <input
-                    value={password}
-                    type="password"
-                    name="Password"
-                    onChange={handleInputChange}
-                    />
-                </div>
-                <div className="formItem">
-                    <label>Submit</label>
-                    <input
-                    type="submit" 
-                    value="Send" 
-                    onClick={handleFormSubmit}
-                    />
-                </div>
-            </form>
-            {errorMessage && (
-                <div>
-                <p className="error-text">{errorMessage}</p>
-                </div>
-            )}
+
+        <div>
+            <div id="loginForm">
+
+            {/* {data ? ( 
+                <h1>TEST WORKING</h1>
+            ): ( */}
+                <form onSubmit={handleFormSubmit}>
+                    <div className="formItem">
+                        <label>Email</label>
+                        <input
+                        value={formState.email}
+                        type="email"
+                        name="email"
+                        onChange={handleChange}
+                        />
+                    </div>
+                    <div className="formItem">
+                        <label>Password</label>
+                        <input
+                        value={formState.password}
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                        />
+                    </div>
+                    <div className="formItem">
+                        <label>Submit</label>
+                        <button
+                        type="submit" 
+                        >Submit</button>
+                    </div>
+                </form>
+                {/* )} */}
+                {/* {error && (
+                    <div>
+                    <p className="error-text">{error.message}</p>
+                    </div>
+                )} */}
+            </div>
+
         </div>
+
     );
 }
 

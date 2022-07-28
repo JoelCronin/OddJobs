@@ -26,10 +26,6 @@ function App() {
 
       {/* <Admin />
 
-      <Login />
-
-
-
       <StarRating rating={5} /> */}
 
 
@@ -39,6 +35,11 @@ function App() {
 
           <Routes>
             <Route
+                  path="/" 
+                  element={<Login />} 
+                />
+
+            {/* <Route
                 path="/" 
                 element={<HomeFeed />} 
               />
@@ -49,7 +50,7 @@ function App() {
             <Route
                 path="/user/:id" 
                 element={<OtherUserProfile />} 
-              />
+              /> */}
 
           </Routes>
         </>
