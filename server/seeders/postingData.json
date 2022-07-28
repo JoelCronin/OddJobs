@@ -2,7 +2,7 @@
     {
         "cost": 15,
         "title": "Lawn Mower",
-        "image": "https://via.placeholder.com/150",
+        "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
         "description": "Front garden needs mowing, ideally before Tuesday. Approx 20sqm",
         "status": "Active",
         "season": "Summer"
@@ -10,7 +10,7 @@
     {
         "cost": 18,
         "title": "Gardening",
-        "image": "https://via.placeholder.com/150",
+        "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
         "description": "garden needs some work, ideally before Tuesday. Approx 80sqm",
         "status": "Completed",
         "season": "Summer" 
@@ -18,7 +18,7 @@
     {
         "cost": 18,
         "title": "Snow Shoveling",
-        "image": "https://via.placeholder.com/150",
+        "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
         "description": "Front garden needs mowing, ideally before Thursday. Approx 100sqm",
         "status": "Pending",
         "season": "Winter" 
@@ -26,7 +26,7 @@
     {
         "cost": 25,
         "title": "Dog Walking",
-        "image": "https://via.placeholder.com/150",
+        "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
         "description": "Front garden needs clearing, ideally before Friday. Approx 20sqm",
         "status": "Completed",
         "season": "Summer" 
