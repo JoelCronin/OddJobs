@@ -34,7 +34,7 @@ function SignUp() {
           variables: { ...formState },
         });
 
-        Auth.login(data.addUser.token);
+        Auth.login(data.createUser.token);
       } catch (e) {
         console.error(e);
       }

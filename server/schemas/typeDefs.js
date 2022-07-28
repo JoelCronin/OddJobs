@@ -66,11 +66,6 @@ const typeDefs = gql`
         cost: Int
     }
 
-    input UserInput {
-        name: String
-        email: String
-        password: String
-    }
 
     input RatingInput {
         rating: Int
