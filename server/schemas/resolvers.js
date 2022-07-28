@@ -16,11 +16,11 @@ const resolvers = {
     },
     me: async (parent, args) => {
       // if (context.user) {
-        return User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs');
+        return User.findById(args._id).populate('jobApplications').populate('activeJobs').populate('completedJobs');
       // throw new AuthenticationError('You need to be logged in!');
     },
     singleUser: async (parent, args) => {
-      const user = await User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
+      const user = await User.findById(args._id).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
       return user;
     },
     allUsers: async () => {
