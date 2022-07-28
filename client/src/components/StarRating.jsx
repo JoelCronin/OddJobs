@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import FaStar from "react-icons/fa/FaStar";
+import {FaStar} from "react-icons/fa";
+import '../styles/StarRating.css';
 
 const StarRating = ({ rating }) => {
-    const [stars, setStars] = useState(rating);
+    const [ratings, setStars] = useState(rating);
     const [hover, setHover] = useState(0);
 
     const onStarClick = (nextValue) => {
@@ -14,20 +15,36 @@ const StarRating = ({ rating }) => {
     }
 
     const renderStars = (stars) => {
-        return [...Array(stars)].map((_, i) => {
-            const value = i + 1;
+        return [...Array(stars)].map((star, i) => {
+            const ratingValue = i + 1;
             return (
-                <FaStar
-                    key={i}
-                    className="star"
-                    size={25}
-                    onClick={() => onStarClick(value)}
-                    onMouseEnter={() => onStarHover(value)}
-                    onMouseLeave={() => onStarHover(0)}
-                />
+                <label>
+                    <input 
+                    type="radio" 
+                    name="rating" 
+                    value={ratingValue} 
+                    onClick={() => onStarClick(ratingValue)} 
+                    className="ratingInput"
+                    style={ {display: 'none'} }
+                    />
+                    <FaStar
+                        key={i}
+                        className="star"
+                        size={100}
+                        color={ratingValue <= (hover || ratings)  ? "#ffc107" : "#e4e5e9"}
+                        onMouseEnter={() => onStarHover(ratingValue)}
+                        onMouseLeave={() => onStarHover(null)}
+                    />
+                </label>
             );
         });
     }
+
+    return (
+        <div className="rating-stars">
+            {renderStars(rating)}
+        </div>
+    );
 }
 
-module.exports = StarRating;
+export default StarRating;
