@@ -11,6 +11,7 @@ import HomeFeed from './pages/HomeFeed';
 import SinglePosting from './pages/SinglePosting';
 
 import StarRating from './components/StarRating.jsx';
+import OtherUserProfile from './pages/OtherUserProfile';
 
 
 
@@ -44,6 +45,10 @@ function App() {
             <Route
                 path="/posting/:id" 
                 element={<SinglePosting />} 
+              />
+            <Route
+                path="/user/:id" 
+                element={<OtherUserProfile />} 
               />
 
           </Routes>
