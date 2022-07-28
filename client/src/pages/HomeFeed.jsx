@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/client';
 import { GET_POSTING } from '../utils/queries';
+import { Link } from 'react-router-dom';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 import '../styles/HomeFeedStyles/navbar.css';

@@ -8,6 +8,11 @@ import Login from "./components/Login.jsx"
 import Admin from "./pages/Admin.jsx" 
 
 import HomeFeed from './pages/HomeFeed';
+import SinglePosting from './pages/SinglePosting';
+
+import StarRating from './components/StarRating.jsx';
+
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
@@ -22,17 +27,28 @@ function App() {
 
       {/* <Login /> */}
 
-      <HomeFeed />
 
 
-      {/* <Router>
+      <StarRating rating={5} />
+
+
+      <Router>
+
         <>
 
           <Routes>
+            <Route
+                path="/" 
+                element={<HomeFeed />} 
+              />
+            <Route
+                path="/posting/:id" 
+                element={<SinglePosting />} 
+              />
 
           </Routes>
         </>
-      </Router> */}
+      </Router>
     </ApolloProvider>
   );
 }

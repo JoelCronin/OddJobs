@@ -8,7 +8,7 @@ export const GET_ME = gql`
             email
             address
             postCode
-            }
+        }
     }
 `;
 
@@ -19,6 +19,7 @@ export const GET_POSTING = gql`
                 _id
                 name
             }
+            _id
             cost
             title
             status
@@ -28,14 +29,41 @@ export const GET_POSTING = gql`
     }
 `;
 
-// export const GET_SINGLE_POSTING = gql`
-//     query singlePosting($id: ID!) {
-//         singlePosting(id: $id) {
+export const GET_SINGLE_POSTING = gql`
+    query singlePosting($id: ID!) {
+        singlePosting(id: $id) {
+
+            _id
+            title
+            cost
+            description
+            image
+            status
+            createdAt
+            applications{
+                name
+            }
+            owner{
+                name
+            }
+        }
+    }
 
 
-// `;
+`;
 
-// export const GET_SINGLE_USER = gql`
-//     query singlePosting($id: ID!) {
-//         singleUser(id: $id) {
-// `;
+export const GET_SINGLE_USER = gql`
+    query singlePosting($id: ID!) {
+        singleUser(id: $id) {
+            _id
+            name
+            email
+            image
+            ratings {
+                _id
+                stars
+                comment
+            }
+        }
+    }
+`;
