@@ -34,9 +34,7 @@ function App() {
 
 
       <Router>
-
         <>
-
           <Routes>
             <Route
                 path="/" 
