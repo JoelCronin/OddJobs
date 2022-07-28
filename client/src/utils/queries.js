@@ -6,8 +6,16 @@ export const GET_ME = gql`
             _id
             name
             email
-            address
-            postCode
+            ratings {
+                stars
+            }
+            jobApplications {
+                cost
+                title
+                description
+                status
+                createdAt
+            }
         }
     }
 `;
@@ -45,7 +53,7 @@ export const GET_SINGLE_POSTING = gql`
 `;
 
 export const GET_SINGLE_USER = gql`
-    query singlePosting($id: ID!) {
+    query singleUser($id: ID!) {
         singleUser(id: $id) {
             _id
             name
