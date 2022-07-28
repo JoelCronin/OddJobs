@@ -44,6 +44,7 @@ export const GET_SINGLE_POSTING = gql`
                 name
             }
             owner{
+                _id
                 name
             }
         }
@@ -53,7 +54,7 @@ export const GET_SINGLE_POSTING = gql`
 `;
 
 export const GET_SINGLE_USER = gql`
-    query singlePosting($id: ID!) {
+    query singleUser($id: ID!) {
         singleUser(id: $id) {
             _id
             name
