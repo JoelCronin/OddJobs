@@ -23,10 +23,12 @@ db.once('open', async () => {
       tempPostingApplication.applications.push(newUsers._id)
       await tempPostingApplication.save(); 
 
+      for (var i = 0; i < postings.length; i++) {
       // randomly add each User to a Posting Owner
-      const tempPostingOwner = postings[Math.floor(Math.random() * postings.length)];
+      const tempPostingOwner = postings[i];
       tempPostingOwner.owner = newUsers._id;
       await tempPostingOwner.save();
+      }
 
       // randomly add each User to be the ratings leaver
       const tempRatingBy = ratings[Math.floor(Math.random() * ratings.length)];
@@ -38,6 +40,8 @@ db.once('open', async () => {
       tempRatingFor.forUser = newUsers._id;
       await newUsers.save();
     }
+
+    
 
     for (newPostings of postings) {
 
