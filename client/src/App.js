@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import Login from "./components/Login.jsx"
+import SignUp from "./pages/SignUp.jsx"
 
 import Admin from "./pages/Admin.jsx" 
 
@@ -36,7 +37,7 @@ function App() {
           <Routes>
             <Route
                   path="/" 
-                  element={<Login />} 
+                  element={<SignUp />} 
                 />
 
             {/* <Route
