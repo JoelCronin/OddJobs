@@ -10,6 +10,10 @@ import Account from "./pages/Account.jsx"
 import HomeFeed from './pages/HomeFeed';
 import SinglePosting from './pages/SinglePosting';
 
+import StarRating from './components/StarRating.jsx';
+
+
+
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
   cache: new InMemoryCache(),
@@ -19,14 +23,17 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      <Account />
+      {/* <Account /> */}
 
       {/* <Login /> */}
 
-    
+
+
+      {/* <StarRating rating={5} /> */}
 
 
       <Router>
+
         <>
 
           <Routes>
