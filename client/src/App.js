@@ -28,7 +28,7 @@ function App() {
 
       {/* <HomeFeed /> */}
 
-      {/* <StarRating rating={5} /> */}
+      <StarRating rating={5} />
 
       
       {/* <Router>
