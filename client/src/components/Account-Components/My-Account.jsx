@@ -1,7 +1,9 @@
 import React from "react";
-import "../../styles/My-Account.css";
+import "../../styles/AccountStyles/My-Account.css";
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
+
+import profilePic from '../../img/profile-pic-large.png';
 
 function MyAccount() {
 
@@ -9,29 +11,45 @@ function MyAccount() {
     const mine = data?.GetMe || [];
 
     return (
-        <div id="myAccountContainer">
-            <div id="myAccountHeader" className="flex">
-                <h1 id="myAccountHeaderAccountItem">My Account</h1>
-                <h1 id="myAccountHeaderHomeItem">Home</h1>
-            </div>
-            <div id="myAccountInfo" className="flex">
-                <div id="myAccountInfoLeftColumn" className="flex">
-                    <img alt="Profile Picture" src="https://via.placeholder.com/175"/>
-                    <h3 id="myAccountSignOutButton">Signout</h3>
+        <div className="my-account-outer-body">
+            <div className="my-account-body">
+                <div className="profile-and-signout">
+                    <img className="my-account-profile-pic" src={profilePic}/>
+                    <div className="admin-signout-button">
+                            <div>Sign out</div>
+                    </div>
                 </div>
-                <div id="myAccountInfoRightColumn" className="flex">
-                    <h3>Name:</h3>
-                    <h3>{mine.name} {mine._id}</h3>
-                    <h3>Email:</h3>
-                    <h3>Display Email Here</h3>
-                    <h3>Password:</h3>
-                    <h3>Display Password Here</h3>
-                    <h3>Rating:</h3>
-                    <h3>Display Rating Here</h3>
+
+                <div className="my-account-form-box">
+                    <div className="my-account-form">
+                        <h1 className="my-acccount-form-title">Name</h1>
+                        <div className="my-account-data-box">
+                            <h1 className="my-account-form-data">Dave Johnson</h1>
+                        </div>
+                    </div>
+                    <div className="my-account-form">
+                        <h1 className="my-acccount-form-title">Email</h1>
+                        <div className="my-account-data-box">
+                            <h1 className="my-account-form-data">davejohnson76655@gmail.com</h1>
+                        </div>
+                    </div>
+                    <div className="my-account-form">
+                        <h1 className="my-acccount-form-title">Password</h1>
+                        <div className="my-account-data-box">
+                            <h1 className="my-account-form-data">*****************************</h1>
+                        </div>
+                    </div>
+                    <div className="my-account-form">
+                        <h1 className="my-acccount-form-title">Rating</h1>
+                        <div className="my-account-data-box">
+                            <h1 className="my-account-form-data"></h1>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
 
-export default MyAccount
+export default MyAccount;
+
