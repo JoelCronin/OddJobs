@@ -60,6 +60,7 @@ function HomeFeed() {
 
         <div className='job-grid-box'>
           {postings.map((posting) => (
+        <Link to= {`/posting/${posting._id}`}>
             <div className='job-box' key={posting.title}>
               <h1 className='job-price'><span>$</span>{posting.cost}</h1>
               <img className='job-post-img' src={posting.image} alt={posting.title}/>
@@ -74,11 +75,12 @@ function HomeFeed() {
                   </div>
                 </div>
                 <div className='job-post-description-bottom'>
-                  <h1 className='job-post-owner'>Chris</h1>
+                <Link to= {`/user/${posting.owner._id}`}><h1 className='job-post-owner'>Chris</h1></Link>
                   <h1 className='job-post-date'>{posting.createdAt}</h1>
                 </div>
               </div>
             </div>
+        </Link>
           ))}
         </div>
 

@@ -24,16 +24,16 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      {/* <Admin /> */}
+      {/* <Admin />
 
-      {/* <Login /> */}
-
-
-
-      {/* <StarRating rating={5} /> */}
+      <Login />
 
 
-      {/* <Router>
+
+      <StarRating rating={5} /> */}
+
+
+      <Router>
 
         <>
 
@@ -53,7 +53,7 @@ function App() {
 
           </Routes>
         </>
-      </Router> */}
+      </Router>
     </ApolloProvider>
   );
 }
