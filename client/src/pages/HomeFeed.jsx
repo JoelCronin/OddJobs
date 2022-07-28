@@ -2,27 +2,89 @@ import React from 'react'
 import { useQuery } from '@apollo/client';
 import { GET_POSTING } from '../utils/queries';
 
+import { AiOutlineSearch } from 'react-icons/ai';
+import '../styles/HomeFeedStyles/navbar.css';
+import '../styles/HomeFeedStyles/feedBody.css';
+
+import profilepic from '../img/Profile-pic.png';
+import active from '../img/status/active.png';
+import logo from '../img/logo.png';
+
+
+
+
 function HomeFeed() {
 
-    const {loading, data } = useQuery(GET_POSTING);
-    const postings = data?.posting || [];
+  const {loading, data } = useQuery(GET_POSTING);
+  const postings = data?.posting || [];
+
+  console.log(postings)
 
   return (
-    <div className='homefeed-container'>
+    <div className="feedBody">
+      <div className="sidebar">
+          <div className="sidebar-top">
+              <img className="navbar-logo" src={logo}/> 
+              <span>OddJobs</span>
+          </div>
 
-        {postings.map((posting) => (
-            <div className='posting-container' key= {posting.title}>
-                <p>${posting.cost}</p>
-                <img src={posting.image} alt={posting.title}/>
-                <h3 className='posting-header'>{posting.title}</h3>
-                <p>Status: {posting.status}  </p>
-                <p>{posting.createdAt}</p>
-                <p>{posting.owner.name}</p>
+          <div className='sidebar-bottom'>
+            <h1 className='price-range'>Price Range</h1>
+            <div className='range-box'>
+              <input className='range-start'type="number" placeholder='10'/>
+              <input className='range-start'type="number" placeholder='90'/>
             </div>
-            
-        ))}
+            <hr className='sidebar-line'/>
+
+
+          </div>
+
+
+      </div>
+
+    <div className='mainFeed'>
+        
+        <header className='main-header'>
+          <h1 className='job-listing-title'>All Job Listings</h1>
+          <div className='right-div-search-profile'>
+            <div className='search-div'>
+              <div className='search-div-collection'>
+                <AiOutlineSearch className='search-icon'/>
+                <input type="text" className='input-search' placeholder='Search'/>
+              </div>
+            </div>
+            <img className="proflie-pic-corner" src={profilepic}/>
+          </div>
+        </header>
+
+        <div className='job-grid-box'>
+          {postings.map((posting) => (
+            <div className='job-box' key={posting.title}>
+              <h1 className='job-price'><span>$</span>{posting.cost}</h1>
+              <img className='job-post-img' src={posting.image} alt={posting.title}/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>{posting.title}</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                  <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>{posting.createdAt}</h1>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+    </div>
+
     </div>
   )
 }
 
-export default HomeFeed
+export default HomeFeed;
