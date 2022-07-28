@@ -24,15 +24,17 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-{/* 
+
       <Admin />
 
-      {/* <Admin />
-
-      <StarRating rating={5} /> */}
+      {/* <Login /> */}
 
 
-      <Router>
+
+      {/* <StarRating rating={5} />  */}
+
+
+      {/* <Router>
         <>
           <Routes>
             <Route
@@ -51,11 +53,11 @@ function App() {
             <Route
                 path="/user/:id" 
                 element={<OtherUserProfile />} 
-              /> */}
+              />
 
           </Routes>
         </>
-      </Router>
+      </Router> */}
     </ApolloProvider>
   );
 }
