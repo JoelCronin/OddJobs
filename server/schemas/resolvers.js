@@ -14,36 +14,35 @@ const resolvers = {
       const posting = await Posting.findById(args.id).populate('owner').populate('chosenWorker').populate('applications');
       return posting;
     },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return Posting.findAll({ _id: context.user._id }).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    me: async (parent, args) => {
+      // if (context.user) {
+        return User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs');
+      // throw new AuthenticationError('You need to be logged in!');
     },
     singleUser: async (parent, args) => {
       const user = await User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
       return user;
+    },
+    allUsers: async () => {
+      const users = await User.find().populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
+      return users;
     }    
   },
 
   Mutation: {
     createPosting: async (parent, args, context) => {
-      if (context.user) {
+      // if (context.user) {
         const posting = await Posting.create({
           ...args.input,
           userId: context.user._id
         });
         return posting;
-      }
-      throw new AuthenticationError('You need to be logged in!');
+      // }
+      // throw new AuthenticationError('You need to be logged in!');
     },
 
-    createUser: async (parent, {name, email, password}) => {
-      const user = await User.create({
-        name,
-        email,
-        password       
-      });
+    createUser: async (parent, { name, email, password }) => {
+      const user = await User.create({ name, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -62,6 +61,7 @@ const resolvers = {
     },
 
     createRating: async (parent, args, context) => {
+      console.log(context.user)
       if (context.user) {
         const rating = await Rating.create({
           ...args.input,
