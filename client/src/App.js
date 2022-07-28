@@ -25,23 +25,21 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      <Admin />
+      {/* <Admin />
 
-      {/* <Login /> */}
+
+      <SignUp />
+
+      <Login /> */}
 
 
 
       {/* <StarRating rating={5} />  */}
 
 
-      {/* <Router>
+      <Router>
         <>
           <Routes>
-            <Route
-                  path="/" 
-                  element={<SignUp />} 
-                />
-
             <Route
                 path="/" 
                 element={<HomeFeed />} 
@@ -55,9 +53,14 @@ function App() {
                 element={<OtherUserProfile />} 
               />
 
+            <Route
+                path="/me/:id" 
+                element={<Admin />} 
+              />
+
           </Routes>
         </>
-      </Router> */}
+      </Router>
     </ApolloProvider>
   );
 }

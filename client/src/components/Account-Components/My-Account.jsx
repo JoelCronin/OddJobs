@@ -24,6 +24,8 @@ function MyAccount() {
 
     console.log(mine)
 
+    console.log(mine);
+
     return (
         <div className="my-account-outer-body">
             <div className="my-account-body">
@@ -38,7 +40,9 @@ function MyAccount() {
                     <div className="my-account-form">
                         <h1 className="my-acccount-form-title">Name </h1>
                         <div className="my-account-data-box">
+
                             <h1 className="my-account-form-data">Dave Johnson ddd {mine.name}</h1>
+
                         </div>
                     </div>
                     <div className="my-account-form">
