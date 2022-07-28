@@ -1,5 +1,6 @@
 .header-and-component-container{
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    /* height: 0vh; */
     margin-left: 290px;
 }
 
@@ -48,4 +49,11 @@
     cursor: pointer;
     background-color: #64FFDB;
     color: #132948;
+}
+
+
+@media screen and (max-width: 1051px) {
+    .header-and-component-container{
+        margin-left: 100px;
+    }
 }
