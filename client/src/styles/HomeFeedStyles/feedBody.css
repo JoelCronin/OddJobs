@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
 
 body{
+    zoom: 90%;
     margin: 0px;
     height: 100%;
     background: linear-gradient(242.3deg, #0B1C34 14.77%, #132948 67.27%);

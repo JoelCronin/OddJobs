@@ -42,7 +42,7 @@ function App() {
                   element={<SignUp />} 
                 />
 
-            {/* <Route
+            <Route
                 path="/" 
                 element={<HomeFeed />} 
               />
