@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/My-Account.css";
+import "../../styles/AccountStyles/My-Account.css";
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 
@@ -9,7 +9,15 @@ function MyAccount() {
     const mine = data?.GetMe || [];
 
     return (
-        <div id="myAccountContainer">
+        <div className="my-account-body">
+            <div className="profile-signout"></div>
+        </div>
+    );
+}
+
+export default MyAccount;
+
+/*
             <div id="myAccountHeader" className="flex">
                 <h1 id="myAccountHeaderAccountItem">My Account</h1>
                 <h1 id="myAccountHeaderHomeItem">Home</h1>
@@ -29,9 +37,5 @@ function MyAccount() {
                     <h3>Rating:</h3>
                     <h3>Display Rating Here</h3>
                 </div>
-            </div>
-        </div>
-    );
-}
-
-export default MyAccount
+            </div> 
+*/

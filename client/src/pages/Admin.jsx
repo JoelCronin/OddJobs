@@ -1,8 +1,8 @@
 import React from "react";
-// import "../styles/Account.css"
+import "../styles/AccountStyles/Account-Header.css"
 
 // import AccountNav from "../components/Account-Components/Account-Nav"
-// import MyAccount from "../components/Account-Components/My-Account"
+import MyAccount from "../components/Account-Components/My-Account"
 // import MyListings from "../components/Account-Components/My-Listings";
 // import Applied from "../components/Account-Components/Applied";
 // import Applications from "../components/Account-Components/Applications"
@@ -24,6 +24,17 @@ function Account() {
                     <section>Applied</section>
                     <section>Applications Recived</section>
                 </div>
+            </div>
+
+            <div className="header-and-component-container">
+                <header className="admin-main-header">
+                    <h1 className="admin-title">My Account</h1>
+                    <div className="admin-back-button">
+                        <div>Home</div>
+                    </div>
+                </header>
+
+                <MyAccount />
             </div>
         </div>
     );

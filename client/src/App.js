@@ -32,10 +32,8 @@ function App() {
       {/* <StarRating rating={5} /> */}
 
 
-      {/* <Router>
-
+      <Router>
         <>
-
           <Routes>
             <Route
                 path="/" 
@@ -45,10 +43,9 @@ function App() {
                 path="/posting/:id" 
                 element={<SinglePosting />} 
               />
-
           </Routes>
         </>
-      </Router> */}
+      </Router>
     </ApolloProvider>
   );
 }
