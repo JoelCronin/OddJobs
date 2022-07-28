@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import Login from "./components/Login.jsx"
+import SignUp from "./pages/SignUp.jsx"
 
 import Admin from "./pages/Admin.jsx" 
 
@@ -23,12 +24,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+{/* 
+      <Admin />
 
       {/* <Admin />
-
-      <Login />
-
-
 
       <StarRating rating={5} /> */}
 
@@ -37,6 +36,11 @@ function App() {
         <>
           <Routes>
             <Route
+                  path="/" 
+                  element={<SignUp />} 
+                />
+
+            {/* <Route
                 path="/" 
                 element={<HomeFeed />} 
               />
@@ -47,7 +51,7 @@ function App() {
             <Route
                 path="/user/:id" 
                 element={<OtherUserProfile />} 
-              />
+              /> */}
 
           </Routes>
         </>

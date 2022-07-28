@@ -1,51 +1,126 @@
 import React, {useState} from 'react';
 import {validateEmail} from '../utils/helpers'
 
-import React from 'react'
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
 
 function SignUp() {
-  //States set up for email, name message and potential error messages
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
-  const [errorCheck, setErrorCheck] = useState('');
 
-  //Monitors which field is being typed in and updates relevant variable through the Set functions
-  const handleInputChange = (event) => {
-    const { target } = event;
-    const inputType = target.name;
-    const inputValue = target.value;
+    const [formState, setFormState] = useState({
+      name: '',
+      email: '',
+      password: '',
+    });
 
-    if (inputType === 'email') {
-      setEmail(inputValue);
-    } else if (inputType === 'name') {
-      setUsername(inputValue);
-    } else {
-      setPassword(inputValue);
-    }
-  }
+    const [addUser, { error, data }] = useMutation(CREATE_USER);
 
-// On pressing submit button this function check for valid email and that a name and message is provided
-  const handleContactSubmit = (event) => {
-    event.preventDefault();
+    const handleChange = (event) => {
+      const { name, value } = event.target;
 
-    if(!validateEmail(email)) {
-      setErrorCheck('Email is in Invalid Format');
-      return;
-    } 
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    };
 
-    if( !username || !password ) {
-      setErrorCheck('Name and Password must be filled out');
-      return
-    }
-    setEmail('')
-    setUsername('')
-    setPassword('')
-    setErrorCheck('')
-  }
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      console.log(formState);
+
+      try {
+        const { data } = await addUser({
+          variables: { ...formState },
+        });
+
+        Auth.login(data.createUser.token);
+      } catch (e) {
+        console.error(e);
+      }
+    };
 
   return (
-<div className='signup-container' >
+
+    <div>
+      <form onSubmit={handleFormSubmit}>
+                <input
+                  placeholder="Your username"
+                  name="name"
+                  type="text"
+                  value={formState.name}
+                  onChange={handleChange}
+                />
+                <input
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                <input
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                <button
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </form>
+    </div>
+
+
+  );
+}
+
+export default SignUp
+
+  //States set up for email, name message and potential error messages
+//   const [username, setUsername] = useState('')
+//   const [password, setPassword] = useState('')
+//   const [email, setEmail] = useState('')
+//   const [errorCheck, setErrorCheck] = useState('');
+
+//   //Monitors which field is being typed in and updates relevant variable through the Set functions
+//   const handleInputChange = (event) => {
+//     const { target } = event;
+//     const inputType = target.name;
+//     const inputValue = target.value;
+
+//     if (inputType === 'email') {
+//       setEmail(inputValue);
+//     } else if (inputType === 'name') {
+//       setUsername(inputValue);
+//     } else {
+//       setPassword(inputValue);
+//     }
+//   }
+
+// // On pressing submit button this function check for valid email and that a name and message is provided
+//   const handleContactSubmit = (event) => {
+//     event.preventDefault();
+
+//     if(!validateEmail(email)) {
+//       setErrorCheck('Email is in Invalid Format');
+//       return;
+//     } 
+
+//     if( !username || !password ) {
+//       setErrorCheck('Name and Password must be filled out');
+//       return
+//     }
+//     setEmail('')
+//     setUsername('')
+//     setPassword('')
+//     setErrorCheck('')
+//   }
+
+
+/* <div className='signup-container' >
     <div className='signup-header' > 
         <h2 >Sign-Up</h2>
     </div>
@@ -76,10 +151,4 @@ function SignUp() {
             )}
     </div>
 
-</div>
-
-  );
-}
-
-export default SignUp
-
+</div> */
