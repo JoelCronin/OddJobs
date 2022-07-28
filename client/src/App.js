@@ -8,6 +8,7 @@ import Login from "./components/Login.jsx"
 import Account from "./pages/Account.jsx"
 
 import HomeFeed from './pages/HomeFeed';
+import SinglePosting from './pages/SinglePosting';
 
 import StarRating from './components/StarRating.jsx';
 
@@ -26,19 +27,28 @@ function App() {
 
       {/* <Login /> */}
 
-      {/* <HomeFeed /> */}
+
 
       {/* <StarRating rating={5} /> */}
 
-      
-      {/* <Router>
+
+      <Router>
+
         <>
 
           <Routes>
+            <Route
+                path="/" 
+                element={<HomeFeed />} 
+              />
+            <Route
+                path="/posting/:id" 
+                element={<SinglePosting />} 
+              />
 
           </Routes>
         </>
-      </Router> */}
+      </Router>
     </ApolloProvider>
   );
 }
