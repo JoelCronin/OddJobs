@@ -75,7 +75,7 @@ function HomeFeed() {
                   </div>
                 </div>
                 <div className='job-post-description-bottom'>
-                <Link to= {`/`}><h1 className='job-post-owner'>Chris</h1></Link>
+                <Link to= {`/user/${posting.owner._id}`}><h1 className='job-post-owner'>Chris</h1></Link>
                   <h1 className='job-post-date'>{posting.createdAt}</h1>
                 </div>
               </div>
