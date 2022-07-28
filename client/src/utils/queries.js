@@ -27,6 +27,7 @@ export const GET_POSTING = gql`
                 _id
                 name
             }
+            _id
             cost
             title
             status
@@ -39,17 +40,24 @@ export const GET_POSTING = gql`
 export const GET_SINGLE_POSTING = gql`
     query singlePosting($id: ID!) {
         singlePosting(id: $id) {
-            owner {
+            _id
+            title
+            cost
+            description
+            image
+            status
+            createdAt
+            applications{
+                name
+            }
+            owner{
                 _id
                 name
             }
-            cost
-            title
-            status
-            createdAt
-            image
         }
     }
+
+
 `;
 
 export const GET_SINGLE_USER = gql`

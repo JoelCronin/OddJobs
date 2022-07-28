@@ -41,10 +41,8 @@ const resolvers = {
       // throw new AuthenticationError('You need to be logged in!');
     },
 
-    createUser: async (parent, args) => {
-      const user = await User.create({
-        ...args.input
-      });
+    createUser: async (parent, { name, email, password }) => {
+      const user = await User.create({ name, email, password });
       const token = signToken(user);
       return { token, user };
     },
