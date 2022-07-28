@@ -21,11 +21,12 @@ function OtherUserProfile() {
   return (
     <div className='other-user-container'>
         <div className='other-user-header'>
-            <h3>NAME  {singleOtherUser.name}</h3>
+            <h3>NAME:  {singleOtherUser.name}</h3>
+            <h3>Email  {singleOtherUser.email}</h3>
         </div>
         <div className='other-user-body'>
-            <p>RATING</p>
-            <img src='WILL BE ADDED LATER' alt='WILL BE ADDED LATER'/>
+            <p>RATING:</p>
+            <img src={singleOtherUser.image} alt={singleOtherUser.name}/>
             {/* WOuld be cool if we could have the completed jobs all showing on a carousel/scrollable something */}
             {/* Lets see if we have enough time */}
             <p>COMPLETED JOBS</p>
