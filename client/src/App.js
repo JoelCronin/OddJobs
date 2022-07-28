@@ -29,10 +29,10 @@ function App() {
 
 
 
-      <StarRating rating={5} />
+      {/* <StarRating rating={5} /> */}
 
 
-      <Router>
+      {/* <Router>
 
         <>
 
@@ -48,7 +48,7 @@ function App() {
 
           </Routes>
         </>
-      </Router>
+      </Router> */}
     </ApolloProvider>
   );
 }
