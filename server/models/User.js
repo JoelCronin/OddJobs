@@ -24,11 +24,11 @@ const userSchema = new Schema({
       },
       address: {
         type: String,
-        required: true,
+        required: false,
       },
       postCode: {
         type: String,
-        required: true,
+        required: false,
       },
       jobApplications: [
         {

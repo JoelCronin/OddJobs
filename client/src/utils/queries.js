@@ -40,7 +40,6 @@ export const GET_POSTING = gql`
 export const GET_SINGLE_POSTING = gql`
     query singlePosting($id: ID!) {
         singlePosting(id: $id) {
-
             _id
             title
             cost
