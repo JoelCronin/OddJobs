@@ -75,3 +75,19 @@ export const GET_SINGLE_USER = gql`
         }
     }
 `;
+
+export const GET_ALL_USERS = gql`
+    query allUsers {
+        allUsers {
+            _id
+            name
+            email
+            image
+            ratings {
+                _id
+                stars
+                comment
+            }
+        }
+    }
+`;
