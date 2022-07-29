@@ -14,10 +14,10 @@ const resolvers = {
       const posting = await Posting.findById(args.id).populate('owner').populate('chosenWorker').populate('applications');
       return posting;
     },
-    me: async ( parent, args, { user } ) => {
-      return User.findOne({
-        $or: [{ _id: user ? user._id : args.id }, { username: args.username }],
-      });
+    me: async (parent, args) => {
+      // if (context.user) {
+        return User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs');
+      // throw new AuthenticationError('You need to be logged in!');
     },
     singleUser: async (parent, args) => {
       const user = await User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');

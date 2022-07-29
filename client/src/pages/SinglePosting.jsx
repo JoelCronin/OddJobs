@@ -8,9 +8,13 @@ function SinglePosting() {
 
     const singlePostingId = useParams();
 
+    console.log(singlePostingId)
+
     const {loading, data} = useQuery (GET_SINGLE_POSTING, {
         variables: singlePostingId 
     });
+
+    console.log(data)
 
     const singlepost = data?.singlePosting || [];
 
