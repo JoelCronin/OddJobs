@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/client';
-import { GET_POSTING } from '../utils/queries';
+import { GET_POSTING, GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -11,6 +11,7 @@ import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
 import logo from '../img/logo.png';
 
+import Auth from '../utils/auth';
 
 
 
@@ -54,13 +55,13 @@ function HomeFeed() {
                 <input type="text" className='input-search' placeholder='Search'/>
               </div>
             </div>
-            <img className="proflie-pic-corner" src={profilepic}/>
+            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={profilepic}/> </Link>
           </div>
         </header>
 
         <div className='job-grid-box'>
           {postings.map((posting) => (
-        <Link to= {`/posting/${posting._id}`}>
+        <Link to= {`/posting/${posting._id}`} className="feed-post-link">
             <div className='job-box' key={posting.title}>
               <h1 className='job-price'><span>$</span>{posting.cost}</h1>
               <img className='job-post-img' src={posting.image} alt={posting.title}/>
@@ -75,7 +76,7 @@ function HomeFeed() {
                   </div>
                 </div>
                 <div className='job-post-description-bottom'>
-                <Link to= {`/user/${posting.owner._id}`}><h1 className='job-post-owner'>Chris</h1></Link>
+                <Link to= {`/user/${posting.owner._id}`}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
                   <h1 className='job-post-date'>{posting.createdAt}</h1>
                 </div>
               </div>
@@ -89,5 +90,7 @@ function HomeFeed() {
     </div>
   )
 }
+
+///user/${posting.owner._id}`
 
 export default HomeFeed;

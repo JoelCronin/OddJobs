@@ -119,6 +119,9 @@ input[type="number"] {
     .sidebar{
         width: 100px;
     }
+    .options{
+        display: none;
+    }
 
     .sidebar-top span{
         display: none;
