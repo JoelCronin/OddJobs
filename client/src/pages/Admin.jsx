@@ -1,8 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/AccountStyles/Account-Header.css"
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import Auth from '../utils/auth';
 // import AccountNav from "../components/Account-Components/Account-Nav"
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
@@ -12,6 +9,23 @@ import Applications from "../components/Account-Components/Applications"
 import logo from '../img/logo.png'
 
 function Account() {
+    const [currentPage, setCurrentPage] = useState('myAccount');
+
+    const renderPage = () => {
+        if (currentPage === 'myAccount') {
+            return <MyAccount/>;
+        }
+        if (currentPage === 'myListings') {
+            return <MyListings/>;
+        }
+        if (currentPage === 'applied') {
+            return <Applied/>;
+        }
+        if (currentPage === 'applications') {
+            return <Applications/>;
+        }
+    }
+
     return (
         <div className="adminBody">
             <div className="sidebar">
@@ -21,10 +35,10 @@ function Account() {
                 </div>
 
                 <div className="options">
-                    <section>My Account</section>
-                    <Link to = {`/myListings/${Auth.getProfile().data._id}`}><section>My Listings</section></Link>
-                    <section>Applied</section>
-                    <section>Applications Recived</section>
+                    <section onClick={() => setCurrentPage('myAccount')}>My Account</section>
+                    <section onClick={() => setCurrentPage('myListings')}>My Listings</section>
+                    <section onClick={() => setCurrentPage('applied')}>Applied</section>
+                    <section onClick={() => setCurrentPage('applications')}>Applications Recived</section>
                 </div>
             </div>
 
@@ -36,13 +50,8 @@ function Account() {
                     </div>
                 </header>
 
-                <MyAccount />
+                {renderPage()}
 
-                {/* <MyListings /> */}
-                
-                {/* <Applied /> */}
-
-                {/* <Applications /> */}
             </div>
         </div>
     );
