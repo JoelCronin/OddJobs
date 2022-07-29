@@ -14,6 +14,9 @@ import SinglePosting from './pages/SinglePosting';
 import StarRating from './components/StarRating.jsx';
 import OtherUserProfile from './pages/OtherUserProfile';
 
+import Auth from './utils/auth';
+
+
 
 
 const client = new ApolloClient({
@@ -40,10 +43,10 @@ function App() {
       <Router>
         <>
           <Routes>
-            <Route
-                path="/" 
-                element={<HomeFeed />} 
-              />
+
+            <Route path="/"
+              element={<HomeFeed/>}
+            />
             <Route
                 path="/posting/:id" 
                 element={<SinglePosting />} 
@@ -54,7 +57,7 @@ function App() {
               />
 
             <Route
-                path="/me/:id" 
+                path={`/me/${Auth.getProfile().data._id}`}
                 element={<Admin />} 
               />
 
