@@ -13,7 +13,22 @@ import logo from '../img/logo.png';
 
 
 function Account() {
+    const [currentPage, setCurrentPage] = useState('myAccount');
 
+    const renderPage = () => {
+        if (currentPage === 'myAccount') {
+            return <MyAccount/>;
+        }
+        if (currentPage === 'myListings') {
+            return <MyListings/>;
+        }
+        if (currentPage === 'applied') {
+            return <Applied/>;
+        }
+        if (currentPage === 'applications') {
+            return <Applications/>;
+        }
+    }
 
     return (
         <div className="adminBody">
@@ -23,10 +38,10 @@ function Account() {
                     <span>OddJobs</span>
                 </div>
                 <div className="options">
-                    <section className='selected-tab'>My Account</section>
-                    <Link to={`/myListings/${Auth.getProfile().data._id}`}><section>My Listings</section></Link>
-                    <section>Applied</section>
-                    <section>Applications Recived</section>
+                    <section className='selected-tab' onClick={() => setCurrentPage('myAccount')}>My Account</section>
+                    <Link to={`/myListings/${Auth.getProfile().data._id}`}><section onClick={() => setCurrentPage('myListings')}>My Listings</section></Link>
+                    <section onClick={() => setCurrentPage('applied')}>Applied</section>
+                    <section onClick={() => setCurrentPage('applications')}>Applications Recived</section>
                 </div>
             </div>
 
@@ -38,7 +53,7 @@ function Account() {
                     </div>
                 </header>
 
-                <MyListings />
+                {renderPage()}
 
             </div>
         </div>
