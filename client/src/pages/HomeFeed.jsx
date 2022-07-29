@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/client';
-import { GET_POSTING } from '../utils/queries';
+import { GET_POSTING, GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -11,6 +11,7 @@ import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
 import logo from '../img/logo.png';
 
+import Auth from '../utils/auth';
 
 
 
@@ -54,7 +55,7 @@ function HomeFeed() {
                 <input type="text" className='input-search' placeholder='Search'/>
               </div>
             </div>
-            <img className="proflie-pic-corner" src={profilepic}/>
+            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={profilepic}/> </Link>
           </div>
         </header>
 

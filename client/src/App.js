@@ -10,7 +10,7 @@ import Admin from "./pages/Admin.jsx"
 
 import HomeFeed from './pages/HomeFeed';
 import SinglePosting from './pages/SinglePosting';
-
+import MyListings from './components/Account-Components/My-Listings';
 import StarRating from './components/StarRating.jsx';
 import OtherUserProfile from './pages/OtherUserProfile';
 
@@ -25,24 +25,33 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      <Admin />
+      {/* <Admin />
 
-      {/* <Login /> */}
+
+      <SignUp />
+
+      <Login /> */}
 
 
       {/* <StarRating rating={5} />  */}
 
 
-      {/* <Router>
+      <Router>
         <>
           <Routes>
-            <Route
-                  path="/" 
-                  element={<SignUp />} 
-                />
+
+            <Route 
+                path="/" 
+                element={<Login />} 
+              />
+
+            <Route 
+                path="signup"
+                element={<SignUp />} 
+              />
 
             <Route
-                path="/" 
+                path="/home" 
                 element={<HomeFeed />} 
               />
             <Route
@@ -53,10 +62,17 @@ function App() {
                 path="/user/:id" 
                 element={<OtherUserProfile />} 
               />
-
+            <Route
+                path="/me/:id" 
+                element={<Admin />} 
+              />
+            <Route
+                path="/myListings/:id" 
+                element={<MyListings />} 
+              />
           </Routes>
         </>
-      </Router> */}
+      </Router>
     </ApolloProvider>
   );
 }

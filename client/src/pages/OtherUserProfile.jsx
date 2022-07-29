@@ -2,18 +2,17 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
+
 import {GET_SINGLE_USER} from '../utils/queries'
 
 function OtherUserProfile() {
 
     const singleUserId = useParams();
 
-    console.log(singleUserId)
-
     const {loading, data} = useQuery (GET_SINGLE_USER, {
         variables: singleUserId
     });
-
+    
     console.log(data)
 
     const singleOtherUser = data?.singleUser || [];
@@ -21,7 +20,7 @@ function OtherUserProfile() {
   return (
     <div className='other-user-container'>
         <div className='other-user-header'>
-            <h3>NAME  {singleOtherUser.name}</h3>
+            <h3>NAME:  {singleOtherUser.name}</h3>
         </div>
         <div className='other-user-body'>
             <p>RATING</p>

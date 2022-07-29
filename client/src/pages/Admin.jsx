@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css"
-
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
@@ -23,7 +24,7 @@ function Account() {
                 </div>
                 <div className="options">
                     <section className='selected-tab'>My Account</section>
-                    <section>My Listings</section>
+                    <Link to={`/myListings/${Auth.getProfile().data._id}`}><section>My Listings</section></Link>
                     <section>Applied</section>
                     <section>Applications Recived</section>
                 </div>

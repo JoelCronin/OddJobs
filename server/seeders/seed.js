@@ -15,7 +15,7 @@ db.once('open', async () => {
     const ratings = await Rating.insertMany(ratingData);
     const users = await User.insertMany(userData);
     const postings = await Posting.insertMany(postingData);
-  
+    console.log(postings);
     for (newUsers of users) {
 
       // randomly add Users to apply for posting application
@@ -23,11 +23,18 @@ db.once('open', async () => {
       tempPostingApplication.applications.push(newUsers._id)
       await tempPostingApplication.save(); 
 
-      for (var i = 0; i < postings.length; i++) {
-      // randomly add each User to a Posting Owner
-      const tempPostingOwner = postings[i];
-      tempPostingOwner.owner = newUsers._id;
-      await tempPostingOwner.save();
+      if(!postings[0].owner) {
+        postings[0].owner = newUsers._id;
+        await postings[0].save();
+      } else if (!postings[1].owner) {
+        postings[1].owner = newUsers._id;
+        await postings[1].save();
+      } else if (!postings[2].owner) {
+        postings[2].owner = newUsers._id;
+        await postings[2].save();
+      } else {
+        postings[3].owner = newUsers._id;
+        await postings[3].save();
       }
 
       // randomly add each User to be the ratings leaver
