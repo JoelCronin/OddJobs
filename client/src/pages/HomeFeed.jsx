@@ -60,27 +60,27 @@ function HomeFeed() {
 
         <div className='job-grid-box'>
           {postings.map((posting) => (
-        <Link to= {`/posting/${posting._id}`} className="feed-post-link">
-            <div className='job-box' key={posting.title}>
-              <h1 className='job-price'><span>$</span>{posting.cost}</h1>
-              <img className='job-post-img' src={posting.image} alt={posting.title}/>
-              <div className='job-post-decription-box'>
-                <div className='job-post-description-top'>
-                  <h1 className='job-title'>{posting.title}</h1>
-                  <div className='status-box'>
-                    <h1 className='status-main-post'>Status</h1>
-                    <span>
-                      <img className='status-symbol-main' src={active}/>
-                    </span>
+            <Link to= {`/posting/${posting._id}`} className="feed-post-link">
+                <div className='job-box' key={posting.title}>
+                  <h1 className='job-price'><span>$</span>{posting.cost}</h1>
+                  <img className='job-post-img' src={posting.image} alt={posting.title}/>
+                  <div className='job-post-decription-box'>
+                    <div className='job-post-description-top'>
+                      <h1 className='job-title'>{posting.title}</h1>
+                      <div className='status-box'>
+                        <h1 className='status-main-post'>Status</h1>
+                        <span>
+                          <img className='status-symbol-main' src={active}/>
+                        </span>
+                      </div>
+                    </div>
+                    <div className='job-post-description-bottom'>
+                    <Link to= {`/user/${posting.owner._id}`}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
+                      <h1 className='job-post-date'>{posting.createdAt}</h1>
+                    </div>
                   </div>
                 </div>
-                <div className='job-post-description-bottom'>
-                <Link to= {`/`}><h1 className='job-post-owner'>Chris</h1></Link>
-                  <h1 className='job-post-date'>{posting.createdAt}</h1>
-                </div>
-              </div>
-            </div>
-        </Link>
+            </Link>
           ))}
         </div>
 

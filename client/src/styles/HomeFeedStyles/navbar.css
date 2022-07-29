@@ -150,12 +150,10 @@ input[type="number"] {
 
 
 
-
 .options{
     margin-top: 60px;
     width: 289px;
     transition: width 0.5s;
-    /* border: 1px solid white; */
     margin-left: -9px;
 }
 
@@ -173,7 +171,6 @@ input[type="number"] {
     font-weight: 500;
     font-size: 19px;
     line-height: 32px;
-    /* border: 1px solid white; */
 }
 
 
@@ -183,6 +180,13 @@ input[type="number"] {
     border-left-color: #64FFDB;
     background-color: #233C62;
     cursor: pointer;
+}
+
+.selected-tab{
+    border-left-width: 7px;
+    border-left-style: solid;
+    border-left-color: #64FFDB;
+    background-color: #233C62;
 }
 
 

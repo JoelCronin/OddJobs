@@ -1,0 +1,5 @@
+.appliedContainer {
+    margin: 0px 30px;
+    display: flex;
+    flex-wrap: wrap;
+}

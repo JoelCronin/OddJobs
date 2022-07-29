@@ -1,15 +1,19 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css"
 
-// import AccountNav from "../components/Account-Components/Account-Nav"
+
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
 
-import logo from '../img/logo.png'
+import logo from '../img/logo.png';
+
+
 
 function Account() {
+
+
     return (
         <div className="adminBody">
             <div className="sidebar">
@@ -17,9 +21,8 @@ function Account() {
                     <img className="navbar-logo" src={logo}/> 
                     <span>OddJobs</span>
                 </div>
-
                 <div className="options">
-                    <section>My Account</section>
+                    <section className='selected-tab'>My Account</section>
                     <section>My Listings</section>
                     <section>Applied</section>
                     <section>Applications Recived</section>
@@ -34,13 +37,8 @@ function Account() {
                     </div>
                 </header>
 
-                <MyAccount />
+                <MyListings />
 
-                {/* <MyListings /> */}
-                
-                {/* <Applied /> */}
-
-                {/* <Applications /> */}
             </div>
         </div>
     );

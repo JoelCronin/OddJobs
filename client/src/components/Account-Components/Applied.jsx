@@ -1,24 +1,161 @@
 import React from "react";
-import "../../styles/Applied.css";
-
+import "../../styles/AccountStyles/Applied.css";
+import active from '../../img/status/active.png';
 function Applied() {
 
     return (
-        <div id="appliedContainer">
-            <div id="appliedHeader" className="flex">
-                <h1 id="appliedHeaderAccountItem">Applied</h1>
-                <h1 id="appliedHeaderHomeItem">Home</h1>
-            </div>
-            <div id="appliedCardContainer" className="flex">
-                <div className="appliedCard flex">
-                    <h3>Cost Placeholder</h3>
-                    <h3>Edit Button Placeholder</h3>
-                    <img src="https://via.placeholder.com/200" alt="Job"/>
-                    <h3>Desciption Placeholder</h3>
-                    <h3>Status Placeholder</h3>
-                    <h3>Name Placeholder</h3>
-                    <h3>Date Placeholder</h3>
+        <div className="appliedContainer">
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
                 </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+            </div>
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+            </div>
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+            </div>
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+            </div>
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+            </div>
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+            </div>
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+            </div>
+            <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
             </div>
         </div>
     );
