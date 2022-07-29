@@ -79,11 +79,6 @@ export const GET_SINGLE_USER = gql`
             name
             email
             image
-            ratings {
-                _id
-                stars
-                comment
-            }
         }
     }
 `;
