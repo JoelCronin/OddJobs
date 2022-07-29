@@ -1,16 +1,35 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// import AccountNav from "../components/Account-Components/Account-Nav"
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
 
-import logo from '../img/logo.png'
+import logo from '../img/logo.png';
+
+
 
 function Account() {
+    const [currentPage, setCurrentPage] = useState('myAccount');
+
+    const renderPage = () => {
+        if (currentPage === 'myAccount') {
+            return <MyAccount/>;
+        }
+        if (currentPage === 'myListings') {
+            return <MyListings/>;
+        }
+        if (currentPage === 'applied') {
+            return <Applied/>;
+        }
+        if (currentPage === 'applications') {
+            return <Applications/>;
+        }
+    }
+
     return (
         <div className="adminBody">
             <div className="sidebar">
@@ -18,12 +37,11 @@ function Account() {
                     <img className="navbar-logo" src={logo}/> 
                     <span>OddJobs</span>
                 </div>
-
                 <div className="options">
-                    <section>My Account</section>
-                    <section>My Listings</section>
-                    <section>Applied</section>
-                    <section>Applications Recived</section>
+                    <section className='selected-tab' onClick={() => setCurrentPage('myAccount')}>My Account</section>
+                    <Link to={`/myListings/${Auth.getProfile().data._id}`}><section onClick={() => setCurrentPage('myListings')}>My Listings</section></Link>
+                    <section onClick={() => setCurrentPage('applied')}>Applied</section>
+                    <section onClick={() => setCurrentPage('applications')}>Applications Recived</section>
                 </div>
             </div>
 
@@ -31,17 +49,12 @@ function Account() {
                 <header className="admin-main-header">
                     <h1 className="admin-title">My Account</h1>
                     <div className="admin-back-button">
-                        <div>Home</div>
+                       <Link to='/home'> <div>Home</div> </Link>
                     </div>
                 </header>
 
-                <MyAccount />
+                {renderPage()}
 
-                {/* <MyListings /> */}
-                
-                {/* <Applied /> */}
-
-                {/* <Applications /> */}
             </div>
         </div>
     );

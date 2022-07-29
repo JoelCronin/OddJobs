@@ -10,7 +10,7 @@ import Admin from "./pages/Admin.jsx"
 
 import HomeFeed from './pages/HomeFeed';
 import SinglePosting from './pages/SinglePosting';
-
+import MyListings from './components/Account-Components/My-Listings';
 import StarRating from './components/StarRating.jsx';
 import OtherUserProfile from './pages/OtherUserProfile';
 
@@ -33,7 +33,6 @@ function App() {
       <Login /> */}
 
 
-
       {/* <StarRating rating={5} />  */}
 
 
@@ -41,34 +40,20 @@ function App() {
         <>
           <Routes>
 
-            <Route 
-                path="/" 
-                element={<Login />} 
-              />
+            <Route path="/" element={<Login />}/>
 
-            <Route 
-                path="signup"
-                element={<SignUp />} 
-              />
+            <Route path="signup" element={<SignUp />}/>
 
-            <Route
-                path="/home" 
-                element={<HomeFeed />} 
-              />
-            <Route
-                path="/posting/:id" 
-                element={<SinglePosting />} 
-              />
-            <Route
-                path="/user/:id" 
-                element={<OtherUserProfile />} 
-              />
+            <Route path="/home" element={<HomeFeed />} />
 
-            <Route
-                path="/me/:id" 
-                element={<Admin />} 
-              />
+            <Route path="/posting/:id" element={<SinglePosting />} />
 
+            <Route path="/user/:id" element={<OtherUserProfile />} />
+
+            <Route path="/me/:id" element={<Admin />} />
+
+            <Route path="/myListings/:id" element={<MyListings />} />
+            
           </Routes>
         </>
       </Router>
