@@ -24,4 +24,4 @@ function MyListings() {
     );
 }
 
-export default MyListings;
+export default MyListings;  

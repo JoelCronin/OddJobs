@@ -40,8 +40,19 @@ function App() {
       <Router>
         <>
           <Routes>
-            <Route
+
+            <Route 
                 path="/" 
+                element={<Login />} 
+              />
+
+            <Route 
+                path="signup"
+                element={<SignUp />} 
+              />
+
+            <Route
+                path="/home" 
                 element={<HomeFeed />} 
               />
             <Route
