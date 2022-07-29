@@ -40,36 +40,20 @@ function App() {
         <>
           <Routes>
 
-            <Route 
-                path="/" 
-                element={<Login />} 
-              />
+            <Route path="/" element={<Login />}/>
 
-            <Route 
-                path="signup"
-                element={<SignUp />} 
-              />
+            <Route path="signup" element={<SignUp />}/>
 
-            <Route
-                path="/home" 
-                element={<HomeFeed />} 
-              />
-            <Route
-                path="/posting/:id" 
-                element={<SinglePosting />} 
-              />
-            <Route
-                path="/user/:id" 
-                element={<OtherUserProfile />} 
-              />
-            <Route
-                path="/me/:id" 
-                element={<Admin />} 
-              />
-            <Route
-                path="/myListings/:id" 
-                element={<MyListings />} 
-              />
+            <Route path="/home" element={<HomeFeed />} />
+
+            <Route path="/posting/:id" element={<SinglePosting />} />
+
+            <Route path="/user/:id" element={<OtherUserProfile />} />
+
+            <Route path="/me/:id" element={<Admin />} />
+
+            <Route path="/myListings/:id" element={<MyListings />} />
+            
           </Routes>
         </>
       </Router>

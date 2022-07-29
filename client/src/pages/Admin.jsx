@@ -49,7 +49,7 @@ function Account() {
                 <header className="admin-main-header">
                     <h1 className="admin-title">My Account</h1>
                     <div className="admin-back-button">
-                        <div>Home</div>
+                       <Link to='/home'> <div>Home</div> </Link>
                     </div>
                 </header>
 
