@@ -3,7 +3,6 @@ import "../styles/AccountStyles/Account-Header.css"
 import { Link } from 'react-router-dom';
 
 
-import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";

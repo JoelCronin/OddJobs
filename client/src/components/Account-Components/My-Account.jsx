@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 import { useParams } from 'react-router-dom';
 
+import Auth from "../../utils/auth";
+
 
 import profilePic from '../../img/profile-pic-large.png';
 
@@ -11,6 +13,11 @@ function MyAccount() {
 
  const myId = useParams()
  const login = {"id": "62e2f1bbb398d467f85a6491"}
+
+ const logout = (e) => {
+    e.preventDefault();
+    Auth.logout();
+ }
 
     console.log(myId)
     console.log(login)
@@ -34,7 +41,7 @@ function MyAccount() {
                 <div className="profile-and-signout">
                     <img className="my-account-profile-pic" src={profilePic}/>
                     <div className="admin-signout-button">
-                            <div>Sign out</div>
+                            <div onClick={logout}>Sign out</div>
                     </div>
                 </div>
 
