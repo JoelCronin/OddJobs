@@ -49,6 +49,7 @@ const typeDefs = gql`
         me(id:ID!): User
         singleUser(id: ID!): User
         allUsers: [User]!
+        sigleRating(id: ID!): Rating
     }
 
     type Mutation {

@@ -35,7 +35,6 @@ function App() {
       <Login /> */}
 
 
-
       {/* <StarRating rating={5} />  */}
 
 
@@ -45,7 +44,7 @@ function App() {
 
             <Route path="/" element={<Login />}/>
 
-            <Route path="signup" element={<SignUp />}/>
+            <Route path="/signup" element={<SignUp />}/>
 
             <Route path="/home" element={<HomeFeed />} />
 
