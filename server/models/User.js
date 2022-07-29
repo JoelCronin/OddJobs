@@ -8,50 +8,52 @@ const userSchema = new Schema({
         required: true,
         trim: true,
       },
-      email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: [/.+@.+\..+/, 'Must match an email address!'],
-      },
-      password: {
-        type: String,
-        required: true,
-        minlength: 5,
-      },
-      image: {
-        type: String,
-      },
-      address: {
-        type: String,
-        required: false,
-      },
-      postCode: {
-        type: String,
-        required: false,
-      },
-      jobApplications: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Posting'
-        }
-      ],
-      activeJobs: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Posting'
-        }
-      ],
-      completedJobs: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Posting'
-        }
-      ],
-      ratings: {
-        type: Schema.Types.ObjectId,
-        ref: 'Rating'
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, 'Must match an email address!'],
     },
+    password: {
+      type: String,
+      required: true,
+      minlength: 5,
+    },
+    image: {
+      type: String,
+    },
+    address: {
+      type: String,
+      required: false,
+    },
+    postCode: {
+      type: String,
+      required: false,
+    },
+    jobApplications: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Posting'
+      }
+    ],
+    activeJobs: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Posting'
+        }
+    ],
+    completedJobs: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Posting'
+      }
+    ],
+    ratings: [
+      {
+      type: Schema.Types.ObjectId,
+      ref: 'Rating'
+    }
+    ],
   }
 );
 

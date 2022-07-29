@@ -26,6 +26,10 @@ const resolvers = {
     allUsers: async () => {
       const users = await User.find().populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
       return users;
+    },
+    sigleRating: async (parent, args) => {
+      const rating = await Rating.findById(args.id).populate('byUser').populate('forUser');
+      return rating;
     }    
   },
 

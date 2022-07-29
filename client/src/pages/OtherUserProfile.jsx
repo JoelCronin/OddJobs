@@ -8,7 +8,7 @@ import {GET_SINGLE_USER} from '../utils/queries'
 function OtherUserProfile() {
 
     const singleUserId = useParams();
-
+    
     const {loading, data} = useQuery (GET_SINGLE_USER, {
         variables: singleUserId
     });
