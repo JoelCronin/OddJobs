@@ -71,7 +71,7 @@ function MyListings() {
               </div>
               <MdModeEdit className="edit-button"/>
             </div>
-          
+{/*           
             {myListings.activeJobs.length === 0 ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
               <div className='job-box'>
                 <h1 className='job-price'><span>$</span>20</h1>
@@ -93,7 +93,7 @@ function MyListings() {
                 </div>
                 <MdModeEdit className="edit-button"/>
               </div>
-            )}
+            )} */}
 
             <div className="form-background">
                 <div className="form-box">
