@@ -49,9 +49,9 @@ function Applied() {
             </div>
 
 
-            {(userInfo.jobApplicatoins === null) ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
+            {(userInfo.jobApplications.length === 0) ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
             
-                userInfo.jobApplicatoins.map((application) => {
+                userInfo.jobApplications.map((application) => {
                 <div className='job-box'>
                     <h1 className='job-price'><span>$</span> {application.cost} </h1>
                     <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>

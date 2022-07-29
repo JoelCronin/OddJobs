@@ -15,6 +15,7 @@ import StarRating from './components/StarRating.jsx';
 import OtherUserProfile from './pages/OtherUserProfile';
 import Applied from './components/Account-Components/Applied';
 import Applications from './components/Account-Components/Applications';
+import UpdatePosting from './components/Account-Components/UpdatePosting';
 
 
 
@@ -59,6 +60,8 @@ function App() {
             <Route path="/myApplied/:id" element={<Applied />} />
 
             <Route path="/myApplicationsReceived/:id" element={<Applications />} />
+
+            <Route path="/updatePosting" element={<UpdatePosting />} />
             
           </Routes>
         </>
