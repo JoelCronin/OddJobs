@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css"
-import { Link } from 'react-router-dom';
 
 
 import { Link } from 'react-router-dom';
@@ -51,7 +50,7 @@ function Account() {
                 <header className="admin-main-header">
                     <h1 className="admin-title">My Account</h1>
                     <div className="admin-back-button">
-                       <Link to='/home'> <div>Home</div> </Link>
+                       <Link className="admin-home-button" to='/home'> <div>Home</div> </Link>
                     </div>
                 </header>
 

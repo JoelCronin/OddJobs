@@ -51,6 +51,15 @@
     color: #132948;
 }
 
+.admin-home-button{
+    text-decoration: none;
+    color: #64FFDB;
+}
+
+.admin-home-button:hover{
+    color: #132948;
+}
+
 
 @media screen and (max-width: 1051px) {
     .header-and-component-container{

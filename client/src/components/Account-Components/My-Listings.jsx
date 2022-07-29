@@ -71,8 +71,8 @@ function MyListings() {
               </div>
               <MdModeEdit className="edit-button"/>
             </div>
-{/*           
-            {myListings.activeJobs.length === 0 ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
+          
+            {/* {myListings.activeJobs.length === 0 ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
               <div className='job-box'>
                 <h1 className='job-price'><span>$</span>20</h1>
                 <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
