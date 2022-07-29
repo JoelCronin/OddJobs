@@ -1,4 +1,5 @@
 import React from "react";
+
 import "../../styles/AccountStyles/My-Listings.css";
 import active from '../../img/status/active.png';
 import { MdModeEdit } from 'react-icons/md';
@@ -9,25 +10,12 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 
+
 function MyListings() {
 
-  const myListingId = useParams();
-
-  console.log(myListingId)
-
-  const {loading, data} = useQuery (GET_ME, {
-      variables: myListingId 
-  });
-
-  console.log(data)
-
-  const myListings = data?.me || [];
-
-  console.log(myListings)
-
     return (
-
         <div id="myListingsContainer">
+
             <div className='job-box add-box'>
                 <BsPlusCircleFill className="add-button"/>
             </div>
@@ -109,10 +97,11 @@ function MyListings() {
                         </div>
                     </div>
                     <div className="form-right"></div>
+
                 </div>
             </div>
         </div>
     );
 }
 
-export default MyListings;  
+export default MyListings;
