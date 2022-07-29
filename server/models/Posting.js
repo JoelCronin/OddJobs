@@ -35,13 +35,13 @@ const postingSchema = new Schema({
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
-      applications: [
+    applications: [
         {
           type: Schema.Types.ObjectId,
           ref: 'User'
         }
     ],
-      chosenWorker: {
+    chosenWorker: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },

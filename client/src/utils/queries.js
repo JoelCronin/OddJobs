@@ -68,8 +68,6 @@ export const GET_SINGLE_POSTING = gql`
             }
         }
     }
-
-
 `;
 
 export const GET_SINGLE_USER = gql`
