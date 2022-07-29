@@ -26,6 +26,7 @@ function SinglePosting() {
         <p>Status: {singlepost.status}</p>
         <p>{singlepost.createdAt}</p>
         <img src={singlepost.image} alt={singlepost.title}/>
+        <h1>APPLY FOR POSTING</h1>
     </div>
 
   )

@@ -5,6 +5,7 @@ import active from '../../img/status/active.png';
 import { MdModeEdit } from 'react-icons/md';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -12,6 +13,7 @@ import { GET_ME } from '../../utils/queries';
 import UpdatePosting from "./UpdatePosting";
 import { Link } from 'react-router-dom';
 
+import Auth from "../../utils/auth";
 
 function MyListings() {
 
@@ -35,9 +37,11 @@ function MyListings() {
         <div id="myListingsContainer">
           
 
-            <div className='job-box add-box'>
-                <BsPlusCircleFill className="add-button"/>
-            </div>
+            <Link to={`/me/newPost/${Auth.getProfile().data._id}`}>
+              <div className='job-box add-box'>
+                  <BsPlusCircleFill className="add-button"/>
+              </div>
+            </Link>
             <div className='job-box'>
               <h1 className='job-price'><span>$</span>20</h1>
               <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
