@@ -36,7 +36,7 @@ const userSchema = new Schema({
           ref: 'Posting'
         }
       ],
-    activeJobs: [
+      activeJobs: [
         {
           type: Schema.Types.ObjectId,
           ref: 'Posting'
