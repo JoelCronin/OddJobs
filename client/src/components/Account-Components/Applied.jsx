@@ -48,7 +48,8 @@ function Applied() {
               </div>
             </div>
 
-            {(userInfo.jobApplicatoins == null) ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
+
+            {(userInfo.jobApplicatoins === null) ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
             
                 userInfo.jobApplicatoins.map((application) => {
                 <div className='job-box'>
@@ -68,6 +69,7 @@ function Applied() {
                     <h1 className='job-post-owner'>Chris</h1>
                         <h1 className='job-post-date'>{application.createdAt}</h1>
                     </div>
+
                     </div>
                 </div>
                 })
