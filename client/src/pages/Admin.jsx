@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css"
-// import AccountNav from "../components/Account-Components/Account-Nav"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
 
-import logo from '../img/logo.png'
+import logo from '../img/logo.png';
+
+
 
 function Account() {
     const [currentPage, setCurrentPage] = useState('myAccount');
@@ -33,10 +37,9 @@ function Account() {
                     <img className="navbar-logo" src={logo}/> 
                     <span>OddJobs</span>
                 </div>
-
                 <div className="options">
-                    <section onClick={() => setCurrentPage('myAccount')}>My Account</section>
-                    <section onClick={() => setCurrentPage('myListings')}>My Listings</section>
+                    <section className='selected-tab' onClick={() => setCurrentPage('myAccount')}>My Account</section>
+                    <Link to={`/myListings/${Auth.getProfile().data._id}`}><section onClick={() => setCurrentPage('myListings')}>My Listings</section></Link>
                     <section onClick={() => setCurrentPage('applied')}>Applied</section>
                     <section onClick={() => setCurrentPage('applications')}>Applications Recived</section>
                 </div>
