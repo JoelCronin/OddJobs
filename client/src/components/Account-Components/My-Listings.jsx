@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
-import UpdatePosting from "./UpdatePosting";
-import { Link } from 'react-router-dom';
+import UpdatePosting from "../../pages/UpdatePosting";
+
 
 import Auth from "../../utils/auth";
 
@@ -30,10 +30,8 @@ function MyListings() {
     const mine = data?.me || [];
 
     return (
-        <div>
+        
        
-
-        {mine.activeJobs.length === 0 ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : ( 
         <div id="myListingsContainer">
           
 
@@ -42,6 +40,9 @@ function MyListings() {
                   <BsPlusCircleFill className="add-button"/>
               </div>
             </Link>
+            <div>
+            {mine.activeJobs.length === 1 ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : ( 
+
             <div className='job-box'>
               <h1 className='job-price'><span>$</span>20</h1>
               <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
@@ -65,8 +66,9 @@ function MyListings() {
             </div>
              
 
-        </div>
-        )}
+             )}</div>
+        
+        
        </div>
     );
 }
