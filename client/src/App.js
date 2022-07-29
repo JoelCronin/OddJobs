@@ -13,6 +13,8 @@ import SinglePosting from './pages/SinglePosting';
 import MyListings from './components/Account-Components/My-Listings';
 import StarRating from './components/StarRating.jsx';
 import OtherUserProfile from './pages/OtherUserProfile';
+import Applied from './components/Account-Components/Applied';
+import Applications from './components/Account-Components/Applications';
 
 
 
@@ -53,6 +55,10 @@ function App() {
             <Route path="/me/:id" element={<Admin />} />
 
             <Route path="/myListings/:id" element={<MyListings />} />
+
+            <Route path="/myApplied/:id" element={<Applied />} />
+
+            <Route path="/myApplicationsReceived/:id" element={<Applications />} />
             
           </Routes>
         </>
