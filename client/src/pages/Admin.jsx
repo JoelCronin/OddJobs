@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/AccountStyles/Account-Header.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 // import AccountNav from "../components/Account-Components/Account-Nav"
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
@@ -21,7 +22,7 @@ function Account() {
 
                 <div className="options">
                     <section>My Account</section>
-                    <section>My Listings</section>
+                    <Link to = {`/myListings/${Auth.getProfile().data._id}`}><section>My Listings</section></Link>
                     <section>Applied</section>
                     <section>Applications Recived</section>
                 </div>
