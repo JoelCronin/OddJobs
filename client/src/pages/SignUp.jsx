@@ -37,7 +37,6 @@ function SignUp() {
             }
           },
         });
-
         Auth.login(data.createUser.token);
       } catch (e) {
         console.error(e);

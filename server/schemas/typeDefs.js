@@ -46,7 +46,7 @@ const typeDefs = gql`
     type Query {
         posting: [Posting]!
         singlePosting(id: ID!): Posting
-        me(id:ID!): User
+        me: User
         singleUser(id: ID!): User
         allUsers: [User]!
         sigleRating(id: ID!): Rating
@@ -84,7 +84,7 @@ const typeDefs = gql`
     }
 
     input RatingInput {
-        rating: Int
+        stars: Int
         comment: String
         byUser: ID
         forUser: ID
