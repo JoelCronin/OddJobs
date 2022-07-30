@@ -3,13 +3,15 @@ import { useQuery } from '@apollo/client';
 import { GET_POSTING, GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 
-import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineCheckCircle } from 'react-icons/ai';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 import '../styles/HomeFeedStyles/navbar.css';
 import '../styles/HomeFeedStyles/feedBody.css';
 
 import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
-import logo from '../img/logo.png';
+// import logo from '../img/logo.png';
+import logosvg from '../img/Logo.svg';
 
 import Auth from '../utils/auth';
 
@@ -26,7 +28,7 @@ function HomeFeed() {
     <div className="feedBody">
       <div className="sidebar">
           <div className="sidebar-top">
-              <img className="navbar-logo" src={logo}/> 
+              <img className="navbar-logo" src={logosvg}/>
               <span>OddJobs</span>
           </div>
 
@@ -37,7 +39,32 @@ function HomeFeed() {
               <input className='range-start'type="number" placeholder='90'/>
             </div>
             <hr className='sidebar-line'/>
-
+            <h1 className='dollar-sign-one'>$</h1>
+            <h1 className='dollar-sign-two'>$</h1>
+            <div className='stats-cluster'>
+              <div className='status-filter-container'>
+                <h1 className='status-filter-title'>Status</h1>
+                <div className='active-container'>
+                  <BsFillCheckCircleFill className='status-checkmark-active'/>
+                  <h1 className='active-check-name'>Active</h1>
+                </div>
+              </div>
+              <div className='status-filter-container'>
+                <div className='active-container'>
+                  <BsFillCheckCircleFill className='status-checkmark-pending'/>
+                  <h1 className='active-check-name'>Pending</h1>
+                </div>
+              </div>
+              <div className='status-filter-container'>
+                <div className='active-container'>
+                  <BsFillCheckCircleFill className='status-checkmark-completed'/>
+                  <h1 className='active-check-name'>Completed</h1>
+                </div>
+              </div>
+            </div>
+            <div className='filter-button-container'>
+              <button className='filter-button'>Apply Filters</button>
+            </div>
 
           </div>
 
@@ -47,7 +74,7 @@ function HomeFeed() {
     <div className='mainFeed'>
         
         <header className='main-header'>
-          <h1 className='job-listing-title'>All Job Listings</h1>
+          <h1 className='job-listing-title'>Job Feed</h1>
           <div className='right-div-search-profile'>
             <div className='search-div'>
               <div className='search-div-collection'>
@@ -76,13 +103,622 @@ function HomeFeed() {
                       </div>
                     </div>
                     <div className='job-post-description-bottom'>
-                    <Link to= {`/`}><h1 className='job-post-owner'>Chris</h1></Link>
+                    <Link to= {`/user/${posting.owner._id}`} style={{textDecoration: "none"}}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
                       <h1 className='job-post-date'>{posting.createdAt}</h1>
                     </div>
                   </div>
                 </div>
             </Link>
           ))}
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+          <div className='job-box'>
+              <h1 className='job-price'><span>$</span>20</h1>
+              <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
+              <div className='job-post-decription-box'>
+                <div className='job-post-description-top'>
+                  <h1 className='job-title'>Wash Dishes</h1>
+                  <div className='status-box'>
+                    <h1 className='status-main-post'>Status</h1>
+                    <span>
+                      <img className='status-symbol-main' src={active}/>
+                    </span>
+                  </div>
+                </div>
+                <div className='job-post-description-bottom'>
+                <h1 className='job-post-owner'>Chris</h1>
+                  <h1 className='job-post-date'>1hr ago</h1>
+                </div>
+              </div>
+          </div>
+
         </div>
 
     </div>

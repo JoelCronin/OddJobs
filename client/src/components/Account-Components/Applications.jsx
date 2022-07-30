@@ -4,7 +4,7 @@ import "../../styles/Applications.css";
 function Applications() {
 
     return (
-        <div id="applicationsContainer">
+        <div className="applicationsContainer">
             <div id="applicationsHeader" className="flex">
                 <h1 id="applicationsHeaderApplicationsItem">Applications</h1>
                 <h1 id="applicationsHeaderHomeItem">Home</h1>

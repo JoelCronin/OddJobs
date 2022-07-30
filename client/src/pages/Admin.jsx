@@ -9,12 +9,12 @@ import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
 
-import logo from '../img/logo.png';
+import logosvg from '../img/Logo.svg';
 
 
 
 function Account() {
-    const [currentPage, setCurrentPage] = useState('myAccount');
+    const [currentPage, setCurrentPage] = useState('myListings');
 
     const renderPage = () => {
         if (currentPage === 'myAccount') {
@@ -35,12 +35,14 @@ function Account() {
         <div className="adminBody">
             <div className="sidebar">
                 <div className="sidebar-top">
-                    <img className="navbar-logo" src={logo}/> 
+                    <img className="navbar-logo" src={logosvg}/>
+                    
                     <span>OddJobs</span>
                 </div>
                 <div className="options">
                     <section className='selected-tab' onClick={() => setCurrentPage('myAccount')}>My Account</section>
-                    <Link to={`/myListings/${Auth.getProfile().data._id}`}><section onClick={() => setCurrentPage('myListings')}>My Listings</section></Link>
+                    {/* <Link to={`/myListings/${Auth.getProfile().data._id}`}><section onClick={() => setCurrentPage('myListings')}>My Listings</section></Link> */}
+                    <section onClick={() => setCurrentPage('myListings')}>My Listings</section>
                     <section onClick={() => setCurrentPage('applied')}>Applied</section>
                     <section onClick={() => setCurrentPage('applications')}>Applications Recived</section>
                 </div>

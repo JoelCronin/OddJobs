@@ -25,14 +25,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      {/* <Admin />
-
-
-      <SignUp />
-
-      <Login /> */}
-
-
       {/* <StarRating rating={5} />  */}
 
 
