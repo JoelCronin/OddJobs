@@ -36,13 +36,13 @@ const resolvers = {
 
   Mutation: {
     createPosting: async (parent, args, context) => {
-      if (context.user) {
+      // if (context.user) {
         const posting = await Posting.create({
           ...args.input,
           userId: context.user._id
         });
         return posting;
-      }
+      // }
       throw new AuthenticationError('You need to be logged in!');
     },
 

@@ -80,20 +80,20 @@ export const CREATE_POSTING = gql`
 //             description
 // `;
 
-// export const UPDATE_POSTING = gql`
-//     mutation UpdatePosting($id: ID!, $input: PostingInput!) {
-//         updatePosting(id: $id, input: $input) {
-//             _id
-//             owner {
-//                 _id
-//                 name
-//             }
-//             cost
-//             title
-//             description
-//             image
-//             status
-//             season
-//         }
-//     }
-// `;
+export const UPDATE_POSTING = gql`
+    mutation UpdatePosting($id: ID!, $input: PostingInput!) {
+        updatePosting(id: $id, input: $input) {
+            _id
+            owner {
+                _id
+                name
+            }
+            cost
+            title
+            description
+            image
+            status
+            season
+        }
+    }
+`;
