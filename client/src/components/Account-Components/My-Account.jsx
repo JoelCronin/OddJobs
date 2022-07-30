@@ -11,31 +11,29 @@ import profilePic from '../../img/profile-pic-large.png';
 
 function MyAccount() {
 
-    const {loading, error, data} = useQuery (GET_ME, {
-        pollInterval: 100
+ const myId = useParams()
+ const login = {"id": "62e2f1bbb398d467f85a6491"}
+
+ const logout = (e) => {
+    e.preventDefault();
+    Auth.logout();
+ }
+
+    console.log(myId)
+    console.log(login)
+
+    const {loading, data} = useQuery (GET_ME, {
+        variables: myId
     });
-    let mine
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
-    if(!loading && !error){
-        mine = data?.me || []
-    }
-
-
-    // console.log(login)
-
-
 
     console.log(data)
 
 
-    // console.log(mine)
+    const mine = data?.me || [];
 
-    // console.log(mine);
-    const logout = (e) => {
-        e.preventDefault();
-        Auth.logout();
-        }
+    console.log(mine)
+
+    console.log(mine);
 
     return (
         <div className="my-account-outer-body">
