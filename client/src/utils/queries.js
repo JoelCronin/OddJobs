@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_ME = gql`
-    query Me {
-        me {
+    query Me($id: ID!) {
+        me(id: $id) {
             _id
             name
             email
@@ -53,18 +53,24 @@ export const GET_SINGLE_POSTING = gql`
     query singlePosting($id: ID!) {
         singlePosting(id: $id) {
             _id
-            title
-            cost
-            description
-            image
-            status
-            createdAt
-            applications{
-                name
+            name
+            email
+            ratings {
+                stars
             }
-            owner{
-                _id
-                name
+            jobApplications {
+                cost
+                title
+                description
+                status
+                createdAt
+            }
+            activeJobs {
+                cost
+                title
+                description
+                status
+                createdAt
             }
         }
     }
