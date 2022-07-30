@@ -21,13 +21,12 @@ module.exports = {
       req.user = data;
 
     } catch {
-      // console.log('Invalid token');
+      console.log('Invalid token');
     }
     return req;
   },
-  signToken: function ({ email, username, _id }) {
-    const payload = { email, username, _id };
+  signToken: function ({ name, email, _id }) {
+    const payload = { name, email, _id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
- 
 };
