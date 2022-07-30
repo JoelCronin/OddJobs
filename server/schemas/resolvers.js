@@ -52,7 +52,7 @@ const resolvers = {
       if (context.user) {
         const posting = await Posting.create({
           ...args.input,
-          userId: context.user._id
+          // userId: context.user._id
         });
         return posting;
       }

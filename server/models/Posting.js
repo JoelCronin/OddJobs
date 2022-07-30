@@ -21,14 +21,15 @@ const postingSchema = new Schema({
     image: {
         type: String,
         required: false
+
     },
     status: {
         type: String,
-        required: true
+        // required: true
     },
     season: {
         type: String,
-        required: false
+        // required: false
     },
     createdAt: {
         type: Date,
