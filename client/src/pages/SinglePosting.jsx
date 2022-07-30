@@ -19,7 +19,7 @@ function SinglePosting() {
     const singlepost = data?.singlePosting || [];
 
   return (
-    <div>
+    <div style={{color: '#bdbdbd'}}>
         <p>{singlepost.title}</p>
         <p>${singlepost.cost}</p>
         <p>{singlepost.description}</p>

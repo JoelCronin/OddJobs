@@ -57,8 +57,8 @@ function Account() {
             <div className="header-and-component-container">
                 <header className="admin-main-header">
                     <h1 className="admin-title">{title}</h1>
-                    <div className="admin-back-button">
-                       <Link to='/home'> <div>Home</div> </Link>
+                    <div className="admin-back-button" >
+                       <Link to={`/home`} style={{ textDecoration: 'none', color:'#bdbdbd' }}> <div>Home</div> </Link>
                     </div>
                 </header>
 

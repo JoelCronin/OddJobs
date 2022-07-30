@@ -48,24 +48,22 @@ export const CREATE_POSTING = gql`
     }
 `;
 
-// export const CREATE_RATING = gql`
-//     mutation CreateRating($input: RatingInput!) {
-//         createRating(input: $input) {
-//             _id
-//             stars
-//             comment
-//             createdAt
-//             byUser {
-//                 _id
-//                 name
-//             }
-//             forUser {
-//                 _id
-//                 name
-//             }
-//         }
-//     }
-// `;
+export const CREATE_RATING = gql`
+    mutation createRating($input: RatingInput!) {
+        createRating(input: $input) {
+            _id
+            stars
+            comment
+            createdAt
+            byUser {
+                _id
+            }
+            forUser {
+                _id
+            }
+        }
+    }
+`;
 
 // export const REMOVE_POSTING = gql`
 //     mutation RemovePosting($id: ID!) {
