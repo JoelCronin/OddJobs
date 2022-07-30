@@ -9,7 +9,7 @@ import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
-import UpdatePosting from "../components/Account-Components/UpdatePosting";
+import UpdatePosting from "./UpdatePosting";
 
 import logo from '../img/logo.png';
 
