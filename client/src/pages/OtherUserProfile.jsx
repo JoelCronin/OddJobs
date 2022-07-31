@@ -5,7 +5,7 @@ import '../styles/OtherUserProfile.css'
 import {GET_SINGLE_USER} from '../utils/queries';
 import logosvg from '../img/Logo.svg';
 import { Link } from 'react-router-dom';
-import profile17 from '../img/profiles/profile17.svg';
+import profile17 from '../img/profiles/8.svg';
 import StarRating from "../components/StarRating";
 
 

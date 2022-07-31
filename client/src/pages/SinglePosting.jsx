@@ -5,7 +5,7 @@ import {GET_SINGLE_POSTING} from '../utils/queries';
 import '../styles/single-post.css';
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png';
-import profile65 from '../img/profiles/profile65.svg';
+import profile65 from '../img/profiles/1.svg';
 import StarRating from '../components/StarRating';
 
 

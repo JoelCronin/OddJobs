@@ -88,6 +88,7 @@
     margin-left: 15px;
     position: relative;
     bottom: 3px;
+    overflow: hidden;
 }
 
 .job-post-decription-box{

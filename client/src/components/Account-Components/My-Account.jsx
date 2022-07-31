@@ -8,7 +8,7 @@ import Auth from "../../utils/auth";
 
 
 import profilePic from '../../img/profile-pic-large.png';
-import profile17 from '../../img/profiles/profile17.svg';
+import profile17 from '../../img/profiles/1.svg';
 import StarRating from "../StarRating";
 
 function MyAccount() {
