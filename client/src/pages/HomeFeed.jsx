@@ -1,4 +1,5 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
 import { useQuery } from '@apollo/client';
 import { GET_POSTING, GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
@@ -23,29 +24,28 @@ function HomeFeed() {
   console.log(postings)
 
   return (
+    (Auth.loggedIn()) ? (
+    (loading) ? (
+      <div>Loading...</div>
+    ) : (       
     <div className="feedBody">
       <div className="sidebar">
-          <div className="sidebar-top">
-              <img className="navbar-logo" src={logo}/> 
-              <span>OddJobs</span>
+        <div className="sidebar-top">
+            <img className="navbar-logo" src={logo}/> 
+            <span>OddJobs</span>
+        </div>
+
+        <div className='sidebar-bottom'>
+          <h1 className='price-range'>Price Range</h1>
+          <div className='range-box'>
+            <input className='range-start'type="number" placeholder='10'/>
+            <input className='range-start'type="number" placeholder='90'/>
           </div>
-
-          <div className='sidebar-bottom'>
-            <h1 className='price-range'>Price Range</h1>
-            <div className='range-box'>
-              <input className='range-start'type="number" placeholder='10'/>
-              <input className='range-start'type="number" placeholder='90'/>
-            </div>
-            <hr className='sidebar-line'/>
-
-
-          </div>
-
-
+          <hr className='sidebar-line'/>
+        </div>
       </div>
 
-    <div className='mainFeed'>
-        
+      <div className='mainFeed'>        
         <header className='main-header'>
           <h1 className='job-listing-title'>All Job Listings</h1>
           <div className='right-div-search-profile'>
@@ -61,7 +61,7 @@ function HomeFeed() {
 
         <div className='job-grid-box'>
           {postings.map((posting) => (
-            <Link to= {`/posting/${posting._id}`} className="feed-post-link">
+            <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}}>
                 <div className='job-box' key={posting.title}>
                   <h1 className='job-price'><span>$</span>{posting.cost}</h1>
                   <img className='job-post-img' src={posting.image} alt={posting.title}/>
@@ -76,7 +76,7 @@ function HomeFeed() {
                       </div>
                     </div>
                     <div className='job-post-description-bottom'>
-                    <Link to= {`/`}><h1 className='job-post-owner'>Chris</h1></Link>
+                    <Link to= {`/user/${posting.owner._id}`} style={{textDecoration: 'none'}}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
                       <h1 className='job-post-date'>{posting.createdAt}</h1>
                     </div>
                   </div>
@@ -84,15 +84,13 @@ function HomeFeed() {
             </Link>
           ))}
         </div>
-
+      </div>
     </div>
-
-    </div>
+    )
+    ) : (
+      <Navigate to="/"/>
+    )
   )
 }
-
-//user/${posting.owner._id}
-//posting.owner.name
-
 
 export default HomeFeed;

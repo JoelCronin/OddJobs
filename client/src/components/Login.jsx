@@ -2,12 +2,13 @@ import React, { useState } from "react";
 // import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import { Navigate } from 'react-router-dom'
 
 import Auth from '../utils/auth';
 
 
 function Login() {
-
+    console.log(Auth.loggedIn)
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [login] = useMutation(LOGIN_USER);
 
@@ -37,11 +38,13 @@ function Login() {
         setFormState({
             email: '',
             password: '',
-        });
+        });  
     };
 
     return (
-
+        (Auth.loggedIn()) ? (
+            <Navigate to="/home" />
+        ) : (
         <div>
             <div id="loginForm">
 
@@ -83,6 +86,7 @@ function Login() {
             </div>
 
         </div>
+        )
 
     );
 }

@@ -2,19 +2,23 @@ import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css"
 
 
-import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
+import UpdatePosting from "./UpdatePosting";
 
 import logo from '../img/logo.png';
 
 
 
+
 function Account() {
     const [currentPage, setCurrentPage] = useState('myAccount');
+    const [title, setTitle] = useState('My Account')
+    
 
     const renderPage = () => {
         if (currentPage === 'myAccount') {
@@ -29,6 +33,9 @@ function Account() {
         if (currentPage === 'applications') {
             return <Applications/>;
         }
+        if (currentPage === 'updatePostings') {
+            return <UpdatePosting/>;
+        }
     }
 
     return (
@@ -39,18 +46,18 @@ function Account() {
                     <span>OddJobs</span>
                 </div>
                 <div className="options">
-                    <section className='selected-tab' onClick={() => setCurrentPage('myAccount')}>My Account</section>
-                    <Link to={`/myListings/${Auth.getProfile().data._id}`}><section onClick={() => setCurrentPage('myListings')}>My Listings</section></Link>
-                    <section onClick={() => setCurrentPage('applied')}>Applied</section>
-                    <section onClick={() => setCurrentPage('applications')}>Applications Recived</section>
+                    <section onClick={() => {setCurrentPage('myAccount'); setTitle('My Account')}}  className= {currentPage === "myAccount" ? 'selected-tab' : ''}>My Account</section>
+                    <section onClick={() => {setCurrentPage('myListings'); setTitle('My Listings')}} className= {currentPage === "myListings" ? 'selected-tab' : ''}>My Listings</section>
+                    <section onClick={() => {setCurrentPage('applied'); setTitle('Applied')}} className= {currentPage === "applied" ? 'selected-tab' : ''}>Applied</section>
+                    <section onClick={() => {setCurrentPage('applications'); setTitle('Applications Received')}} className= {currentPage === "applications" ? 'selected-tab' : ''}>Applications Received</section>
                 </div>
             </div>
 
             <div className="header-and-component-container">
                 <header className="admin-main-header">
-                    <h1 className="admin-title">My Account</h1>
-                    <div className="admin-back-button">
-                       <Link className="admin-home-button" to='/home'> <div>Home</div> </Link>
+                    <h1 className="admin-title">{title}</h1>
+                    <div className="admin-back-button" >
+                       <Link to={`/home`} style={{ textDecoration: 'none', color:'#bdbdbd' }}> <div>Home</div> </Link>
                     </div>
                 </header>
 

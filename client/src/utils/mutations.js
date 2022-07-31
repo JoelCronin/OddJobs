@@ -13,58 +13,51 @@ export const LOGIN_USER = gql`
 `;
 
 export const CREATE_USER = gql`
-    mutation createUser($name: String!, $email: String!, $password: String!) {
-        createUser(name: $name, email: $email, password: $password) {
+    mutation createUser($input: createUserInput!) {
+        createUser(input: $input) {
             token
             user {
                 _id
-                name
                 email
+                name
+                password
             }
         }
     }
 `;
 
 
-// export const CREATE_POSTING = gql`
-//     mutation CreatePosting($input: PostingInput!) {
-//         createPosting(input: $input) {
-//             _id
-//             owner {
-//                 _id
-//                 name
-//             }
-//             cost
-//             title
-//             description
-//             image
-//             status
-//             season
-//             createdAt
-//             applications
-//             chosenWorker
-//         }
-//     }
-// `;
+export const CREATE_POSTING = gql`
+    mutation createPosting($input: createPostingInput!) {
+        createPosting(input: $input) {
+            _id
+            owner {
+                _id
+            }
+            cost
+            title
+            description
+            createdAt
+        }
+    }
+`;
 
-// export const CREATE_RATING = gql`
-//     mutation CreateRating($input: RatingInput!) {
-//         createRating(input: $input) {
-//             _id
-//             stars
-//             comment
-//             createdAt
-//             byUser {
-//                 _id
-//                 name
-//             }
-//             forUser {
-//                 _id
-//                 name
-//             }
-//         }
-//     }
-// `;
+export const CREATE_RATING = gql`
+    mutation createRating($input: RatingInput!) {
+        createRating(input: $input) {
+            _id
+            stars
+            comment
+            createdAt
+            byUser {
+                _id
+            }
+            forUser {
+                _id
+            }
+        }
+    }
+`;
 
 // export const REMOVE_POSTING = gql`
 //     mutation RemovePosting($id: ID!) {
@@ -79,20 +72,20 @@ export const CREATE_USER = gql`
 //             description
 // `;
 
-// export const UPDATE_POSTING = gql`
-//     mutation UpdatePosting($id: ID!, $input: PostingInput!) {
-//         updatePosting(id: $id, input: $input) {
-//             _id
-//             owner {
-//                 _id
-//                 name
-//             }
-//             cost
-//             title
-//             description
-//             image
-//             status
-//             season
-//         }
-//     }
-// `;
+export const UPDATE_POSTING = gql`
+    mutation UpdatePosting($id: ID!, $input: PostingInput!) {
+        updatePosting(id: $id, input: $input) {
+            _id
+            owner {
+                _id
+                name
+            }
+            cost
+            title
+            description
+            image
+            status
+            season
+        }
+    }
+`;

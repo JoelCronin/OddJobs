@@ -46,7 +46,7 @@ const typeDefs = gql`
     type Query {
         posting: [Posting]!
         singlePosting(id: ID!): Posting
-        me(id:ID!): User
+        me: User
         singleUser(id: ID!): User
         allUsers: [User]!
         sigleRating(id: ID!): Rating
@@ -54,22 +54,37 @@ const typeDefs = gql`
 
     type Mutation {
         login(email: String!, password: String!): Auth
-        createPosting(input: PostingInput!): Posting
-        createUser(name: String!, email: String!, password: String!): Auth
+        createPosting(input: createPostingInput!): Posting
+        createUser(input: createUserInput!): Auth
         createRating(input: RatingInput!): Rating
         removePosting(id: ID!): Posting
         updatePosting(id: ID!, input: PostingInput!): Posting
+    }
+
+    input createUserInput {
+        name: String
+        email: String
+        password: String
     }
 
     input PostingInput {
         title: String
         description: String
         cost: Int
+        status: String
     }
 
+    input createPostingInput {
+        cost: String
+        description: String
+        title: String
+    }
 
     input RatingInput {
-        rating: Int
+        stars: Int
+        comment: String
+        byUser: ID
+        forUser: ID
     }
 `;
 

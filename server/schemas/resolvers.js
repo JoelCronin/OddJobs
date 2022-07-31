@@ -5,31 +5,45 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     posting: async () => {
-
-      const posting = await Posting.find().populate('owner').populate('chosenWorker').populate('applications');
-
-      return posting;
+      return await Posting.find()
+                          .populate('owner')
+                          .populate('chosenWorker')
+                          .populate('applications');
     },
     singlePosting: async (parent, args) => {
-      const posting = await Posting.findById(args.id).populate('owner').populate('chosenWorker').populate('applications');
-      return posting;
+      return  await Posting.findById(args.id)
+                           .populate('owner')
+                           .populate('chosenWorker')
+                           .populate('applications');
     },
-    me: async (parent, args) => {
-      // if (context.user) {
-        return User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs');
-      // throw new AuthenticationError('You need to be logged in!');
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id })
+                   .populate('jobApplications')
+                   .populate('activeJobs')
+                   .populate('completedJobs')
+                   .populate('owner')
+                   .populate('ratings');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     singleUser: async (parent, args) => {
-      const user = await User.findById(args.id).populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
-      return user;
+      return await  User.findById(args.id)
+                              .populate('jobApplications')
+                              .populate('activeJobs')
+                              .populate('completedJobs');
     },
     allUsers: async () => {
-      const users = await User.find().populate('jobApplications').populate('activeJobs').populate('completedJobs').populate('ratings');
-      return users;
+      return await User.find()
+                        .populate('jobApplications')
+                        .populate('activeJobs')
+                        .populate('completedJobs')
+                        .populate('ratings');
     },
     sigleRating: async (parent, args) => {
-      const rating = await Rating.findById(args.id).populate('byUser').populate('forUser');
-      return rating;
+      return await  Rating.findById(args.id)
+                          .populate('byUser')
+                          .populate('forUser');
     }    
   },
 
@@ -38,17 +52,22 @@ const resolvers = {
       if (context.user) {
         const posting = await Posting.create({
           ...args.input,
-          userId: context.user._id
+          owner: context.user._id
         });
         return posting;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    createUser: async (parent, { name, email, password }) => {
-      const user = await User.create({ name, email, password });
+    createUser: async (parent, args) => {
+      const user = await User.create({
+        ...args.input
+      });
       const token = signToken(user);
-      return { token, user };
+      return {
+        token,
+        user
+      };
     },
 
     login: async (parent, { email, password }) => {
@@ -86,8 +105,7 @@ const resolvers = {
 
     updatePosting: async (parent, args, context) => {
       if (context.user) {
-        const posting = await Posting.findByIdAndUpdate(args.id, args.input);
-        return posting;
+        return await Posting.findByIdAndUpdate(args.id, args.input);
       }
       throw new AuthenticationError('You need to be logged in!');
     },    

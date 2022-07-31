@@ -20,28 +20,28 @@ const postingSchema = new Schema({
     },
     image: {
         type: String,
-        required: true
+        required: false
     },
     status: {
         type: String,
-        required: true
+        // required: true
     },
     season: {
         type: String,
-        required: false
+        // required: false
     },
     createdAt: {
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
-      applications: [
+    applications: [
         {
           type: Schema.Types.ObjectId,
           ref: 'User'
         }
     ],
-      chosenWorker: {
+    chosenWorker: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
