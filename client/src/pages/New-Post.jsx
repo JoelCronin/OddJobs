@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // import { useQuery } from '@apollo/client';
 import { CREATE_POSTING } from "../utils/mutations";
 // import { GET_ME } from '../utils/queries';
@@ -9,6 +10,8 @@ import { CREATE_POSTING } from "../utils/mutations";
 // import Auth from '../utils/auth';
 
 function NewPost() {
+  
+  
   const [formState, setFormState] = useState ({
     title: '',
     description: '',
@@ -48,6 +51,14 @@ function NewPost() {
   return (
 
   <div>
+    <div className="header-and-component-container">
+      <header className="admin-main-header">
+          <h1 className="admin-title">Add new Posting</h1>
+          <div className="admin-back-button" >
+              <Link to={`/home`} style={{ textDecoration: 'none', color:'#bdbdbd' }}> <div>Home</div> </Link>
+          </div>
+      </header>
+    </div>
   <form onSubmit={handleFormSubmit}>
             <input
               placeholder="Title"
@@ -76,6 +87,7 @@ function NewPost() {
               Submit
             </button>
           </form>
+
 </div>
   )
 }
