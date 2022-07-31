@@ -33,7 +33,7 @@ function Applied() {
               <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
               <div className='job-post-decription-box'>
                 <div className='job-post-description-top'>
-                  <h1 className='job-title'>Wash Dishes</h1>
+                  <h1 className='job-title'>Placeholder</h1>
                   <div className='status-box'>
                     <h1 className='status-main-post'>Status</h1>
                     <span>

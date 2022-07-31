@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {FaStar} from "react-icons/fa";
+import {AiFillStar} from "react-icons/ai";
 import '../styles/StarRating.css';
 
 const StarRating = ({ rating }) => {
@@ -27,10 +27,10 @@ const StarRating = ({ rating }) => {
                     className="ratingInput"
                     style={ {display: 'none'} }
                     />
-                    <FaStar
+                    <AiFillStar
                         key={i}
                         className="star"
-                        size={100}
+                        size={47}
                         color={ratingValue <= (hover || ratings)  ? "#ffc107" : "#e4e5e9"}
                         onMouseEnter={() => onStarHover(ratingValue)}
                         onMouseLeave={() => onStarHover(null)}

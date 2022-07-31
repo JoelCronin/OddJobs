@@ -78,3 +78,4 @@ export const UPDATE_POSTING = gql`
         }
     }
 `;
+
