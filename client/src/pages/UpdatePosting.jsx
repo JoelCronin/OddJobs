@@ -10,7 +10,7 @@ import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
 import {GET_SINGLE_POSTING} from '../utils/queries';
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 function UpdatePosting() {
   const [formState, setFormState] = useState ({
@@ -142,9 +142,9 @@ console.log(singlepost)
                       </div>
                   </div>
                   <div className="inner-inner-button-container">
-                      <div className="listing-create-button" onClick={handleFormSubmit}>
-                        <div>Update</div>
-                      </div>
+                    <div className="listing-create-button" onClick={handleFormSubmit}>
+                    <Link to = {`/me/${Auth.getProfile().data._id}`}> <div>Update</div>  </Link> 
+                      </div> 
                   </div>
                 </div>
               </div>
