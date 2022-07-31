@@ -52,26 +52,16 @@ export const GET_POSTING = gql`
 export const GET_SINGLE_POSTING = gql`
     query singlePosting($id: ID!) {
         singlePosting(id: $id) {
+            owner {
+                _id
+            }
             _id
-            name
-            email
-            ratings {
-                stars
-            }
-            jobApplications {
-                cost
-                title
-                description
-                status
-                createdAt
-            }
-            activeJobs {
-                cost
-                title
-                description
-                status
-                createdAt
-            }
+            cost
+            title
+            description
+            status
+            createdAt
+            image
         }
     }
 `;
