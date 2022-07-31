@@ -28,22 +28,16 @@ export const CREATE_USER = gql`
 
 
 export const CREATE_POSTING = gql`
-    mutation CreatePosting($input: PostingInput!) {
+    mutation createPosting($input: createPostingInput!) {
         createPosting(input: $input) {
             _id
             owner {
                 _id
-                name
             }
             cost
             title
             description
-            image
-            status
-            season
             createdAt
-            applications
-            chosenWorker
         }
     }
 `;

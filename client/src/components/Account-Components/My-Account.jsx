@@ -22,9 +22,7 @@ function MyAccount() {
     console.log(myId)
     console.log(login)
 
-    const {loading, data} = useQuery (GET_ME, {
-        variables: myId
-    });
+    const {loading, data} = useQuery (GET_ME);
 
     console.log(data)
 

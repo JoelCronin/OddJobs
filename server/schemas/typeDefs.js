@@ -46,7 +46,7 @@ const typeDefs = gql`
     type Query {
         posting: [Posting]!
         singlePosting(id: ID!): Posting
-        me(id: ID!): User
+        me: User
         singleUser(id: ID!): User
         allUsers: [User]!
         sigleRating(id: ID!): Rating
@@ -58,7 +58,7 @@ const typeDefs = gql`
         createUser(input: createUserInput!): Auth
         createRating(input: RatingInput!): Rating
         removePosting(id: ID!): Posting
-        updatePosting(id: ID!, input: PostingInput!): Posting
+        updatePosting(id: ID!, input: postingInput!): Posting
     }
 
     input createUserInput {
@@ -67,7 +67,7 @@ const typeDefs = gql`
         password: String
     }
 
-    input PostingInput {
+    input postingInput {
         title: String
         description: String
         cost: Int
@@ -75,12 +75,9 @@ const typeDefs = gql`
     }
 
     input createPostingInput {
-        title: String
+        cost: String
         description: String
-        cost: Int
-        status: String
-        image: String
-        owner: ID
+        title: String
     }
 
     input RatingInput {
