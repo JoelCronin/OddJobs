@@ -555,9 +555,7 @@
 }
 
 .form-and-buttons-container{
-    width: 100%;
-    margin-top: -22px;
-    margin-bottom: 82px;
+    min-height: 100vh;
 }
 
 .inner-inner-button-container {

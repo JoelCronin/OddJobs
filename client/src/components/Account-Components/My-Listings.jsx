@@ -48,7 +48,7 @@ function MyListings() {
                   <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
                   <div className='job-post-decription-box'>
                     <div className='job-post-description-top'>
-                      <h1 className='job-title'>Wash Dishes</h1>
+                      <h1 className='job-title'>Placeholder</h1>
                       <div className='status-box'>
                         <h1 className='status-main-post'>Status</h1>
                         <span>
@@ -57,7 +57,7 @@ function MyListings() {
                       </div>
                     </div>
                     <div className='job-post-description-bottom'>
-                    <h1 className='job-post-owner'>Chris {mine.name} </h1>
+                    <h1 className='job-post-owner'>{mine.name}</h1>
                       <h1 className='job-post-date'>1hr ago {mine.createdAt}</h1>
                     </div>
                   </div>

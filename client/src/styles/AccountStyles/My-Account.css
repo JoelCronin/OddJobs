@@ -113,6 +113,11 @@
     width: 80%;
 }
 
+.my-account-star-rating{
+    position: relative;
+    top: 16px;
+    left: 10px;
+}
 
 
 @media screen and (max-width: 1657px) {

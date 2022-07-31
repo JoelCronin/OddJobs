@@ -59,7 +59,7 @@ function Account() {
                 <header className="admin-main-header">
                     <h1 className="admin-title">{title}</h1>
                     <div className="admin-back-button" >
-                       <Link to={`/home`} style={{ textDecoration: 'none', color:'#bdbdbd' }}> <div>Home</div> </Link>
+                       <Link to={`/home`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Home</div> </Link>
                     </div>
                 </header>
 

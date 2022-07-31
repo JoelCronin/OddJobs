@@ -81,6 +81,7 @@ function SinglePosting() {
       </div>
     </div>
   )
+
 }
 
 
