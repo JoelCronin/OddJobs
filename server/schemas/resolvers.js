@@ -110,7 +110,7 @@ const resolvers = {
 
     updatePosting: async (parent, args, context) => {
       if (context.user) {
-        return await Posting.findByIdAndUpdate(args.id, args.input);
+        return await Posting.findByIdAndUpdate(args.id, args.input, { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');
     },    

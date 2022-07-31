@@ -19,12 +19,19 @@ import Auth from '../utils/auth';
 
 
 
+
+
 function HomeFeed() {
 
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
 
   console.log(postings)
+
+  const { data: meData } = useQuery(GET_ME);
+  const me = meData?.me || [];
+
+
 
   return (
     (Auth.loggedIn()) ? (

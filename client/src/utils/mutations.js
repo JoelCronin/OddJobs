@@ -20,8 +20,6 @@ export const CREATE_USER = gql`
                 _id
                 email
                 name
-                password
-                image
             }
         }
     }
@@ -60,6 +58,18 @@ export const CREATE_RATING = gql`
     }
 `;
 
+// export const REMOVE_POSTING = gql`
+//     mutation RemovePosting($id: ID!) {
+//         removePosting(id: $id) {
+//             _id
+//             owner {
+//                 _id
+//                 name
+//             }
+//             cost
+//             title
+//             description
+// `;
 
 export const UPDATE_POSTING = gql`
     mutation UpdatePosting($id: ID!, $input: PostingInput!) {
@@ -67,15 +77,10 @@ export const UPDATE_POSTING = gql`
             _id
             owner {
                 _id
-                name
             }
             cost
             title
             description
-            image
-            status
-            season
         }
     }
 `;
-
