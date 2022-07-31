@@ -41,7 +41,7 @@ function MyListings() {
               </div>
             </Link>
             <div>
-            {mine.activeJobs.length === 1 || mine.activeJobs.length === null  ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : ( 
+            {mine.activeJobs.length === 1 || mine.activeJobs === null  ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : ( 
 
             <div className='job-box'>
               <h1 className='job-price'><span>$</span>20</h1>

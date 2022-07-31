@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import { Navigate } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 
@@ -77,6 +77,9 @@ function Login() {
                         >Submit</button>
                     </div>
                 </form>
+                <Link to= {`/signup/`}><p> Or Click here to Sign Up </p> </Link>
+
+                
                 {/* )} */}
                 {/* {error && (
                     <div>
