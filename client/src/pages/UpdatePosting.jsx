@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { UPDATE_POSTING } from "../utils/mutations";
 import { GET_ME } from '../utils/queries';
+import { Link } from 'react-router-dom';
 
 // import Auth from '../utils/auth';
 
@@ -72,7 +73,18 @@ function UpdatePosting() {
       console.log(userInfo);
 
     return(
+
+      
         <div>
+
+          <div className="header-and-component-container">
+            <header className="admin-main-header">
+                <h1 className="admin-title">Update Posting</h1>
+                <div className="admin-back-button" >
+                    <Link to={`/home`} style={{ textDecoration: 'none', color:'#bdbdbd' }}> <div>Home</div> </Link>
+                </div>
+            </header>
+          </div>
           <label>Title</label>
             <input
             value = {updateName}
