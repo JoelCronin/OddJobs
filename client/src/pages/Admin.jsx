@@ -14,7 +14,7 @@ import logosvg from '../img/Logo.svg';
 
 
 function Account() {
-    const [currentPage, setCurrentPage] = useState('myListings');
+    const [currentPage, setCurrentPage] = useState('applications');
 
     const renderPage = () => {
         if (currentPage === 'myAccount') {

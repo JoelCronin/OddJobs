@@ -127,18 +127,18 @@ function MyListings() {
             <div className="button-container">
               <div className="inner-button-container">
                 <div className="inner-inner-button-container">
-                    <div className="admin-back-button">
-                       <div>dele</div>
-                    </div>
-                </div>
-                <div className="inner-inner-button-container">
-                    <div className="admin-back-button">
+                    <div className="listing-delete-button">
                        <div>Delete</div>
                     </div>
                 </div>
                 <div className="inner-inner-button-container">
-                    <div className="admin-back-button">
-                       <div>Home</div>
+                    <div className="listing-cancel-button">
+                       <div>Cancel</div>
+                    </div>
+                </div>
+                <div className="inner-inner-button-container">
+                    <div className="listing-create-button">
+                       <div>Create</div>
                     </div>
                 </div>
               </div>

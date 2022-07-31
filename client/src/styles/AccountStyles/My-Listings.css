@@ -284,7 +284,7 @@
 .my-account-form-data{
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 20px;
     line-height: 32px;
     color: #FFFFFF;
@@ -293,6 +293,7 @@
     top: 25px;
     left: 18px;
     width: 80%;
+    letter-spacing: 0.7px;
 
 
 }
@@ -549,20 +550,24 @@
     display: flex;
     justify-content: center;
     /* min-height: 100vh; */
-    border: 1px solid white;
+    /* border: 1px solid white; */
     height: 620px;
 }
 
 .form-and-buttons-container{
     width: 100%;
     margin-top: -22px;
+    margin-bottom: 82px;
 }
 
+.inner-inner-button-container {
+    margin: 14px;
+}
 
 /* //max-width: 1339px; */
 
 .button-container{
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
     /* padding: 10px; */
     width: 100%;
     display: flex;
@@ -573,16 +578,16 @@
 .inner-button-container{
     max-width: 1339px;
     /* height: 50px; */
-    border: 1px solid sandybrown;
+    /* border: 1px solid sandybrown; */
     width: 100%;
     display: flex;
-    justify-content: center;
-}
+    justify-content: right;
+}ƒ
 
 .inner-inner-button-container{
-    border: 1px solid sandybrown;
+    /* border: 1px solid sandybrown; */
     padding: 20px;
-    width: 500px;
+    /* width: 500px; */
 
 }
 
@@ -599,10 +604,80 @@
     .form-container{
         height: 1189px;
     }
+
+    .inner-button-container{
+    display: flex;
+
+        justify-content: center;
+    }
+}
+
+
+
+.listing-create-button, .listing-cancel-button, .listing-delete-button{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 32px;
+    width: 123px;
+    height: 45px;
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s, color 0.5s;
+    user-select: none;
+}
+
+
+.listing-create-button{
+    border: 3px solid #64FFDB;
+    color: #64FFDB;
+}
+
+
+.listing-create-button:hover{
+    border: 3px solid #64FFDB;
+    background: #64FFDB;
+    color: #132948;
+    cursor: pointer;
+}
+
+.listing-cancel-button{
+    border: 3px solid white;
+    color: white;
+}
+
+.listing-cancel-button:hover{
+    border: 3px solid #132948;
+    color:#132948;
+    background-color: white;
+    cursor: pointer;
+}
+
+.listing-delete-button{
+    border: 3px solid #EF8A6A;
+
+    color: #EF8A6A;
+}
+
+.listing-delete-button:hover{
+    border: 3px solid #132948;
+    color: #132948;
+    background-color: #EF8A6A;;
+    cursor: pointer;
+    
 }
 
 @media screen and (max-width: 678px) {
     .form-container{
         height: 1314px;
+    }
+
+    .inner-button-container{
+        justify-content: left;
+        flex-wrap: wrap;
     }
 }

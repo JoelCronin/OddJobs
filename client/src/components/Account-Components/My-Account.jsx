@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 
 import profilePic from '../../img/profile-pic-large.png';
+import profile17 from '../../img/profiles/profile17.svg';
 
 function MyAccount() {
 
@@ -32,7 +33,7 @@ function MyAccount() {
         <div className="my-account-outer-body">
             <div className="my-account-body">
                 <div className="profile-and-signout">
-                    <img className="my-account-profile-pic" src={profilePic}/>
+                    <img className="my-account-profile-pic" src={profile17}/>
                     <div className="admin-signout-button">
                             <div>Sign out</div>
                     </div>

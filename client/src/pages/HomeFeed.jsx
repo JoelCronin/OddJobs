@@ -12,6 +12,7 @@ import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
 // import logo from '../img/logo.png';
 import logosvg from '../img/Logo.svg';
+import profile17 from '../img/profiles/profile17.svg'
 
 import Auth from '../utils/auth';
 
@@ -82,7 +83,7 @@ function HomeFeed() {
                 <input type="text" className='input-search' placeholder='Search'/>
               </div>
             </div>
-            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={profilepic}/> </Link>
+            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={profile17}/> </Link>
           </div>
         </header>
 
