@@ -48,7 +48,7 @@ function MyListings() {
                 <>
                   {mine.activeJobs.map((singlejob) => (
                   <div className='job-box' key = {singlejob._id}>
-                  <h1 className='job-price'><span>$</span>20</h1>
+                  <h1 className='job-price'><span>$</span>{singlejob.cost}</h1>
                   <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
                   <div className='job-post-decription-box'>
                     <div className='job-post-description-top'>
@@ -63,10 +63,9 @@ function MyListings() {
                     <div className='job-post-description-bottom'>
                     <h1 className='job-post-owner'>{mine.name}</h1>
                       <h1 className='job-post-date'> {singlejob.createdAt}</h1>
-                      <h1 className='job-post-cost'> {singlejob.cost}</h1>
                     </div>
                   </div>
-                  <Link to= {`/updatePosting`}><MdModeEdit className="edit-button"/></Link> 
+                  <Link to= {`/updatePosting/${singlejob._id}`}><MdModeEdit className="edit-button"/></Link> 
                   </div>
                   ))}
                   

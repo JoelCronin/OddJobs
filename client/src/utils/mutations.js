@@ -67,7 +67,6 @@ export const UPDATE_POSTING = gql`
             _id
             owner {
                 _id
-                name
             }
             cost
             title

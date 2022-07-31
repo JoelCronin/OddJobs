@@ -71,8 +71,7 @@ const typeDefs = gql`
     input PostingInput {
         title: String
         description: String
-        cost: Int
-        status: String
+        cost: String
     }
 
     input createPostingInput {
