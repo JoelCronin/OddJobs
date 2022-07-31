@@ -59,9 +59,10 @@ export const GET_SINGLE_POSTING = gql`
             cost
             title
             description
-            status
-            createdAt
             image
+            applications {
+                _id
+            }
         }
     }
 `;

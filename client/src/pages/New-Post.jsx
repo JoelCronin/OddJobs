@@ -18,6 +18,7 @@ function NewPost() {
     title: '',
     description: '',
     cost: '',
+    image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
   });
 
 
