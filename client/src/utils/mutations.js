@@ -71,6 +71,10 @@ export const UPDATE_POSTING = gql`
             cost
             title
             description
+            image
+            status
+            season
+            
         }
     }
 `;

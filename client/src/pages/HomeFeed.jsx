@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useQuery } from '@apollo/client';
 import { GET_POSTING, GET_ME } from '../utils/queries';
@@ -21,10 +21,122 @@ import Auth from '../utils/auth';
 
 function HomeFeed() {
 
+  const [minPrice, setMinPrice] = useState('10');
+  const [maxPrice, setMaxPrice] = useState('20');
+  const [activeStatus, setActiveStatus] = useState(true);
+  const [pendingStatus, setPendingStatus] = useState(true);
+  const [completedStatus, setCompletedStatus] = useState(true);
+
+
+  const handleChange = (event) => {
+    const { target } = event;
+    const inputType = target.id;
+    const inputValue = target.value;
+
+    if (inputType === 'minPrice') {
+      setMinPrice(inputValue);
+    } else if (inputType === 'maxPrice') {
+      setMaxPrice(inputValue);
+    }
+  }
+
+  const handleStatusChange = (event) => {
+    const { target } = event;
+    const inputType = target.id;
+
+    if (inputType === 'activeButton') {
+      setActiveStatus(!activeStatus);
+      console.log("Active Status "+ activeStatus)
+    } else if (inputType === 'pendingButton') {
+      setPendingStatus(!pendingStatus);
+      console.log("Pending Status " + pendingStatus)
+    } else if (inputType === 'completedButton') {
+      setCompletedStatus(!completedStatus);
+      console.log("Completed Status " + completedStatus)
+    }
+  }
+
+  const handleSubmit = (event) => {
+    postings.map((posting) => {
+      if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
+        filteredPostings.push(posting);
+      }
+    })
+    if(activeStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Active") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(pendingStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Pending") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(completedStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Completed") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+  }
+
+
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
 
-  console.log(postings)
+  const filteredPostings = [];
+  const reFilteredPostings =[];
+
+  if(data) {
+    postings.map((posting) => {
+      if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
+        filteredPostings.push(posting);
+      }
+    })
+    if(activeStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Active") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(pendingStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Pending") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(completedStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Completed") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+
+    // if(activeStatus == true) {
+    //   filteredPostings.map((posting) => {
+    //     if(posting.status == "Active"){
+    //       filteredPostings.remove(posting);
+    //     }
+    //   })
+    // }
+
+    // console.log('Posting');
+    // console.log(postings);
+
+    // console.log('Filter-Posting');
+    // console.log(filteredPostings);
+
+    // console.log('Re-Filter-Posting');
+    // console.log(reFilteredPostings);
+  }
 
   return (
     (Auth.loggedIn()) ? (
@@ -40,8 +152,18 @@ function HomeFeed() {
           <div className='sidebar-bottom'>
             <h1 className='price-range'>Price Range</h1>
             <div className='range-box'>
-              <input className='range-start'type="number" placeholder='10'/>
-              <input className='range-start'type="number" placeholder='90'/>
+              <input className='range-start'
+                     id='minPrice' 
+                     type="number" 
+                     placeholder='10'
+                     value={minPrice}
+                     onChange={handleChange}/>
+              <input className='range-start'
+                     id='maxPrice'
+                     type="number" 
+                     placeholder='90'
+                     value={maxPrice}
+                     onChange={handleChange}/>
             </div>
             <hr className='sidebar-line'/>
             <h1 className='dollar-sign-one'>$</h1>
@@ -50,25 +172,34 @@ function HomeFeed() {
               <div className='status-filter-container'>
                 <h1 className='status-filter-title'>Status</h1>
                 <div className='active-container'>
-                  <BsFillCheckCircleFill className='status-checkmark-active'/>
+                  <BsFillCheckCircleFill 
+                    className='status-checkmark-active'
+                    id='activeButton'
+                    onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Active</h1>
                 </div>
               </div>
               <div className='status-filter-container'>
                 <div className='active-container'>
-                  <BsFillCheckCircleFill className='status-checkmark-pending'/>
+                  <BsFillCheckCircleFill 
+                  className='status-checkmark-pending'
+                  id='pendingButton'
+                  onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Pending</h1>
                 </div>
               </div>
               <div className='status-filter-container'>
                 <div className='active-container'>
-                  <BsFillCheckCircleFill className='status-checkmark-completed'/>
+                  <BsFillCheckCircleFill 
+                  className='status-checkmark-completed'
+                  id='completedButton'
+                  onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Completed</h1>
                 </div>
               </div>
             </div>
             <div className='filter-button-container'>
-              <button className='filter-button'>Apply Filters</button>
+              <button className='filter-button' onClick={handleSubmit}>Apply Filters</button>
             </div>
           </div>
       </div>
@@ -88,7 +219,7 @@ function HomeFeed() {
         </header>
 
         <div className='job-grid-box'>
-          {postings.map((posting) => (
+          {reFilteredPostings.map((posting) => (
             <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
                 <div className='job-box' >
                   <h1 className='job-price'><span>$</span>{posting.cost}</h1>
