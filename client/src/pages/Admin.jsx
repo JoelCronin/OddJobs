@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import "../styles/AccountStyles/Account-Header.css"
+import "../styles/AccountStyles/Account-Header.css";
 import { Link } from 'react-router-dom';
 
 
@@ -11,7 +11,7 @@ import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
 import UpdatePosting from "./UpdatePosting";
 
-import logo from '../img/logo.png';
+import logosvg from '../img/Logo.svg';
 
 
 
@@ -43,7 +43,8 @@ function Account() {
         <div className="adminBody">
             <div className="sidebar">
                 <div className="sidebar-top">
-                    <img className="navbar-logo" src={logo}/> 
+                    <img className="navbar-logo" src={logosvg}/>
+                    
                     <span>OddJobs</span>
                 </div>
                 <div className="options">
@@ -58,7 +59,7 @@ function Account() {
                 <header className="admin-main-header">
                     <h1 className="admin-title">{title}</h1>
                     <div className="admin-back-button" >
-                       <Link to={`/home`} style={{ textDecoration: 'none', color:'#bdbdbd' }}> <div>Home</div> </Link>
+                       <Link to={`/home`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Home</div> </Link>
                     </div>
                 </header>
 

@@ -8,6 +8,8 @@ import Auth from "../../utils/auth";
 
 
 import profilePic from '../../img/profile-pic-large.png';
+import profile17 from '../../img/profiles/profile17.svg';
+import StarRating from "../StarRating";
 
 function MyAccount() {
 
@@ -37,7 +39,7 @@ function MyAccount() {
         <div className="my-account-outer-body">
             <div className="my-account-body">
                 <div className="profile-and-signout">
-                    <img className="my-account-profile-pic" src={profilePic}/>
+                    <img className="my-account-profile-pic" src={profile17}/>
                     <div className="admin-signout-button">
                             <div onClick={logout}>Sign out</div>
                     </div>
@@ -67,7 +69,9 @@ function MyAccount() {
                     <div className="my-account-form">
                         <h1 className="my-acccount-form-title">Rating</h1>
                         <div className="my-account-data-box">
-                            <h1 className="my-account-form-data"></h1>
+                            <div className="my-account-star-rating">
+                                <StarRating rating={5} />
+                            </div>
                         </div>
                     </div>
                 </div>
