@@ -75,6 +75,7 @@ export const UPDATE_POSTING = gql`
             image
             status
             season
+            
         }
     }
 `;
