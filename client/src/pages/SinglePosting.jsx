@@ -20,25 +20,24 @@ function SinglePosting() {
 
     const {loading, data} = useQuery (GET_SINGLE_POSTING, {
         variables: singlePostingId 
-    });
+    })
 
     const singlepost = data?.singlePosting || [];
 
+
     // Apply for Position Functionallity
     const [hasApplied, setHasApplied] = useState(false);
-
     const ID = Auth.getProfile().data._id;
 
-    const jobApplicationIDS = [1, 2, ID, 5];
-
-    jobApplicationIDS.map((input) => {
-      if(input == ID) {
-        // console.log('Test');
-        if(hasApplied == false) {
-          setHasApplied(true)
+    if(data) {
+      singlepost.applications.map((input) => {
+        if(input._id == ID) {
+          if(hasApplied == false) {
+            setHasApplied(true)
+          }
         }
-      }
-    })
+      })
+    }
 
   return (
     <div className='header-and-post-container'>
@@ -70,7 +69,11 @@ function SinglePosting() {
                     </div>
                   </div>
               </div>
+              {hasApplied ? (
+              <button className='job-post-apply-button'>Already Applied</button>
+              ) : (
               <button className='job-post-apply-button'>APPLY</button>
+              )}
             </div>
           </div>
           <div className='right-job-post-container'>
@@ -98,7 +101,5 @@ function SinglePosting() {
   )
 
 }
-
-
 
 export default SinglePosting;

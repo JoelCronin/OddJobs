@@ -76,7 +76,7 @@ function App() {
 
             <Route path="/myApplicationsReceived/:id" element={<Applications />} />
 
-            <Route path="/updatePosting" element={<UpdatePosting />} />
+            <Route path="/updatePosting/:id" element={<UpdatePosting />} />
             
           </Routes>
         </>

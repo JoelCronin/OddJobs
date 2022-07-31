@@ -16,23 +16,30 @@ function UpdatePosting() {
     description: '',
     cost: '',
   });
-  const postId = { id: '62e6c5c7d6adef657cc5da0c' };
+
+  const postId = useParams()
+
   console.log(postId)
+
   const [updatePosting] = useMutation(UPDATE_POSTING);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setFormState({
       ...formState,
       [name]: value,
     });
   };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
+
     try {
       const { data } = await updatePosting({
         variables: {
-          ...postId,
+          ...postId, 
           input:{
             ...formState
           }
@@ -42,11 +49,15 @@ function UpdatePosting() {
       console.error(e);
     }
   };
+
   const {loading, data} = useQuery (GET_SINGLE_POSTING, {
-    variables: postId
+    variables: postId 
 });
+
 const singlepost = data?.singlePosting || [];
+
 console.log(singlepost)
+
     return(
       <div className="adminBody">
           <div className="sidebar">
