@@ -16,16 +16,16 @@ const resolvers = {
                            .populate('chosenWorker')
                            .populate('applications');
     },
-    me: async (parent, args) => {
-      // if (context.user) {
-        return await User.findById( args.id )
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id })
                    .populate('jobApplications')
                    .populate('activeJobs')
                    .populate('completedJobs')
                    .populate('owner')
                    .populate('ratings');
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     singleUser: async (parent, args) => {
       return await  User.findById(args.id)
@@ -49,14 +49,14 @@ const resolvers = {
 
   Mutation: {
     createPosting: async (parent, args, context) => {
-      // if (context.user) {
+      if (context.user) {
         const posting = await Posting.create({
           ...args.input,
-          userId: context.user._id
+          owner: context.user._id
         });
         return posting;
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
 
     createUser: async (parent, args) => {

@@ -21,7 +21,6 @@ const postingSchema = new Schema({
     image: {
         type: String,
         required: false
-
     },
     status: {
         type: String,

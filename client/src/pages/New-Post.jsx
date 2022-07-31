@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
 
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+// import { useParams } from 'react-router-dom';
+// import { useQuery } from '@apollo/client';
 import { CREATE_POSTING } from "../utils/mutations";
-import { GET_ME } from '../utils/queries';
+// import { GET_ME } from '../utils/queries';
 
 // import Auth from '../utils/auth';
 
@@ -15,7 +15,8 @@ function NewPost() {
     cost: '',
   });
 
-  const [addPosting, {error, data}] = useMutation(CREATE_POSTING);
+
+  const [addPosting] = useMutation(CREATE_POSTING);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,10 +34,10 @@ function NewPost() {
     try {
       const { data } = await addPosting({
         variables: { 
-          input: {
+          input:{
             ...formState
           }
-          },
+        },
       });
 
     } catch (e) {
