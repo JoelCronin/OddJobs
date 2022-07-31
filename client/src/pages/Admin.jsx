@@ -11,7 +11,7 @@ import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
 import UpdatePosting from "./UpdatePosting";
 
-import logo from '../img/logo.png';
+import logosvg from '../img/Logo.svg';
 
 
 
@@ -43,7 +43,8 @@ function Account() {
         <div className="adminBody">
             <div className="sidebar">
                 <div className="sidebar-top">
-                    <img className="navbar-logo" src={logo}/> 
+                    <img className="navbar-logo" src={logosvg}/>
+                    
                     <span>OddJobs</span>
                 </div>
                 <div className="options">
