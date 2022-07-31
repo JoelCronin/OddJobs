@@ -77,7 +77,7 @@ function MyListings() {
             )} */}
           </div>
 
-          <div className="form-and-buttons-container">
+          {/* <div className="form-and-buttons-container">
             <div className="form-container">
               <div className="form-background">
                 <div className="form-left">
@@ -143,7 +143,7 @@ function MyListings() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
 
         </div>

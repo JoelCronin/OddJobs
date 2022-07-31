@@ -10,11 +10,11 @@
 }
 
 .all-my-listings{
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    display: none;
+    /* display: none; */
 }
 
 .add-box{
