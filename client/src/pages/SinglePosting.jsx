@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import Auth from '../utils/auth';
 
 import {GET_SINGLE_POSTING} from '../utils/queries'
+import { useState } from 'react';
 
 function SinglePosting() {
 
