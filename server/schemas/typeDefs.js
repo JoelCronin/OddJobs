@@ -65,6 +65,7 @@ const typeDefs = gql`
         name: String
         email: String
         password: String
+        image: String
     }
 
     input PostingInput {
@@ -78,6 +79,7 @@ const typeDefs = gql`
         cost: String
         description: String
         title: String
+        image: String
     }
 
     input RatingInput {

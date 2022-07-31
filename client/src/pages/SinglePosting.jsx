@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {GET_SINGLE_POSTING} from '../utils/queries';
@@ -11,19 +11,33 @@ import StarRating from '../components/StarRating';
 
 
 
+import Auth from "../utils/auth";
+import { MdKeyboardReturn } from 'react-icons/md';
+
 function SinglePosting() {
 
     const singlePostingId = useParams();
 
-    console.log(singlePostingId)
-
     const {loading, data} = useQuery (GET_SINGLE_POSTING, {
         variables: singlePostingId 
-    });
-
-    console.log(data)
+    })
 
     const singlepost = data?.singlePosting || [];
+
+
+    // Apply for Position Functionallity
+    const [hasApplied, setHasApplied] = useState(false);
+    const ID = Auth.getProfile().data._id;
+
+    if(data) {
+      singlepost.applications.map((input) => {
+        if(input._id == ID) {
+          if(hasApplied == false) {
+            setHasApplied(true)
+          }
+        }
+      })
+    }
 
   return (
     <div className='header-and-post-container'>
@@ -55,7 +69,11 @@ function SinglePosting() {
                     </div>
                   </div>
               </div>
+              {hasApplied ? (
+              <button className='job-post-apply-button'>Already Applied</button>
+              ) : (
               <button className='job-post-apply-button'>APPLY</button>
+              )}
             </div>
           </div>
           <div className='right-job-post-container'>
@@ -83,7 +101,5 @@ function SinglePosting() {
   )
 
 }
-
-
 
 export default SinglePosting;

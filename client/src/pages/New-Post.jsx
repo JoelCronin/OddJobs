@@ -18,6 +18,7 @@ function NewPost() {
     title: '',
     description: '',
     cost: '',
+    image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
   });
 
 
@@ -77,11 +78,11 @@ function NewPost() {
                 <div className="form-left">
                   <div className="my-account-form">
                     <h1 className="my-acccount-form-title">Name</h1>
-                    <input className="add-input-name" type="text" placeholder="Enter name...."></input>
+                    <input className="add-input-name" type="text" placeholder="Enter name...." name= "title" value={formState.title} onChange={handleChange}></input>
                   </div>
                   <div className="my-account-form">
                     <h1 className="my-acccount-form-title">Description</h1>
-                    <textarea type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboriquip ex ea commodo consequat Lorem ipsum dolor sit amet, consectetur adipiscing elim ad minim veniam, quis nostrud exercitation ullamco labo" className="description-text-area"></textarea>
+                    <textarea type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboriquip ex ea commodo consequat Lorem ipsum dolor sit amet, consectetur adipiscing elim ad minim veniam, quis nostrud exercitation ullamco labo" className="description-text-area" name= "description" value={formState.description} onChange={handleChange}></textarea>
                   </div>
                 </div>
                 <div className="form-right">
@@ -111,7 +112,7 @@ function NewPost() {
                       <h1 className="price-title">Price</h1>
                       <div className="price-input-container">
                         <span className="input-dollar-sign">$</span>
-                        <input className="price-input"  placeholder="30" type="number"/>
+                        <input className="price-input"  placeholder="30" type="number" name= "cost" value={formState.cost} onChange={handleChange}/>
                       </div>
                     </div>
                   </div>

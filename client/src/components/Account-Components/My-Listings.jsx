@@ -31,6 +31,8 @@ function MyListings() {
 
     const mine = data?.me || [];
 
+    console.log(mine)
+
     return (
         
        
@@ -42,28 +44,33 @@ function MyListings() {
               </div>
             </Link>
             <div>
-              {mine.activeJobs.length === 1 || mine.activeJobs === null  ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : (
-                <div className='job-box'>
+              {mine.activeJobs.length === 0 || mine.activeJobs === null  ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : (
+                <>
+                  {mine.activeJobs.map((singlejob) => (
+                  <div className='job-box' key = {singlejob._id}>
                   <h1 className='job-price'><span>$</span>20</h1>
                   <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
                   <div className='job-post-decription-box'>
                     <div className='job-post-description-top'>
-                      <h1 className='job-title'>Placeholder</h1>
+                      <h1 className='job-title'>{singlejob.title}</h1>
                       <div className='status-box'>
                         <h1 className='status-main-post'>Status</h1>
                         <span>
                           <img className='status-symbol-main' src={active}/>
-                        </span>
+                        </span> 
                       </div>
                     </div>
                     <div className='job-post-description-bottom'>
                     <h1 className='job-post-owner'>{mine.name}</h1>
-                      <h1 className='job-post-date'>1hr ago {mine.createdAt}</h1>
+                      <h1 className='job-post-date'> {singlejob.createdAt}</h1>
+                      <h1 className='job-post-cost'> {singlejob.cost}</h1>
                     </div>
                   </div>
                   <Link to= {`/updatePosting`}><MdModeEdit className="edit-button"/></Link> 
+                  </div>
+                  ))}
                   
-                </div>
+                </>
               )}
             </div>
         

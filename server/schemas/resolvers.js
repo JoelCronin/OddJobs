@@ -55,11 +55,11 @@ const resolvers = {
           owner: context.user._id
         });
         
-        const user = await User.findByIdAndUpdate(context.user._id, {
-          $push: { activeJobs: posting._id }
+        await User.findByIdAndUpdate(context.user._id, {
+          $addToSet: { activeJobs: posting._id }
           }, { new: true });
 
-        return { posting, user };
+        return await Posting.findById(posting._id)
       }
       throw new AuthenticationError('You need to be logged in!');
     },
