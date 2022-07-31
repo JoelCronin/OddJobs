@@ -58,7 +58,7 @@ const typeDefs = gql`
         createUser(input: createUserInput!): Auth
         createRating(input: RatingInput!): Rating
         removePosting(id: ID!): Posting
-        updatePosting(id: ID!, input: postingInput!): Posting
+        updatePosting(id: ID!, input: PostingInput!): Posting
     }
 
     input createUserInput {
@@ -67,7 +67,7 @@ const typeDefs = gql`
         password: String
     }
 
-    input postingInput {
+    input PostingInput {
         title: String
         description: String
         cost: Int
