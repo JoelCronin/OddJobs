@@ -18,10 +18,6 @@ import IMAGES from '../img/profiles/index.js';
 
 import Auth from '../utils/auth';
 
-
-
-
-
 function HomeFeed() {
 
   const [minPrice, setMinPrice] = useState('10');
@@ -30,8 +26,11 @@ function HomeFeed() {
   const [pendingStatus, setPendingStatus] = useState(true);
   const [completedStatus, setCompletedStatus] = useState(true);
 
+  const [searchInput, setSearchInput] = useState('')
+
   const filteredPostings = [];
   const reFilteredPostings =[];
+  const searchFilterPostings =[];
 
   const handleChange = (event) => {
     const { target } = event;
@@ -61,6 +60,12 @@ function HomeFeed() {
     }
   }
 
+  const handleSearchChange = (event) => {
+    const { target } = event;
+    const inputValue = target.value;
+    setSearchInput(inputValue);
+  }
+
   const handleSubmit = (event) => {
     postings.map((posting) => {
       if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
@@ -88,7 +93,26 @@ function HomeFeed() {
         }
       })
     }
-    setSubmitPostings(reFilteredPostings);
+
+    const splitInput = searchInput.toUpperCase().split("");
+
+    reFilteredPostings.map((posting) => {
+      var splitOwner = posting.title.toUpperCase().split("");
+        for(var i=0; i < (splitInput.length + 1); i++){
+
+          if (splitInput.length == i){
+            searchFilterPostings.push(posting);
+          }
+
+          else if(splitInput[i] != splitOwner[i]){
+            break;
+
+          }
+        }
+    })
+
+    setSubmitPostings(searchFilterPostings);
+
   }
 
   const {loading, data } = useQuery(GET_POSTING);
@@ -97,14 +121,13 @@ function HomeFeed() {
   const [submitPostings, setSubmitPostings] = useState([]);
 
   if((postings.length > 0) && (submitPostings.length == 0)) {
-    console.log(postings)
     setSubmitPostings(postings);
   }
 
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
   const userIcon = IMAGES[me.image];
-
+  
   return (
     (Auth.loggedIn()) ? (
     (loading) ? (
@@ -178,7 +201,12 @@ function HomeFeed() {
             <div className='search-div'>
               <div className='search-div-collection'>
                 <AiOutlineSearch className='search-icon'/>
-                <input type="text" className='input-search' placeholder='Search'/>
+                <input type="text" 
+                       className='input-search' 
+                       placeholder='Search'
+                       value={searchInput}
+                       onChange={handleSearchChange}
+                       />
               </div>
             </div>
             <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={ userIcon } alt="icon" /> </Link>
