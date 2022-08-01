@@ -19,7 +19,7 @@ import logosvg from '../img/Logo.svg';
 import IMAGES from '../img/profiles/index.js';
 
 
-import logosvg from '../img/Logo.svg';
+// import logosvg from '../img/Logo.svg';
 import profile1 from '../img/profiles/1.svg';
 import Auth from '../utils/auth';
 import { motion } from 'framer-motion';
