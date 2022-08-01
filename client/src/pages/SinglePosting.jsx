@@ -7,6 +7,7 @@ import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png';
 import profile65 from '../img/profiles/1.svg';
 import StarRating from '../components/StarRating';
+import { motion } from 'framer-motion';
 
 
 
@@ -39,6 +40,29 @@ function SinglePosting() {
       })
     }
 
+    const leftVariant = {
+      hidden:{
+        x: -400
+      },
+      visible:{
+          x: 0,
+          transition: {
+              duration: 0.4
+          }
+      }
+    }
+    const rightVariant = {
+      hidden:{
+        x: 400
+      },
+      visible:{
+          x: 0,
+          transition: {
+              duration: 0.4
+          }
+      }
+    }
+
   return (
     <div className='header-and-post-container'>
       <header className="admin-main-header">
@@ -52,7 +76,7 @@ function SinglePosting() {
       </header>
       <div className='single-post-container'>
         <div className='inner-post-container'>
-          <div className='left-job-post-container'>
+          <motion.div variants={leftVariant} initial="hidden" animate="visible" className='left-job-post-container'>
             <div className='inner-left-job-post-container'>
               <div className='job-post-box'>
                   <h1 className='job-post-price'><span>$</span>{singlepost.cost}</h1>
@@ -75,8 +99,8 @@ function SinglePosting() {
               <button className='job-post-apply-button'>APPLY</button>
               )}
             </div>
-          </div>
-          <div className='right-job-post-container'>
+          </motion.div>
+          <motion.div variants={rightVariant} initial="hidden" animate="visible" className='right-job-post-container'>
             <div className="job-applicants-container">
               <div className="username-and-pic-container">
                   <img src={profile65} className="job-applicant-profile-pic" />
@@ -94,7 +118,7 @@ function SinglePosting() {
               <h1 className="job-application-description-container sp-location">Location</h1>
               <div type="text" className="jop-appication-location">Map Placeholder...</div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

@@ -4,11 +4,25 @@ import active from '../../img/status/active.png';
 
 import profile1 from '../../img/profiles/2.svg'
 import StarRating from "../StarRating";
+import { motion } from 'framer-motion';
+
 
 function Applications() {
 
+    const componentVariant = {
+        hidden:{
+            y: 200
+        },
+        visible:{
+            y: 0,
+            transition: {
+            duration: 0.3
+            }
+        }
+    }
+      
     return (
-        <div className="applicationsContainer">
+        <motion.div variants={componentVariant} initial="hidden" animate="visible" className="applicationsContainer">
             <div className="inner-applications-container">
                 <div className="job-detail-container">
                     <h1 className="applications-job-title">Watier/Watresses</h1>
@@ -189,7 +203,7 @@ function Applications() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

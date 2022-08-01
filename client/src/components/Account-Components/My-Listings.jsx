@@ -13,6 +13,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 import UpdatePosting from "../../pages/UpdatePosting";
+import { motion } from 'framer-motion';
 
 
 import Auth from "../../utils/auth";
@@ -33,22 +34,31 @@ function MyListings() {
 
     console.log(mine)
 
-    return (
-        
-       
-        <div id="myListingsContainer">
+    const componentVariant = {
+      hidden:{
+        y: 200
+      },
+      visible:{
+        y: 0,
+        transition: {
+          duration: 0.3
+        }
+      }
+    }
 
-            <Link to={`/me/newPost/${Auth.getProfile().data._id}`}>
-              <div className='job-box add-box'>
-                  <BsPlusCircleFill className="add-button"/>
-              </div>
-            </Link>
-            <div>
-              {mine.activeJobs.length === 0 || mine.activeJobs === null  ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : (
+    return (
+        <motion.div variants={componentVariant} initial="hidden" animate="visible" id="myListingsContainer">
+            <div className="inner-my-listing-container">
+              <Link to={`/me/newPost/${Auth.getProfile().data._id}`}>
+                <div className='job-box add-box'>
+                    <BsPlusCircleFill className="add-button"/>
+                </div>
+              </Link>
+              {mine.activeJobs.length === 0 || mine.activeJobs === null  ? (<p></p>) : (
                 <>
                   {mine.activeJobs.map((singlejob) => (
                   <div className='job-box' key = {singlejob._id}>
-                  <h1 className='job-price'><span>$</span>20</h1>
+                  <h1 className='job-price'><span>$</span>{singlejob.cost}</h1>
                   <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png"/>
                   <div className='job-post-decription-box'>
                     <div className='job-post-description-top'>
@@ -63,18 +73,15 @@ function MyListings() {
                     <div className='job-post-description-bottom'>
                     <h1 className='job-post-owner'>{mine.name}</h1>
                       <h1 className='job-post-date'> {singlejob.createdAt}</h1>
-                      <h1 className='job-post-cost'> {singlejob.cost}</h1>
                     </div>
                   </div>
                   <Link to= {`/updatePosting`}><MdModeEdit className="edit-button"/></Link> 
                   </div>
                   ))}
-                  
                 </>
               )}
             </div>
-        
-       </div>
+        </motion.div>
     );
 }
 

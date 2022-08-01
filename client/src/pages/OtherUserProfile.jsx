@@ -5,8 +5,9 @@ import '../styles/OtherUserProfile.css'
 import {GET_SINGLE_USER} from '../utils/queries';
 import logosvg from '../img/Logo.svg';
 import { Link } from 'react-router-dom';
-import profile17 from '../img/profiles/8.svg';
+import profile17 from '../img/profiles/4.svg';
 import StarRating from "../components/StarRating";
+import { motion } from 'framer-motion';
 
 
 
@@ -22,9 +23,33 @@ function OtherUserProfile() {
 
     const singleOtherUser = data?.singleUser || [];
 
+    const sidebarVariant = {
+        hidden:{
+          x: -800
+        },
+        visible:{
+          x: 0,
+          transition: {
+            duration: 0.5
+          }
+        }
+    }
+
+    const componentVariant = {
+        hidden:{
+            opacity: 0
+        },
+        visible:{
+            opacity: 1,
+            transition: {
+                duration: 0.45
+            }
+        }
+    }
+
   return (
     <div className="adminBody">
-        <div className="sidebar">
+        <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
             <div className="sidebar-top">
                 <img className="navbar-logo" src={logosvg}/>
                 
@@ -33,9 +58,9 @@ function OtherUserProfile() {
             <div className="options">
                 <section className='selected-tab'>User Profile</section>
             </div>
-        </div>
+        </motion.div>
 
-        <div className="header-and-component-container">
+        <motion.div variants={componentVariant} initial="hidden" animate="visible" className="header-and-component-container">
             <header className="admin-main-header">
                 <h1 className="admin-title">User Profile</h1>
                 <div className="admin-back-button" >
@@ -77,23 +102,10 @@ function OtherUserProfile() {
             </div>
             
 
-        </div>
+        </motion.div>
     </div>
   )
 }
 
-/*
-    <div className='other-user-container'>
-        <div className='other-user-header'>
-            <h3>NAME:  {singleOtherUser.name}</h3>
-        </div>
-        <div className='other-user-body'>
-            <p>RATING</p>
-            <img src='WILL BE ADDED LATER' alt='WILL BE ADDED LATER'/>
-            <p>COMPLETED JOBS</p>
-        </div>
 
-    </div>
-*/
-
-export default OtherUserProfile
+export default OtherUserProfile;

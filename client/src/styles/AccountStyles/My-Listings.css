@@ -8,6 +8,12 @@
     /* border: 1px white; */
     min-height: 100vh;
 }
+.inner-my-listing-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
 
 .all-my-listings{
     /* border: 1px solid green; */
@@ -616,17 +622,18 @@
 .listing-create-button, .listing-cancel-button, .listing-delete-button{
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 22px;
     line-height: 32px;
     width: 123px;
-    height: 45px;
-    border-radius: 30px;
+    height: 46px;
+    border-radius: 7px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.5s, color 0.5s;
+    -webkit-user-select: none;
     user-select: none;
 }
 
