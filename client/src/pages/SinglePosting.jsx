@@ -35,8 +35,8 @@ var here = [];
 var centre = [];
 
 //Fetch Request to get longs and lats of job Postcode
-var userLocation = function(cityName){
-    fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${cityName}`)
+var userLocation = async function(cityName){
+    await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${cityName}`)
     .then(function(response){
     return response.json();
     })
@@ -59,12 +59,7 @@ here = JSON.parse(localStorage.getItem('coords'))
 
 // Our map displays as a rectangle rather than a square so was centering wrong on the map.
 //This logic takes away 0.4 from the latitude so that it the map centres on the pin
-var latitude = here[0];
-console.log(latitude)
-var latSouth = latitude - 0.4
-console.log(latSouth)
-console.log(here)
-centre.push(latSouth, here[1])
+
 console.log(centre)
 
 // Calls the Single Posting Query
@@ -85,6 +80,13 @@ const jobSite = owner.postCode
 console.log(jobSite)
 //Calls API with postcode got from singleposting Query
 userLocation(jobSite)
+
+var latitude = here[0];
+console.log(latitude)
+var latSouth = latitude - 0.4
+console.log(latSouth)
+console.log(here)
+centre.push(latSouth, here[1])
 
 
 
