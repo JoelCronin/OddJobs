@@ -11,12 +11,13 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { APPLY_FOR_JOB } from '../utils/mutations';
 import { REMOVE_APPLICATION } from '../utils/mutations';
+import IMAGES from '../img/profiles/index.js';
 
 
 
 
 import Auth from "../utils/auth";
-import { MdKeyboardReturn } from 'react-icons/md';
+// import { MdKeyboardReturn } from 'react-icons/md';
 
 function SinglePosting() {
 
@@ -27,6 +28,8 @@ function SinglePosting() {
     })
 
     const singlepost = data?.singlePosting || [];
+    const owner = data?.singlePosting?.owner || [];
+    const userIcon = IMAGES[owner.image];
 
 
     // Apply for Position Functionallity
@@ -119,7 +122,7 @@ function SinglePosting() {
           <div className='right-job-post-container'>
             <div className="job-applicants-container">
               <div className="username-and-pic-container">
-                  <img src={profile65} className="job-applicant-profile-pic" />
+                  <img src={userIcon} className="job-applicant-profile-pic" />
                   <h1 className="job-applicant-name">Dave Johnson</h1>
               </div>
               <div className="rating-container">
