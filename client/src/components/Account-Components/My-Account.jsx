@@ -9,6 +9,9 @@ import Auth from "../../utils/auth";
 
 import profilePic from '../../img/profile-pic-large.png';
 import profile17 from '../../img/profiles/1.svg';
+import IMAGES from '../../img/profiles/index.js';
+
+
 import StarRating from "../StarRating";
 
 function MyAccount() {
@@ -31,6 +34,7 @@ function MyAccount() {
 
 
     const mine = data?.me || [];
+    const userIcon = IMAGES[mine.image];
 
     console.log(mine)
 
@@ -53,7 +57,7 @@ function MyAccount() {
         <motion.div variants={componentVariant} initial="hidden" animate="visible" className="my-account-outer-body">
             <div className="my-account-body">
                 <div className="profile-and-signout">
-                    <img className="my-account-profile-pic" src={profile17}/>
+                    <img className="my-account-profile-pic" src={userIcon}/>
                     <div className="admin-signout-button">
                             <div onClick={logout}>Sign out</div>
                     </div>

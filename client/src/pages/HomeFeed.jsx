@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useQuery } from '@apollo/client';
 import { GET_POSTING, GET_ME } from '../utils/queries';
@@ -7,8 +7,14 @@ import { Link } from 'react-router-dom';
 import { AiOutlineSearch} from 'react-icons/ai';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import '../styles/HomeFeedStyles/navbar.css';
-import '../styles/HomeFeedStyles/feedBody.css'
+import '../styles/HomeFeedStyles/feedBody.css';
+
+// import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
+// import logo from '../img/logo.png';
+// import logosvg from '../img/Logo.svg';
+import profile17 from '../img/profiles/17.svg'
+import IMAGES from '../img/profiles/index.js';
 
 
 import logosvg from '../img/Logo.svg';
@@ -19,15 +25,112 @@ import party from "party-js";
 
 
 
-
-
 function HomeFeed() {
+
+  const [minPrice, setMinPrice] = useState('10');
+  const [maxPrice, setMaxPrice] = useState('20');
+  const [activeStatus, setActiveStatus] = useState(true);
+  const [pendingStatus, setPendingStatus] = useState(true);
+  const [completedStatus, setCompletedStatus] = useState(true);
+
+  const [searchInput, setSearchInput] = useState('')
+
+  const filteredPostings = [];
+  const reFilteredPostings =[];
+  const searchFilterPostings =[];
+
+  const handleChange = (event) => {
+    const { target } = event;
+    const inputType = target.id;
+    const inputValue = target.value;
+
+    if (inputType === 'minPrice') {
+      setMinPrice(inputValue);
+    } else if (inputType === 'maxPrice') {
+      setMaxPrice(inputValue);
+    }
+  }
+
+  const handleStatusChange = (event) => {
+    const { target } = event;
+    const inputType = target.id;
+
+    if (inputType === 'activeButton') {
+      setActiveStatus(!activeStatus);
+      console.log("Active Status "+ activeStatus)
+    } else if (inputType === 'pendingButton') {
+      setPendingStatus(!pendingStatus);
+      console.log("Pending Status " + pendingStatus)
+    } else if (inputType === 'completedButton') {
+      setCompletedStatus(!completedStatus);
+      console.log("Completed Status " + completedStatus)
+    }
+  }
+
+  const handleSearchChange = (event) => {
+    const { target } = event;
+    const inputValue = target.value;
+    setSearchInput(inputValue);
+  }
+
+  const handleSubmit = (event) => {
+    postings.map((posting) => {
+      if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
+        filteredPostings.push(posting);
+      }
+    })
+    if(activeStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Active") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(pendingStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Pending") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(completedStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Completed") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+
+    const splitInput = searchInput.toUpperCase().split("");
+
+    reFilteredPostings.map((posting) => {
+      var splitOwner = posting.title.toUpperCase().split("");
+        for(var i=0; i < (splitInput.length + 1); i++){
+
+          if (splitInput.length == i){
+            searchFilterPostings.push(posting);
+          }
+
+          else if(splitInput[i] != splitOwner[i]){
+            break;
+
+          }
+        }
+    })
+
+    setSubmitPostings(searchFilterPostings);
+
+  }
 
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
   // const location = useLocation();
 
-  console.log(postings)
+  const [submitPostings, setSubmitPostings] = useState([]);
+
+  if((postings.length > 0) && (submitPostings.length == 0)) {
+    setSubmitPostings(postings);
+  }
 
 
   const fadeVariant = {
@@ -91,15 +194,19 @@ function HomeFeed() {
   }
 
 
+  const { data: meData } = useQuery(GET_ME);
+  const me = meData?.me || [];
+  const userIcon = IMAGES[me.image];
+  
   return (
     (Auth.loggedIn()) ? (
     (loading) ? (
       <div>Loading...</div>
     ) : (       
-      <div  className="feedBody">
-        <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
-            <div className="sidebar-top">
-                <svg className="navbar-logo"  width="73" height="66" viewBox="0 0 73 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="feedBody">
+      <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
+          <div className="sidebar-top">
+              <svg className="navbar-logo"  width="73" height="66" viewBox="0 0 73 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_15_13)">
                   <motion.path variants={logoVariant} d="M9.98819 49.8924C12.6652 51.7582 17.0054 51.7582 19.6824 49.8924C22.3592 48.0265 22.3592 45.0012 19.6824 43.1353C17.0054 41.2695 12.6652 41.2695 9.98819 43.1353C7.31123 45.0012 7.31123 48.0265 9.98819 49.8924Z" fill="#25CAAC"/>
                   <motion.path variants={logoVariant} d="M37.7726 24.5539C41.7881 27.3527 48.2983 27.3527 52.3139 24.5539C56.3292 21.755 56.3292 17.2173 52.3139 14.4185C48.2983 11.6197 41.7881 11.6197 37.7726 14.4185C33.7573 17.2173 33.7573 21.755 37.7726 24.5539Z" fill="#25CAAC"/>
@@ -116,89 +223,113 @@ function HomeFeed() {
                   <rect width="73" height="66" fill="white"/>
                   </clipPath>
                   </defs>
-                </svg>
-                <span>OddJobs</span>
+              </svg>
+              <span>OddJobs</span>
+          </div>
+          <div className='sidebar-bottom'>
+            <h1 className='price-range'>Price Range</h1>
+            <div className='range-box'>
+              <input className='range-start'
+                     id='minPrice' 
+                     type="number" 
+                     placeholder='10'
+                     value={minPrice}
+                     onChange={handleChange}/>
+              <input className='range-start'
+                     id='maxPrice'
+                     type="number" 
+                     placeholder='90'
+                     value={maxPrice}
+                     onChange={handleChange}/>
             </div>
-            <div className='sidebar-bottom'>
-              <h1 className='price-range'>Price Range</h1>
-              <div className='range-box'>
-                <input className='range-start'type="number" placeholder='10'/>
-                <input className='range-start'type="number" placeholder='90'/>
+            <hr className='sidebar-line'/>
+            <h1 className='dollar-sign-one'>$</h1>
+            <h1 className='dollar-sign-two'>$</h1>
+            <div className='stats-cluster'>
+              <div className='status-filter-container'>
+                <h1 className='status-filter-title'>Status</h1>
+                <div className='active-container'>
+                  <BsFillCheckCircleFill 
+                    className='status-checkmark-active'
+                    id='activeButton'
+                    onClick={handleStatusChange}/>
+                  <h1 className='active-check-name'>Active</h1>
+                </div>
               </div>
-              <hr className='sidebar-line'/>
-              <h1 className='dollar-sign-one'>$</h1>
-              <h1 className='dollar-sign-two'>$</h1>
-              <div className='stats-cluster'>
-                <div className='status-filter-container'>
-                  <h1 className='status-filter-title'>Status</h1>
-                  <div className='active-container'>
-                    <BsFillCheckCircleFill className='status-checkmark-active'/>
-                    <h1 className='active-check-name'>Active</h1>
-                  </div>
+              <div className='status-filter-container'>
+                <div className='active-container'>
+                  <BsFillCheckCircleFill 
+                  className='status-checkmark-pending'
+                  id='pendingButton'
+                  onClick={handleStatusChange}/>
+                  <h1 className='active-check-name'>Pending</h1>
                 </div>
-                <div className='status-filter-container'>
-                  <div className='active-container'>
-                    <BsFillCheckCircleFill className='status-checkmark-pending'/>
-                    <h1 className='active-check-name'>Pending</h1>
-                  </div>
-                </div>
-                <div className='status-filter-container'>
-                  <div className='active-container'>
-                    <BsFillCheckCircleFill className='status-checkmark-completed'/>
-                    <h1 className='active-check-name'>Completed</h1>
-                  </div>
+              </div>
+              <div className='status-filter-container'>
+                <div className='active-container'>
+                  <BsFillCheckCircleFill 
+                  className='status-checkmark-completed'
+                  id='completedButton'
+                  onClick={handleStatusChange}/>
+                  <h1 className='active-check-name'>Completed</h1>
                 </div>
               </div>
               <div className='filter-button-container'>
                 <button onClick={sparkles} className='filter-button'>Apply Filters</button>
               </div>
             </div>
-        </motion.div>
-
-        <div className='mainFeed'>        
-          <motion.header variants={headerVariant} initial="hidden" animate="visible" className='main-header'>
-            <h1 className='job-listing-title'>Job Feed</h1>
-            <div className='right-div-search-profile'>
-              <div className='search-div'>
-                <div className='search-div-collection'>
-                  <AiOutlineSearch className='search-icon'/>
-                  <input type="text" className='input-search' placeholder='Search'/>
-                </div>
+          </div>
+      </motion.div>
+      <div className='mainFeed'>        
+        <motion.header variants={headerVariant} initial="hidden" animate="visible" className='main-header'>
+          <h1 className='job-listing-title'>Job Feed</h1>
+          <div className='right-div-search-profile'>
+            <div className='search-div'>
+              <div className='search-div-collection'>
+                <AiOutlineSearch className='search-icon'/>
+                <input type="text" 
+                       className='input-search' 
+                       placeholder='Search'
+                       value={searchInput}
+                       onChange={handleSearchChange}
+                       />
+                
               </div>
-              <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={profile1}/> </Link>
+              
             </div>
-          </motion.header>
+            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={ userIcon } alt="icon" /> </Link>
+      
+          </div>
+        </motion.header>
 
-          <div className='job-grid-box'>
-            {postings.map((posting) => (
-              <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
-                  <motion.div className='job-box' >
-                    <h1 className='job-price'><span>$</span>{posting.cost}</h1>
-                    <img className='job-post-img' src={posting.image} alt={posting.title}/>
-                    <div className='job-post-decription-box'>
-                      <div className='job-post-description-top'>
-                        <h1 className='job-title'>{posting.title}</h1>
-                        <div className='status-box'>
-                          <h1 className='status-main-post'>Status</h1>
-                          <span>
-                            <img className='status-symbol-main' src={active}/>
-                          </span>
-                        </div>
-                      </div>
-                      <div className='job-post-description-bottom'>
-                      <Link to= {`/user/${posting.owner._id}`} style={{textDecoration: 'none'}}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
-                        <h1 className='job-post-date'>{posting.createdAt}</h1>
+        <div className='job-grid-box'>
+          {submitPostings.map((posting) => (
+            <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
+                <motion.div className='job-box'>
+                  <h1 className='job-price'><span>$</span>{posting.cost}</h1>
+                  <img className='job-post-img' src={posting.image} alt={posting.title}/>
+                  <div className='job-post-decription-box'>
+                    <div className='job-post-description-top'>
+                      <h1 className='job-title'>{posting.title}</h1>
+                      <div className='status-box'>
+                        <h1 className='status-main-post'>Status</h1>
+                        <span>
+                          <img className='status-symbol-main' src={active}/>
+                        </span>
                       </div>
                     </div>
-                  </motion.div>
-              </Link>
-            ))}
-          </div>
-
+                    <div className='job-post-description-bottom'>
+                      <Link to= {`/user/${posting.owner._id}`} style={{textDecoration: 'none'}}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
+                      <h1 className='job-post-date'>{posting.createdAt}</h1>
+                    </div>
+                  </div>
+                </motion.div>
+            </Link>
+          ))}
         </div>
 
-
       </div>
+    </div>
     )
     ) : (
       <Navigate to="/"/>

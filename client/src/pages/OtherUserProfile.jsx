@@ -6,8 +6,11 @@ import {GET_SINGLE_USER} from '../utils/queries';
 import logosvg from '../img/Logo.svg';
 import { Link } from 'react-router-dom';
 import profile17 from '../img/profiles/4.svg';
-import StarRating from "../components/StarRating";
+// import StarRating from "../components/StarRating";
 import { motion } from 'framer-motion';
+
+import StarRating from "../components/StarRating";
+import IMAGES from '../img/profiles/index.js';
 
 
 
@@ -47,6 +50,7 @@ function OtherUserProfile() {
         }
     }
 
+    const userIcon = IMAGES[singleOtherUser.image];
   return (
     <div className="adminBody">
         <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
@@ -71,7 +75,7 @@ function OtherUserProfile() {
             <div className="my-account-outer-body">
                 <div className="my-account-body">
                     <div className="profile-and-signout">
-                        <img className="my-account-profile-pic" src={profile17}/>
+                        <img className="my-account-profile-pic" src={userIcon}/>
                     </div>
 
                     <div className="my-account-form-box">

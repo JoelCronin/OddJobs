@@ -8,6 +8,10 @@ import active from '../img/status/active.png';
 import profile65 from '../img/profiles/1.svg';
 import StarRating from '../components/StarRating';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { APPLY_FOR_JOB } from '../utils/mutations';
+import { REMOVE_APPLICATION } from '../utils/mutations';
 
 
 
@@ -60,6 +64,36 @@ function SinglePosting() {
           transition: {
               duration: 0.4
           }
+        }
+      }
+    const [applyForPosition] = useMutation(APPLY_FOR_JOB);
+    const [removeApplication] = useMutation(REMOVE_APPLICATION);
+
+    const handleApply = async (event) => {
+      event.preventDefault();
+
+      try {
+        const { data } = await applyForPosition({
+          variables: singlePostingId
+        });
+
+        window.location.reload();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    const handleCancleApply = async (event) => {
+      event.preventDefault();
+
+      try {
+        const { data } = await removeApplication({
+          variables: singlePostingId
+        });
+
+        window.location.reload();
+      } catch (e) {
+        console.error(e);
       }
     }
 
@@ -71,7 +105,9 @@ function SinglePosting() {
               <span>OddJobs</span>
           </div>
           <div className="admin-back-button">
+            <Link to={`/home`} style={{ textDecoration: 'none', color:'#64FFDB' }}>
                <div>Back</div>
+            </Link>
           </div>
       </header>
       <div className='single-post-container'>
@@ -94,9 +130,12 @@ function SinglePosting() {
                   </div>
               </div>
               {hasApplied ? (
-              <button className='job-post-apply-button'>Already Applied</button>
+              <div>
+                <button className='job-post-apply-button'>Already Applied</button>
+                <button className='job-post-apply-button' onClick={handleCancleApply} style={{ color:'#B22222' }}>Cancel Apply</button>
+              </div>             
               ) : (
-              <button className='job-post-apply-button'>APPLY</button>
+              <button className='job-post-apply-button' onClick={handleApply}>APPLY</button>
               )}
             </div>
           </motion.div>

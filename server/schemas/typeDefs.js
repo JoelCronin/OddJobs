@@ -59,6 +59,8 @@ const typeDefs = gql`
         createRating(input: RatingInput!): Rating
         removePosting(id: ID!): Posting
         updatePosting(id: ID!, input: PostingInput!): Posting
+        applyForJob(id: ID!): Posting
+        removeApplication(id: ID!): Posting
     }
 
     input createUserInput {
@@ -71,8 +73,7 @@ const typeDefs = gql`
     input PostingInput {
         title: String
         description: String
-        cost: Int
-        status: String
+        cost: String
     }
 
     input createPostingInput {
@@ -80,6 +81,7 @@ const typeDefs = gql`
         description: String
         title: String
         image: String
+        workerName: String
     }
 
     input RatingInput {

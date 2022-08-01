@@ -11,89 +11,68 @@ import { TbCloudUpload } from 'react-icons/tb';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 
-// import Auth from '../utils/auth';
+import {GET_SINGLE_POSTING} from '../utils/queries';
+
+import Auth from '../utils/auth';
 
 function UpdatePosting() {
-    const [updateName, setUpdateName] = useState('')
-    const [updateDesc, setUpdateDesc] = useState('')
-    const [updateCost, setUpdateCost] = useState('');
-    // const [addComment, { error }] = useMutation
+  const [formState, setFormState] = useState ({
+    title: '',
+    description: '',
+    cost: '',
+  });
 
-    const handleInputChange = (e) => {
-        const { target } = e;
-        const inputType = target.name;
-        const inputValue = target.value;
+  const postId = useParams()
 
-        if (inputType === 'updateName') {
-            setUpdateName(inputValue);
-          } else if (inputType === 'updateDesc') {
-            setUpdateDesc(inputValue);
-          } else if (inputType === 'updateCost') {
-            setUpdateCost(inputValue);
+  console.log(postId)
+
+  const [updatePosting] = useMutation(UPDATE_POSTING);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await updatePosting({
+        variables: {
+          ...postId, 
+          input:{
+            ...formState
           }
-    }
-
-    console.log('Before userID')
-    const userID = useParams();
-
-    const { loading, data } = useQuery(GET_ME, {
-        variables: userID,
+        },
       });
-      console.log(data);
-      const userInfo = data?.me || {};
-
-    const [updatePosting, { error }] = useMutation(UPDATE_POSTING);
-
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-
-        console.log(updateName);
-        console.log(updateCost);
-        console.log(updateDesc);
-        console.log(userInfo.name);
-
-
-        try {
-            const { data } = await updatePosting({
-                variables: { 
-                    id: "WILL NEED THE PARAMS ONCE IN",
-                    input: 
-                 {   title: updateName,
-                    cost: updateCost,
-                    description: updateDesc,}
-                },
-            });
-
-            setUpdateName('');
-            setUpdateDesc('');
-            setUpdateCost('');
-
-            toast.success('Job posting updated!', {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-
-        } catch (err) {
-
-          console.error(err);
-          toast.error('Error, please try again', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
+      toast.success('Job posting updated!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (e) {
+      console.error(e);
+      toast.error('Error, please try again', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
+  };
 
-    console.log(userInfo);
+    // console.log(userInfo);
 
     const sidebarVariant = {
         hidden:{
@@ -118,14 +97,19 @@ function UpdatePosting() {
             }
         }
     }
+  const {loading, data} = useQuery (GET_SINGLE_POSTING, {
+    variables: postId 
+});
+
+const singlepost = data?.singlePosting || [];
+
+console.log(singlepost)
 
     return(
-      
       <div className="adminBody">
           <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
               <div className="sidebar-top">
                   <img className="navbar-logo" src={logosvg}/>
-                  
                   <span>OddJobs</span>
               </div>
               <div className="options">
@@ -139,18 +123,17 @@ function UpdatePosting() {
                   <Link to={`/home`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Home</div> </Link>
               </div>
             </header>
-
             <div className="form-and-buttons-container">
               <div className="form-container">
                 <div className="form-background">
                   <div className="form-left">
                     <div className="my-account-form">
                       <h1 className="my-acccount-form-title">Name</h1>
-                      <input value={updateName} name="updateName" onChange={handleInputChange} className="add-input-name" type="text" placeholder="Enter name...."></input>
+                      <input value={formState.title} name="title" onChange={handleChange} className="add-input-name" type="text" placeholder={singlepost.title}></input>
                     </div>
                     <div className="my-account-form">
                       <h1 className="my-acccount-form-title">Description</h1>
-                      <textarea onChange={handleInputChange} value={updateDesc} name="updateDesc" type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboriquip ex ea commodo consequat Lorem ipsum dolor sit amet, consectetur adipiscing elim ad minim veniam, quis nostrud exercitation ullamco labo" className="description-text-area"></textarea>
+                      <textarea onChange={handleChange} value={formState.description} name="description" type="text" placeholder={singlepost.description} className="description-text-area"></textarea>
                     </div>
                   </div>
                   <div className="form-right">
@@ -180,7 +163,7 @@ function UpdatePosting() {
                         <h1 className="price-title">Price</h1>
                         <div className="price-input-container">
                           <span className="input-dollar-sign">$</span>
-                          <input onChange={handleInputChange} type="text" name="updateCost" value={updateCost} className="price-input"  placeholder="30" type="number"/>
+                          <input onChange={handleChange} type="text" name="cost" value={formState.cost} className="price-input"  placeholder={singlepost.cost}/>
                         </div>
                       </div>
                     </div>
@@ -200,16 +183,15 @@ function UpdatePosting() {
                       </div>
                   </div>
                   <div className="inner-inner-button-container">
-                      <div className="listing-create-button" onClick={handleSubmit}>
-                        <div>Update</div>
-                      </div>
+                    <div className="listing-create-button" onClick={handleFormSubmit}>
+                    <Link to = {`/me/${Auth.getProfile().data._id}`}> <div>Update</div>  </Link> 
+                      </div> 
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
       </div>
-    
     );
 }
 

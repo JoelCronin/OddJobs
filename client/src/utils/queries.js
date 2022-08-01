@@ -6,10 +6,12 @@ export const GET_ME = gql`
             _id
             name
             email
+            image
             ratings {
                 stars
             }
             jobApplications {
+                _id
                 cost
                 title
                 description
@@ -17,6 +19,7 @@ export const GET_ME = gql`
                 createdAt
             }
             activeJobs {
+                _id
                 cost
                 title
                 description

@@ -75,7 +75,7 @@ function MyListings() {
                       <h1 className='job-post-date'> {singlejob.createdAt}</h1>
                     </div>
                   </div>
-                  <Link to= {`/updatePosting`}><MdModeEdit className="edit-button"/></Link> 
+                  <Link to= {`/updatePosting/${singlejob._id}`}><MdModeEdit className="edit-button"/></Link> 
                   </div>
                   ))}
                 </>
