@@ -31,9 +31,9 @@ function HomeFeed() {
 
   const [minPrice, setMinPrice] = useState('10');
   const [maxPrice, setMaxPrice] = useState('20');
-  const [activeStatus, setActiveStatus] = useState(false);
-  const [pendingStatus, setPendingStatus] = useState(false);
-  const [completedStatus, setCompletedStatus] = useState(false);
+  const [activeStatus, setActiveStatus] = useState(true);
+  const [pendingStatus, setPendingStatus] = useState(true);
+  const [completedStatus, setCompletedStatus] = useState(true);
 
   const [searchInput, setSearchInput] = useState('')
 
@@ -76,11 +76,18 @@ function HomeFeed() {
   }
 
   const handleSubmit = (event) => {
+
+    console.log('Before');
+    console.log(reFilteredPostings);
+
+    if(!((activeStatus === false) && (pendingStatus === false) && (completedStatus === false))) {
+
     postings.map((posting) => {
       if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
         filteredPostings.push(posting);
       }
     })
+
     if(activeStatus === true) {
       filteredPostings.map((posting) => {
         if(posting.status === "Active") {
@@ -88,6 +95,7 @@ function HomeFeed() {
         }
       })
     }
+
     if(pendingStatus === true) {
       filteredPostings.map((posting) => {
         if(posting.status === "Pending") {
@@ -95,13 +103,19 @@ function HomeFeed() {
         }
       })
     }
+
     if(completedStatus === true) {
       filteredPostings.map((posting) => {
         if(posting.status === "Completed") {
           reFilteredPostings.push(posting);
+          console.log('Test')
         }
       })
-    }
+
+    } 
+      // console.log('After');
+      // console.log(reFilteredPostings);
+    
 
     const splitInput = searchInput.toUpperCase().split("");
 
@@ -122,7 +136,14 @@ function HomeFeed() {
 
     setSubmitPostings(searchFilterPostings);
 
+  } else {
+  console.log('After');
+  setSubmitPostings([]);
   }
+
+  console.log(submitPostings);
+
+}
 
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
@@ -130,7 +151,7 @@ function HomeFeed() {
 
   const [submitPostings, setSubmitPostings] = useState([]);
 
-  if((postings.length > 0) && (submitPostings.length == 0)) {
+  if((postings.length > 0) && (submitPostings.length == 0) && (postings.length != 0)) {
     setSubmitPostings(postings);
   }
 
@@ -305,29 +326,36 @@ function HomeFeed() {
         </motion.header>
 
         <div className='job-grid-box'>
-          {submitPostings.map((posting) => (
-            <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
-                <motion.div className='job-box'>
-                  <h1 className='job-price'><span>$</span>{posting.cost}</h1>
-                  <img className='job-post-img' src={posting.image} alt={posting.title}/>
-                  <div className='job-post-decription-box'>
-                    <div className='job-post-description-top'>
-                      <h1 className='job-title'>{posting.title}</h1>
-                      <div className='status-box'>
-                        <h1 className='status-main-post'>Status</h1>
-                        <span>
-                          <img className='status-symbol-main' src={active} alt= ""/>
-                        </span>
+          {submitPostings.length != 0 ? (
+            <>
+            {submitPostings.map((posting) => (
+              <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
+                  <div className='job-box' >
+                    <h1 className='job-price'><span>$</span>{posting.cost}</h1>
+                    <img className='job-post-img' src={posting.image} alt={posting.title}/>
+                    <div className='job-post-decription-box'>
+                      <div className='job-post-description-top'>
+                        <h1 className='job-title'>{posting.title}</h1>
+                        <div className='status-box'>
+                          <h1 className='status-main-post'>Status</h1>
+                          <span>
+                            <img className='status-symbol-main' src={active} alt= ""/>
+                          </span>
+                        </div>
+                      </div>
+                      <div className='job-post-description-bottom'>
+                      <Link to= {`/user/${posting.owner._id}`} style={{textDecoration: 'none'}}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
+                        <h1 className='job-post-date'>{posting.createdAt}</h1>
                       </div>
                     </div>
-                    <div className='job-post-description-bottom'>
-                      <Link to= {`/user/${posting.owner._id}`} style={{textDecoration: 'none'}}><h1 className='job-post-owner'>{posting.owner.name}</h1></Link>
-                      <h1 className='job-post-date'>{posting.createdAt}</h1>
-                    </div>
                   </div>
-                </motion.div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+            </>
+          ) : (
+            <div></div>
+          )}
+
         </div>
 
       </div>
