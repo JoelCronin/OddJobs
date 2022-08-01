@@ -58,6 +58,7 @@ export const GET_SINGLE_POSTING = gql`
             owner {
                 _id
                 postCode
+                image
             }
             _id
             cost
