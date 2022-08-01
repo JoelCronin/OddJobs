@@ -31,7 +31,6 @@ function SinglePosting() {
     const owner = data?.singlePosting?.owner || [];
     const userIcon = IMAGES[owner.image];
 
-
     // Apply for Position Functionallity
     const [hasApplied, setHasApplied] = useState(false);
     const ID = Auth.getProfile().data._id;
