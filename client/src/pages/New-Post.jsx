@@ -62,7 +62,7 @@ function NewPost() {
         progress: undefined,
       });
 
-      navigate('/home');
+      navigate(`/me/${Auth.getProfile().data._id}`);
     } catch (e) {
       console.error(e);
       toast.error('Invalid input/s', {

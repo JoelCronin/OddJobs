@@ -5,7 +5,7 @@ import active from '../../img/status/active.png';
 import { MdModeEdit } from 'react-icons/md';
 import { BsPlusCircleFill } from 'react-icons/bs';
 // import { AiFillCloseCircle } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import { TbCloudUpload } from 'react-icons/tb';
 import Auth from '../../utils/auth'
 import { Navigate } from 'react-router-dom'
@@ -18,6 +18,10 @@ import { motion } from 'framer-motion';
 
 
 function MyListings() {
+
+  const navigate = useNavigate()
+
+  navigate(0);
 
     const iD = useParams()
 

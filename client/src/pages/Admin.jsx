@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css";
 import { Link } from 'react-router-dom';
 
@@ -21,7 +21,6 @@ import { motion } from 'framer-motion';
 function Account() {
     const [currentPage, setCurrentPage] = useState('myAccount');
     const [title, setTitle] = useState('My Account')
-    
 
     const renderPage = () => {
         if (currentPage === 'myAccount') {
