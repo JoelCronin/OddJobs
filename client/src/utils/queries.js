@@ -57,6 +57,7 @@ export const GET_SINGLE_POSTING = gql`
         singlePosting(id: $id) {
             owner {
                 _id
+                postCode
             }
             _id
             cost
