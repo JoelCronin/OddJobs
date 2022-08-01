@@ -12,12 +12,13 @@
     "framer-motion": "^4.1.17",
     "graphql": "^15.4.0",
     "jwt-decode": "^3.1.2",
+    "leaflet": "^1.8.0",
     "party-js": "^2.2.0",
-    "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-icon": "^1.0.0",
     "react-icons": "^4.4.0",
+    "react-leaflet": "^4.0.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^4.0.2",
     "react-toastify": "^8.2.0",
@@ -32,16 +33,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
