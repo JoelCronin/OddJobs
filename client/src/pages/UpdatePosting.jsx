@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
+import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
+
 import {GET_SINGLE_POSTING} from '../utils/queries';
 import { Navigate } from 'react-router-dom'
 
@@ -38,7 +41,6 @@ function UpdatePosting() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
-
     try {
       const { data } = await updatePosting({
         variables: {
@@ -48,11 +50,54 @@ function UpdatePosting() {
           }
         },
       });
+      toast.success('Job posting updated!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (e) {
       console.error(e);
+      toast.error('Error, please try again', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
+    // console.log(userInfo);
+
+    const sidebarVariant = {
+        hidden:{
+          x: -800
+        },
+        visible:{
+          x: 0,
+          transition: {
+            duration: 0.5
+          }
+        }
+    }
+
+    const componentVariant = {
+        hidden:{
+            opacity: 0
+        },
+        visible:{
+            opacity: 1,
+            transition: {
+                duration: 0.45
+            }
+        }
+    }
   const {loading, data} = useQuery (GET_SINGLE_POSTING, {
     variables: postId 
 });
@@ -67,7 +112,7 @@ console.log(singlepost)
           <div>Loading...</div>
         ) : (  
       <div className="adminBody">
-          <div className="sidebar">
+          <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
               <div className="sidebar-top">
                   <img className="navbar-logo" src={logosvg} alt=""/>
                   <span>OddJobs</span>
@@ -75,8 +120,8 @@ console.log(singlepost)
               <div className="options">
                   <section className="selected-tab">Updating Post</section>
               </div>
-          </div>
-          <div className="header-and-component-container">
+          </motion.div>
+          <motion.div variants={componentVariant} initial="hidden" animate="visible" className="header-and-component-container">
             <header className="admin-main-header">
               <h1 className="admin-title">Updating Post</h1>
               <div className="admin-back-button" >
@@ -150,7 +195,7 @@ console.log(singlepost)
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
       </div>
       )
       ) : (

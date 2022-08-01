@@ -6,6 +6,8 @@ import { GET_ME } from '../../utils/queries';
 import Auth from "../../utils/auth";
 import "../../styles/AccountStyles/Applied.css";
 import active from '../../img/status/active.png';
+import { motion } from 'framer-motion';
+
 
 function Applied() {
 
@@ -26,12 +28,24 @@ function Applied() {
 
     console.log(userInfo)
 
+    const componentVariant = {
+      hidden:{
+        y: 200
+      },
+      visible:{
+        y: 0,
+        transition: {
+          duration: 0.3
+        }
+      }
+    }
+
     return (
       (Auth.loggedIn()) ? (
         (loading) ? (
           <div>Loading...</div>
         ) : ( 
-        <div className="appliedContainer">
+        <motion.div variants={componentVariant} initial="hidden" animate="visible" className="appliedContainer">
             <div className='job-box'>
               <h1 className='job-price'><span>$</span>20</h1>
               <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png" alt=''/>
@@ -78,7 +92,7 @@ function Applied() {
                 </div>
                 })
             )}
-        </div>
+        </motion.div>
         )
         ) : (
           <Navigate to="/"/>
