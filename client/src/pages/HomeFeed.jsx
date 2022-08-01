@@ -22,9 +22,9 @@ function HomeFeed() {
 
   const [minPrice, setMinPrice] = useState('10');
   const [maxPrice, setMaxPrice] = useState('20');
-  const [activeStatus, setActiveStatus] = useState(true);
-  const [pendingStatus, setPendingStatus] = useState(true);
-  const [completedStatus, setCompletedStatus] = useState(true);
+  const [activeStatus, setActiveStatus] = useState(false);
+  const [pendingStatus, setPendingStatus] = useState(false);
+  const [completedStatus, setCompletedStatus] = useState(false);
 
   const [searchInput, setSearchInput] = useState('')
 
@@ -163,7 +163,7 @@ function HomeFeed() {
                 <h1 className='status-filter-title'>Status</h1>
                 <div className='active-container'>
                   <BsFillCheckCircleFill 
-                    className='status-checkmark-active'
+                    className={activeStatus == true ? 'status-checkmark-active' : 'not-true'}
                     id='activeButton'
                     onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Active</h1>
@@ -172,7 +172,7 @@ function HomeFeed() {
               <div className='status-filter-container'>
                 <div className='active-container'>
                   <BsFillCheckCircleFill 
-                  className='status-checkmark-pending'
+                  className={pendingStatus == true ? 'status-checkmark-pending' : 'not-true'}
                   id='pendingButton'
                   onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Pending</h1>
@@ -181,7 +181,7 @@ function HomeFeed() {
               <div className='status-filter-container'>
                 <div className='active-container'>
                   <BsFillCheckCircleFill 
-                  className='status-checkmark-completed'
+                  className={completedStatus == true ? 'status-checkmark-completed' : 'not-true'}
                   id='completedButton'
                   onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Completed</h1>
