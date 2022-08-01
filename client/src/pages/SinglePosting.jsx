@@ -67,12 +67,6 @@ console.log(here)
 centre.push(latSouth, here[1])
 console.log(centre)
 
-const owner = data?.singlePosting?.owner || [];
-const jobSite = owner.postCode
-console.log(jobSite)
-//Calls API with postcode got from singleposting Query
-userLocation(jobSite)
-
 // Calls the Single Posting Query
 const singlePostingId = useParams();
 
@@ -83,7 +77,11 @@ const {loading, data} = useQuery (GET_SINGLE_POSTING, {
 const singlepost = data?.singlePosting || [];
 console.log (singlepost)
 
-    
+const owner = data?.singlePosting?.owner || [];
+const jobSite = owner.postCode
+console.log(jobSite)
+//Calls API with postcode got from singleposting Query
+userLocation(jobSite)
 
 
 // Apply for Position Functionallity to show/hide apply button
@@ -100,8 +98,6 @@ if(data) {
   })
 }
     
-    
-
     const [applyForPosition] = useMutation(APPLY_FOR_JOB);
     const [removeApplication] = useMutation(REMOVE_APPLICATION);
 

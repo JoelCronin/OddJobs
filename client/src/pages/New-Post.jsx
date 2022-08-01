@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 // import { useQuery } from '@apollo/client';
@@ -14,7 +14,6 @@ import Auth from '../utils/auth';
 
 function NewPost() {
   
-  
   const [formState, setFormState] = useState ({
     title: '',
     description: '',
@@ -22,6 +21,8 @@ function NewPost() {
     image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
     // workerNumber: '',
   });
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
   const [addPosting] = useMutation(CREATE_POSTING);
@@ -36,7 +37,7 @@ function NewPost() {
   };
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     console.log(formState);
 
     try {
@@ -47,11 +48,16 @@ function NewPost() {
           }
         },
       });
+      navigate('/home');
     } catch (e) {
       console.error(e);
     }
 
   };
+
+  // const testNavigate = () => {
+  //   navigate('/home');
+  // }
 
   return (
 
