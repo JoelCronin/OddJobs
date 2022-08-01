@@ -137,23 +137,22 @@ function HomeFeed() {
     setSubmitPostings(searchFilterPostings);
 
   } else {
-  console.log('After');
+
   setSubmitPostings([]);
+
   }
-
-  console.log(submitPostings);
-
 }
 
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
-  // const location = useLocation();
 
   const [submitPostings, setSubmitPostings] = useState([]);
 
-  if((postings.length > 0) && (submitPostings.length == 0) && (postings.length != 0)) {
-    setSubmitPostings(postings);
-  }
+// Need to change this, must wait for data before getting data
+
+  // if((postings.length > 0) && (submitPostings.length == 0) && (postings.length != 0)) {
+  //   setSubmitPostings(postings);
+  // }
 
 
   const fadeVariant = {
@@ -297,8 +296,8 @@ function HomeFeed() {
                   <h1 className='active-check-name'>Completed</h1>
                 </div>
               </div>
-              <div className='filter-button-container'>
-                <button onClick={sparkles} className='filter-button'>Apply Filters</button>
+              <div onClick={sparkles} className='filter-button-container'>
+                <button onClick={handleSubmit} className='filter-button'>Apply Filters</button>
               </div>
             </div>
           </div>
