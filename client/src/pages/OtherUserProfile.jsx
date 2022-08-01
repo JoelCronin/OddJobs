@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 import StarRating from "../components/StarRating";
 import IMAGES from '../img/profiles/index.js';
+import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -24,10 +26,14 @@ function OtherUserProfile() {
     const singleOtherUser = data?.singleUser || [];
     const userIcon = IMAGES[singleOtherUser.image];
   return (
+    (Auth.loggedIn()) ? (
+        (loading) ? (
+          <div>Loading...</div>
+        ) : (
     <div className="adminBody">
         <div className="sidebar">
             <div className="sidebar-top">
-                <img className="navbar-logo" src={logosvg}/>
+                <img className="navbar-logo" src={logosvg} alt=""/>
                 
                 <span>OddJobs</span>
             </div>
@@ -47,7 +53,7 @@ function OtherUserProfile() {
             <div className="my-account-outer-body">
                 <div className="my-account-body">
                     <div className="profile-and-signout">
-                        <img className="my-account-profile-pic" src={userIcon}/>
+                        <img className="my-account-profile-pic" src={userIcon} alt=""/>
                     </div>
 
                     <div className="my-account-form-box">
@@ -80,6 +86,10 @@ function OtherUserProfile() {
 
         </div>
     </div>
+    )
+    ) : (
+        <Navigate to="/"/>
+        )
   )
 }
 
