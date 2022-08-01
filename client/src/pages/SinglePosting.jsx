@@ -8,33 +8,26 @@ import active from '../img/status/active.png';
 import profile65 from '../img/profiles/1.svg';
 import StarRating from '../components/StarRating';
 import { motion } from 'framer-motion';
-
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { Navigate } from 'react-router-dom'
-
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { APPLY_FOR_JOB } from '../utils/mutations';
 import { REMOVE_APPLICATION } from '../utils/mutations';
-
-
-
-
-
 import Auth from "../utils/auth";
-// import { MdKeyboardReturn } from 'react-icons/md';
+
 
 function SinglePosting() {
 
   
 // Global variables
-var apiKey = "95hcXeOsnd4dIFUnbepjXbFxyLKnwAAA";
-var cityLat;
-var cityLong;
-var coordinates = [];
-var here = [];
-var centre = [];
+  var apiKey = "95hcXeOsnd4dIFUnbepjXbFxyLKnwAAA";
+  var cityLat;
+  var cityLong;
+  var coordinates = [];
+  var here = [];
+  var centre = [];
 
 //Fetch Request to get longs and lats of job Postcode
 var userLocation = function(cityName){
