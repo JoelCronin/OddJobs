@@ -1,4 +1,5 @@
 import decode from 'jwt-decode';
+import { Navigate } from 'react-router-dom'
 
 class AuthService {
     // get user data
@@ -33,7 +34,7 @@ class AuthService {
     login(idToken) {
       // Saves user token to localStorage
       localStorage.setItem('id_token', idToken);
-      window.location.assign('/home');
+      <Navigate to="/home" />
     }
   
     logout() {
