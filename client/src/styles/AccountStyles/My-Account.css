@@ -54,6 +54,9 @@
     position: relative;
     left: 120px;
     top: 2px;
+    background-color: #EF8A6A;
+    color: #132948;
+
 }
 
 .admin-signout-button:hover{

@@ -5,11 +5,12 @@ import {GET_SINGLE_POSTING} from '../utils/queries';
 import '../styles/single-post.css';
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png';
+import profile65 from '../img/profiles/1.svg';
 import StarRating from '../components/StarRating';
+import { motion } from 'framer-motion';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Icon } from "leaflet";
 import { Navigate } from 'react-router-dom'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-// import { Icon } from "leaflet";
-
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { APPLY_FOR_JOB } from '../utils/mutations';
@@ -17,22 +18,19 @@ import { REMOVE_APPLICATION } from '../utils/mutations';
 import IMAGES from '../img/profiles/index.js';
 
 
-
-
-
 import Auth from "../utils/auth";
-// import { MdKeyboardReturn } from 'react-icons/md';
+
 
 function SinglePosting() {
 
   
 // Global variables
-var apiKey = "95hcXeOsnd4dIFUnbepjXbFxyLKnwAAA";
-var cityLat;
-var cityLong;
-var coordinates = [];
-var here = [];
-var centre = [];
+  var apiKey = "95hcXeOsnd4dIFUnbepjXbFxyLKnwAAA";
+  var cityLat;
+  var cityLong;
+  var coordinates = [];
+  var here = [];
+  var centre = [];
 
 //Fetch Request to get longs and lats of job Postcode
 var userLocation = async function(cityName){
@@ -106,6 +104,30 @@ if(data) {
   })
 }
     
+    
+
+    const leftVariant = {
+      hidden:{
+        x: -400
+      },
+      visible:{
+          x: 0,
+          transition: {
+              duration: 0.4
+          }
+      }
+    }
+    const rightVariant = {
+      hidden:{
+        x: 400
+      },
+      visible:{
+          x: 0,
+          transition: {
+              duration: 0.4
+          }
+        }
+      }
     const [applyForPosition] = useMutation(APPLY_FOR_JOB);
     const [removeApplication] = useMutation(REMOVE_APPLICATION);
 
@@ -156,7 +178,7 @@ if(data) {
       </header>
       <div className='single-post-container'>
         <div className='inner-post-container'>
-          <div className='left-job-post-container'>
+          <motion.div variants={leftVariant} initial="hidden" animate="visible" className='left-job-post-container'>
             <div className='inner-left-job-post-container'>
               <div className='job-post-box'>
                   <h1 className='job-post-price'><span>$</span>{singlepost.cost}</h1>
@@ -182,8 +204,8 @@ if(data) {
               <button className='job-post-apply-button' onClick={handleApply}>APPLY</button>
               )}
             </div>
-          </div>
-          <div className='right-job-post-container'>
+          </motion.div>
+          <motion.div variants={rightVariant} initial="hidden" animate="visible" className='right-job-post-container'>
             <div className="job-applicants-container">
               <div className="username-and-pic-container">
                   <img src={userIcon} className="job-applicant-profile-pic" />
@@ -211,7 +233,7 @@ if(data) {
 
  
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
