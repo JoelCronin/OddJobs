@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import "../styles/AccountStyles/Account-Header.css";
 import { Link } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import Auth from '../utils/auth';
 import logosvg from '../img/Logo.svg';
 
 // import Auth from '../utils/auth';
-
+import { Navigate } from 'react-router-dom';
 import MyAccount from "../components/Account-Components/My-Account"
 import MyListings from "../components/Account-Components/My-Listings";
 import Applied from "../components/Account-Components/Applied";
@@ -72,6 +72,8 @@ function Account() {
     }
 
     return (
+        (Auth.loggedIn()) ? (
+
         <div className="adminBody">
             <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
                 <div className="sidebar-top">
@@ -116,6 +118,10 @@ function Account() {
 
             </div>
         </div>
+    
+        ) : (
+            <Navigate to="/"/>
+        )
     );
 }
 

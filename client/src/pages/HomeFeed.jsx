@@ -14,6 +14,8 @@ import active from '../img/status/active.png';
 // import logo from '../img/logo.png';
 // import logosvg from '../img/Logo.svg';
 import profile17 from '../img/profiles/17.svg'
+import logosvg from '../img/Logo.svg';
+// import profile17 from '../img/profiles/profile17.svg'
 import IMAGES from '../img/profiles/index.js';
 
 
@@ -79,23 +81,23 @@ function HomeFeed() {
         filteredPostings.push(posting);
       }
     })
-    if(activeStatus == true) {
+    if(activeStatus === true) {
       filteredPostings.map((posting) => {
-        if(posting.status == "Active") {
+        if(posting.status === "Active") {
           reFilteredPostings.push(posting);
         }
       })
     }
-    if(pendingStatus == true) {
+    if(pendingStatus === true) {
       filteredPostings.map((posting) => {
-        if(posting.status == "Pending") {
+        if(posting.status === "Pending") {
           reFilteredPostings.push(posting);
         }
       })
     }
-    if(completedStatus == true) {
+    if(completedStatus === true) {
       filteredPostings.map((posting) => {
-        if(posting.status == "Completed") {
+        if(posting.status === "Completed") {
           reFilteredPostings.push(posting);
         }
       })
@@ -107,11 +109,11 @@ function HomeFeed() {
       var splitOwner = posting.title.toUpperCase().split("");
         for(var i=0; i < (splitInput.length + 1); i++){
 
-          if (splitInput.length == i){
+          if (splitInput.length === i){
             searchFilterPostings.push(posting);
           }
 
-          else if(splitInput[i] != splitOwner[i]){
+          else if(splitInput[i] !== splitOwner[i]){
             break;
 
           }
@@ -314,7 +316,7 @@ function HomeFeed() {
                       <div className='status-box'>
                         <h1 className='status-main-post'>Status</h1>
                         <span>
-                          <img className='status-symbol-main' src={active}/>
+                          <img className='status-symbol-main' src={active} alt= ""/>
                         </span>
                       </div>
                     </div>

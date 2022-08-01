@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from "leaflet";
+import { Navigate } from 'react-router-dom'
 
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -22,7 +23,7 @@ import { REMOVE_APPLICATION } from '../utils/mutations';
 
 
 import Auth from "../utils/auth";
-import { MdKeyboardReturn } from 'react-icons/md';
+// import { MdKeyboardReturn } from 'react-icons/md';
 
 function SinglePosting() {
 
@@ -68,15 +69,12 @@ console.log(here)
 centre.push(latSouth, here[1])
 console.log(centre)
 
-const owner = data?.singlePosting?.owner || [];
-const jobSite = owner.postCode
-console.log(jobSite)
-//Calls API with postcode got from singleposting Query
-userLocation(jobSite)
-
 // Calls the Single Posting Query
+ 
+// Saves URI into a variable to use for searches
 const singlePostingId = useParams();
 
+// Gets single posting using Id
 const {loading, data} = useQuery (GET_SINGLE_POSTING, {
     variables: singlePostingId 
 })
@@ -84,7 +82,12 @@ const {loading, data} = useQuery (GET_SINGLE_POSTING, {
 const singlepost = data?.singlePosting || [];
 console.log (singlepost)
 
-    
+const owner = data?.singlePosting?.owner || [];
+const jobSite = owner.postCode
+console.log(jobSite)
+//Calls API with postcode got from singleposting Query
+userLocation(jobSite)
+
 
 
 // Apply for Position Functionallity to show/hide apply button
@@ -93,8 +96,8 @@ const ID = Auth.getProfile().data._id;
 
 if(data) {
   singlepost.applications.map((input) => {
-    if(input._id == ID) {
-      if(hasApplied == false) {
+    if(input._id === ID) {
+      if(hasApplied === false) {
         setHasApplied(true)
       }
     }
@@ -157,10 +160,14 @@ if(data) {
     }
 
   return (
+    (Auth.loggedIn()) ? (
+      (loading) ? (
+        <div>Loading...</div>
+      ) : (  
     <div className='header-and-post-container'>
       <header className="admin-main-header">
         <div className="sidebar-top">
-              <img className="navbar-logo" src={logosvg}/>
+              <img className="navbar-logo" src={logosvg} alt=""/>
               <span>OddJobs</span>
           </div>
           <div className="admin-back-button">
@@ -182,7 +189,7 @@ if(data) {
                       <div className='status-box'>
                         <h1 className='status-main-post'>Status</h1>
                         <span>
-                          <img className='status-symbol-main' src={active}/>
+                          <img className='status-symbol-main' src={active} alt=""/>
                         </span>
                       </div>
                     </div>
@@ -201,7 +208,7 @@ if(data) {
           <motion.div variants={rightVariant} initial="hidden" animate="visible" className='right-job-post-container'>
             <div className="job-applicants-container">
               <div className="username-and-pic-container">
-                  <img src={profile65} className="job-applicant-profile-pic" />
+                  <img src={profile65} className="job-applicant-profile-pic" alt="" />
                   <h1 className="job-applicant-name">Dave Johnson</h1>
               </div>
               <div className="rating-container">
@@ -230,6 +237,10 @@ if(data) {
         </div>
       </div>
     </div>
+  )
+  ) : (
+    <Navigate to="/"/>
+  )
   )
 
 }

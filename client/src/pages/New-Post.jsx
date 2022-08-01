@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 // import { useQuery } from '@apollo/client';
@@ -26,6 +26,8 @@ function NewPost() {
     // workerNumber: '',
   });
 
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [addPosting] = useMutation(CREATE_POSTING);
 
@@ -39,7 +41,7 @@ function NewPost() {
   };
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     console.log(formState);
 
     try {
@@ -60,6 +62,7 @@ function NewPost() {
         progress: undefined,
       });
 
+      navigate('/home');
     } catch (e) {
       console.error(e);
       toast.error('Invalid input/s', {
@@ -100,6 +103,9 @@ function NewPost() {
         }
     }
   }
+  // const testNavigate = () => {
+  //   navigate('/home');
+  // }
 
   return (
 
@@ -107,7 +113,7 @@ function NewPost() {
         <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
             <div className="sidebar-top">
               <Link to={`/home`}>
-                <img className="navbar-logo" src={logosvg}/>
+                <img className="navbar-logo" src={logosvg} alt=""/>
               </Link>  
                 <span>OddJobs</span>
             </div>
@@ -151,7 +157,7 @@ function NewPost() {
                     <div className="status-container">
                       <h1 className="status-title">Worker Number</h1>
                       <div className="status-icon-and-dropdown">
-                        <img className="status-icon-for-dropdown" src={active}/>
+                        <img className="status-icon-for-dropdown" src={active} alt=""/>
                         <select className="status-dropdown-list" name="status-dropdown-list" >
                           {/* create a drop list from 1 to 20 */}
                           <option value="1">1</option>

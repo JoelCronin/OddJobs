@@ -6,6 +6,8 @@ import profile65 from '../../img/profiles/2.svg'
 import StarRating from "../StarRating";
 import { motion } from 'framer-motion';
 
+// import Auth from "../../utils/auth";
+// import { Navigate } from 'react-router-dom';
 
 function Applications() {
 
@@ -28,7 +30,7 @@ function Applications() {
                     <h1 className="applications-job-title">Watier/Watresses</h1>
                     <div className="applications-status-box">
                         <h1 className="applications-status-title">Status</h1>
-                        <img src={active} className="applications-status-icon"/>
+                        <img src={active} className="applications-status-icon" alt=''/>
                     </div>
                 </div>
                 <div className="job-applicants-container">
@@ -136,7 +138,7 @@ function Applications() {
                     <h1 className="applications-job-title">Watier/Watresses</h1>
                     <div className="applications-status-box">
                         <h1 className="applications-status-title">Status</h1>
-                        <img src={active} className="applications-status-icon"/>
+                        <img src={active} className="applications-status-icon" alt=''/>
                     </div>
                 </div>
                 <div className="job-applicants-container">
@@ -172,7 +174,7 @@ function Applications() {
                     <h1 className="applications-job-title">Watier/Watresses</h1>
                     <div className="applications-status-box">
                         <h1 className="applications-status-title">Status</h1>
-                        <img src={active} className="applications-status-icon"/>
+                        <img src={active} className="applications-status-icon" alt=''/>
                     </div>
                 </div>
                 <div className="job-applicants-container">

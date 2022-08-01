@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { UPDATE_POSTING } from "../utils/mutations";
-import { GET_ME } from '../utils/queries';
+// import { GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png'
@@ -12,6 +12,7 @@ import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 
 import {GET_SINGLE_POSTING} from '../utils/queries';
+import { Navigate } from 'react-router-dom'
 
 import Auth from '../utils/auth';
 
@@ -106,10 +107,14 @@ const singlepost = data?.singlePosting || [];
 console.log(singlepost)
 
     return(
+      (Auth.loggedIn()) ? (
+        (loading) ? (
+          <div>Loading...</div>
+        ) : (  
       <div className="adminBody">
           <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
               <div className="sidebar-top">
-                  <img className="navbar-logo" src={logosvg}/>
+                  <img className="navbar-logo" src={logosvg} alt=""/>
                   <span>OddJobs</span>
               </div>
               <div className="options">
@@ -151,7 +156,7 @@ console.log(singlepost)
                       <div className="status-container">
                         <h1 className="status-title">Status</h1>
                         <div className="status-icon-and-dropdown">
-                          <img className="status-icon-for-dropdown" src={active}/>
+                          <img className="status-icon-for-dropdown" src={active} alt=""/>
                           <select className="status-dropdown-list" name="status-dropdown-list">
                             <option value="Active">Active</option>
                             <option value="Pending">Pending</option>
@@ -192,6 +197,10 @@ console.log(singlepost)
             </div>
           </motion.div>
       </div>
+      )
+      ) : (
+        <Navigate to="/"/>
+      )
     );
 }
 

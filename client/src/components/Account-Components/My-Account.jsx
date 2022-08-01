@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import IMAGES from '../../img/profiles/index.js';
+import { Navigate } from 'react-router-dom'
 import Auth from "../../utils/auth";
 
 
@@ -54,10 +56,14 @@ function MyAccount() {
     }
 
     return (
+        (Auth.loggedIn()) ? (
+            (loading) ? (
+                <div>Loading...</div>
+              ) : ( 
         <motion.div variants={componentVariant} initial="hidden" animate="visible" className="my-account-outer-body">
             <div className="my-account-body">
                 <div className="profile-and-signout">
-                    <img className="my-account-profile-pic" src={userIcon}/>
+                    <img className="my-account-profile-pic" src={userIcon} alt=''/>
                     <div className="admin-signout-button">
                             <div onClick={logout}>Sign out</div>
                     </div>
@@ -95,6 +101,10 @@ function MyAccount() {
                 </div>
             </div>
         </motion.div>
+        ) 
+        ) : (
+        <Navigate to="/"/>
+        )
     );
 }
 
