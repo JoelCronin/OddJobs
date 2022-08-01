@@ -13,14 +13,10 @@ import '../styles/HomeFeedStyles/feedBody.css';
 import active from '../img/status/active.png';
 // import logo from '../img/logo.png';
 import logosvg from '../img/Logo.svg';
-import profile17 from '../img/profiles/profile17.svg'
+// import profile17 from '../img/profiles/profile17.svg'
 import IMAGES from '../img/profiles/index.js';
 
 import Auth from '../utils/auth';
-
-
-
-
 
 function HomeFeed() {
 
@@ -30,6 +26,11 @@ function HomeFeed() {
   const [pendingStatus, setPendingStatus] = useState(true);
   const [completedStatus, setCompletedStatus] = useState(true);
 
+  const [searchInput, setSearchInput] = useState('')
+
+  const filteredPostings = [];
+  const reFilteredPostings =[];
+  const searchFilterPostings =[];
 
   const handleChange = (event) => {
     const { target } = event;
@@ -59,92 +60,74 @@ function HomeFeed() {
     }
   }
 
+  const handleSearchChange = (event) => {
+    const { target } = event;
+    const inputValue = target.value;
+    setSearchInput(inputValue);
+  }
+
   const handleSubmit = (event) => {
     postings.map((posting) => {
       if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
         filteredPostings.push(posting);
       }
     })
-    if(activeStatus == true) {
+    if(activeStatus === true) {
       filteredPostings.map((posting) => {
-        if(posting.status == "Active") {
+        if(posting.status === "Active") {
           reFilteredPostings.push(posting);
         }
       })
     }
-    if(pendingStatus == true) {
+    if(pendingStatus === true) {
       filteredPostings.map((posting) => {
-        if(posting.status == "Pending") {
+        if(posting.status === "Pending") {
           reFilteredPostings.push(posting);
         }
       })
     }
-    if(completedStatus == true) {
+    if(completedStatus === true) {
       filteredPostings.map((posting) => {
-        if(posting.status == "Completed") {
+        if(posting.status === "Completed") {
           reFilteredPostings.push(posting);
         }
       })
     }
-  }
 
+    const splitInput = searchInput.toUpperCase().split("");
+
+    reFilteredPostings.map((posting) => {
+      var splitOwner = posting.title.toUpperCase().split("");
+        for(var i=0; i < (splitInput.length + 1); i++){
+
+          if (splitInput.length === i){
+            searchFilterPostings.push(posting);
+          }
+
+          else if(splitInput[i] !== splitOwner[i]){
+            break;
+
+          }
+        }
+    })
+
+    setSubmitPostings(searchFilterPostings);
+
+  }
 
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
 
-  const filteredPostings = [];
-  const reFilteredPostings =[];
+  const [submitPostings, setSubmitPostings] = useState([]);
 
-  if(data) {
-    postings.map((posting) => {
-      if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
-        filteredPostings.push(posting);
-      }
-    })
-    if(activeStatus == true) {
-      filteredPostings.map((posting) => {
-        if(posting.status == "Active") {
-          reFilteredPostings.push(posting);
-        }
-      })
-    }
-    if(pendingStatus == true) {
-      filteredPostings.map((posting) => {
-        if(posting.status == "Pending") {
-          reFilteredPostings.push(posting);
-        }
-      })
-    }
-    if(completedStatus == true) {
-      filteredPostings.map((posting) => {
-        if(posting.status == "Completed") {
-          reFilteredPostings.push(posting);
-        }
-      })
-    }
-
-    // if(activeStatus == true) {
-    //   filteredPostings.map((posting) => {
-    //     if(posting.status == "Active"){
-    //       filteredPostings.remove(posting);
-    //     }
-    //   })
-    // }
-
-    // console.log('Posting');
-    // console.log(postings);
-
-    // console.log('Filter-Posting');
-    // console.log(filteredPostings);
-
-    // console.log('Re-Filter-Posting');
-    // console.log(reFilteredPostings);
+  if((postings.length > 0) && (submitPostings.length == 0)) {
+    setSubmitPostings(postings);
   }
 
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
   const userIcon = IMAGES[me.image];
-
+  
   return (
     (Auth.loggedIn()) ? (
     (loading) ? (
@@ -153,7 +136,7 @@ function HomeFeed() {
     <div className="feedBody">
       <div className="sidebar">
           <div className="sidebar-top">
-              <img className="navbar-logo" src={logosvg}/>
+              <img className="navbar-logo" src={logosvg} alt= ""/>
               <span>OddJobs</span>
           </div>
           <div className='sidebar-bottom'>
@@ -218,7 +201,12 @@ function HomeFeed() {
             <div className='search-div'>
               <div className='search-div-collection'>
                 <AiOutlineSearch className='search-icon'/>
-                <input type="text" className='input-search' placeholder='Search'/>
+                <input type="text" 
+                       className='input-search' 
+                       placeholder='Search'
+                       value={searchInput}
+                       onChange={handleSearchChange}
+                       />
               </div>
             </div>
             <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={ userIcon } alt="icon" /> </Link>
@@ -226,7 +214,7 @@ function HomeFeed() {
         </header>
 
         <div className='job-grid-box'>
-          {reFilteredPostings.map((posting) => (
+          {submitPostings.map((posting) => (
             <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
                 <div className='job-box' >
                   <h1 className='job-price'><span>$</span>{posting.cost}</h1>
@@ -237,7 +225,7 @@ function HomeFeed() {
                       <div className='status-box'>
                         <h1 className='status-main-post'>Status</h1>
                         <span>
-                          <img className='status-symbol-main' src={active}/>
+                          <img className='status-symbol-main' src={active} alt= ""/>
                         </span>
                       </div>
                     </div>
