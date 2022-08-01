@@ -9,12 +9,16 @@ import { CREATE_POSTING } from "../utils/mutations";
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
-// import Auth from '../utils/auth';
+import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Auth from '../utils/auth';
 
 
 function NewPost() {
-  
-  const [formState, setFormState] = useState ({
+
+
+  const [formState, setFormState] = useState({
     title: '',
     description: '',
     cost: '',
@@ -42,19 +46,63 @@ function NewPost() {
 
     try {
       const { data } = await addPosting({
-        variables: { 
-          input:{
+        variables: {
+          input: {
             ...formState
           }
         },
       });
+      toast.success('Job listing posted!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
       navigate('/home');
     } catch (e) {
       console.error(e);
+      toast.error('Invalid input/s', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
   };
 
+
+
+
+  const sidebarVariant = {
+    hidden:{
+      x: -800
+    },
+    visible:{
+      x: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+  const componentVariant = {
+    hidden:{
+      opacity: 0
+    },
+    visible:{
+        opacity: 1,
+        transition: {
+            duration: 0.45
+        }
+    }
+  }
   // const testNavigate = () => {
   //   navigate('/home');
   // }
@@ -62,7 +110,7 @@ function NewPost() {
   return (
 
     <div className="adminBody">
-        <div className="sidebar">
+        <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
             <div className="sidebar-top">
               <Link to={`/home`}>
                 <img className="navbar-logo" src={logosvg} alt=""/>
@@ -72,12 +120,12 @@ function NewPost() {
             <div className="options">
                 <section className="selected-tab">Add Post</section>
             </div>
-        </div>
-        <div className="header-and-component-container">
+        </motion.div>
+        <motion.div variants={componentVariant} initial="hidden" animate="visible" className="header-and-component-container">
           <header className="admin-main-header">
             <h1 className="admin-title">Add Post</h1>
             <div className="admin-back-button" >
-                <Link to={`/me/${ id }`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Myprofile</div> </Link>
+                <Link to={`/me/${ id }`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Profile</div> </Link>
             </div>
           </header>
 
@@ -166,7 +214,7 @@ function NewPost() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
     </div>
   )
 }

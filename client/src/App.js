@@ -3,7 +3,6 @@ import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
 import Login from "./components/Login.jsx"
 import SignUp from "./pages/SignUp.jsx"
 import Admin from "./pages/Admin.jsx" 
@@ -15,6 +14,11 @@ import OtherUserProfile from './pages/OtherUserProfile';
 import Applied from './components/Account-Components/Applied';
 import Applications from './components/Account-Components/Applications';
 import UpdatePosting from './pages/UpdatePosting';
+import { useLocation } from 'react-router-dom';
+import { AnimatePresence }  from 'framer-motion';
+import { ToastContainer } from 'react-toastify';
+
+
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -39,12 +43,14 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  const location = useLocation();
+  
   return (
     <ApolloProvider client={client}>
-
-      <Router>
-        <>
-          <Routes>
+      <>
+        <AnimatePresence>
+          <Routes location={location} key={location.key}>
 
             <Route path="/" element={<Login />}/>
 
@@ -67,10 +73,23 @@ function App() {
             <Route path="/myApplicationsReceived/:id" element={<Applications />} />
 
             <Route path="/updatePosting/:id" element={<UpdatePosting />} />
+
             
           </Routes>
-        </>
-      </Router>
+        </AnimatePresence>
+      </>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+       />
     </ApolloProvider>
   );
 }

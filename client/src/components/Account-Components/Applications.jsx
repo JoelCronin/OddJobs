@@ -2,16 +2,29 @@ import React from "react";
 import "../../styles/Applications.css";
 import active from '../../img/status/active.png';
 
-import profile65 from '../../img/profiles/profile65.svg'
+import profile65 from '../../img/profiles/2.svg'
 import StarRating from "../StarRating";
+import { motion } from 'framer-motion';
+
 // import Auth from "../../utils/auth";
-// import { Navigate } from 'react-router-dom'
+// import { Navigate } from 'react-router-dom';
 
 function Applications() {
 
+    const componentVariant = {
+        hidden:{
+            y: 200
+        },
+        visible:{
+            y: 0,
+            transition: {
+            duration: 0.3
+            }
+        }
+    }
+      
     return (
-        
-        <div className="applicationsContainer">
+        <motion.div variants={componentVariant} initial="hidden" animate="visible" className="applicationsContainer">
             <div className="inner-applications-container">
                 <div className="job-detail-container">
                     <h1 className="applications-job-title">Watier/Watresses</h1>
@@ -192,7 +205,7 @@ function Applications() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

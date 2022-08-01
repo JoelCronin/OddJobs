@@ -12,6 +12,8 @@ import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
+import UpdatePosting from "../../pages/UpdatePosting";
+import { motion } from 'framer-motion';
 // import UpdatePosting from "../../pages/UpdatePosting";
 
 
@@ -31,21 +33,39 @@ function MyListings() {
 
     console.log(mine)
 
+    const componentVariant = {
+      hidden:{
+        y: 200
+      },
+      visible:{
+        y: 0,
+        transition: {
+          duration: 0.3
+        }
+      }
+    }
+    // return (
+        
+    //   (Auth.loggedIn()) ? (
+    //     (loading) ? (
+    //       <div>Loading...</div>
+    //     ) : ( 
+    //     <div id="myListingsContainer">
+
     return (
         
-      (Auth.loggedIn()) ? (
-        (loading) ? (
-          <div>Loading...</div>
-        ) : ( 
-        <div id="myListingsContainer">
-
-            <Link to={`/me/newPost/${Auth.getProfile().data._id}`}>
-              <div className='job-box add-box'>
-                  <BsPlusCircleFill className="add-button"/>
-              </div>
-            </Link>
-            <div>
-              {mine.activeJobs.length === 0 || mine.activeJobs === null  ? (<p>YOU DONT HAVE ANY ACTIVE JOBS</p>) : (
+        (Auth.loggedIn()) ? (
+          (loading) ? (
+            <div>Loading...</div>
+          ) :(
+        <motion.div variants={componentVariant} initial="hidden" animate="visible" id="myListingsContainer">
+            <div className="inner-my-listing-container">
+              <Link to={`/me/newPost/${Auth.getProfile().data._id}`}>
+                <div className='job-box add-box'>
+                    <BsPlusCircleFill className="add-button"/>
+                </div>
+              </Link>
+              {mine.activeJobs.length === 0 || mine.activeJobs === null  ? (<p></p>) : (
                 <>
                   {mine.activeJobs.map((singlejob) => (
                   <div className='job-box' key = {singlejob._id}>
@@ -69,12 +89,10 @@ function MyListings() {
                   <Link to= {`/updatePosting/${singlejob._id}`}><MdModeEdit className="edit-button"/></Link> 
                   </div>
                   ))}
-                  
                 </>
               )}
             </div>
-        
-       </div>
+        </motion.div> 
       )
       ) : (
         <Navigate to="/"/>
