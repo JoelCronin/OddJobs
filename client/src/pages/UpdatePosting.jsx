@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { UPDATE_POSTING } from "../utils/mutations";
 // import { GET_ME } from '../utils/queries';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
 import {GET_SINGLE_POSTING} from '../utils/queries';
 import { Navigate } from 'react-router-dom'
-
+import { REMOVE_POSTING } from "../utils/mutations";
 import Auth from '../utils/auth';
 
 function UpdatePosting() {
@@ -35,9 +35,13 @@ function UpdatePosting() {
     });
   };
 
+  const navigate = useNavigate();
+  
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
+
 
     try {
       const { data } = await updatePosting({
@@ -48,6 +52,7 @@ function UpdatePosting() {
           }
         },
       });
+      navigate(`/me/${Auth.getProfile().data._id}`);
     } catch (e) {
       console.error(e);
     }
@@ -60,6 +65,24 @@ function UpdatePosting() {
 const singlepost = data?.singlePosting || [];
 
 console.log(singlepost)
+
+const [deletePosting] = useMutation(REMOVE_POSTING)
+
+
+const handleDeleteSubmit = async (event) => {
+  event.preventDefault();
+
+  try {
+    const { data } = await deletePosting({
+      variables: {
+        ...postId
+      },
+    });
+    navigate(`/me/${Auth.getProfile().data._id}`);
+  } catch (e) {
+    console.error(e);
+  }
+};
 
     return(
       (Auth.loggedIn()) ? (
@@ -133,7 +156,7 @@ console.log(singlepost)
               <div className="button-container">
                 <div className="inner-button-container">
                   <div className="inner-inner-button-container">
-                      <div className="listing-delete-button">
+                      <div className="listing-delete-button" onClick={handleDeleteSubmit}>
                         <div>Delete</div>
                       </div>
                   </div>
