@@ -6,14 +6,11 @@ import { setContext } from '@apollo/client/link/context';
 
 import Login from "./components/Login.jsx"
 import SignUp from "./pages/SignUp.jsx"
-
 import Admin from "./pages/Admin.jsx" 
-
 import HomeFeed from './pages/HomeFeed';
 import SinglePosting from './pages/SinglePosting';
 import MyListings from './components/Account-Components/My-Listings';
 import NewPost from './pages/New-Post';
-import StarRating from './components/StarRating.jsx';
 import OtherUserProfile from './pages/OtherUserProfile';
 import Applied from './components/Account-Components/Applied';
 import Applications from './components/Account-Components/Applications';
@@ -45,9 +42,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
 
-      {/* <StarRating rating={5} />  */}
-
-
       <Router>
         <>
           <Routes>
@@ -67,10 +61,6 @@ function App() {
             <Route path="/myListings/:id" element={<MyListings />} />
 
             <Route path="/me/newPost/:id" element={<NewPost />} />
-
-            
-
-  
 
             <Route path="/myApplied/:id" element={<Applied />} />
 

@@ -9,7 +9,7 @@ import { CREATE_POSTING } from "../utils/mutations";
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 
 function NewPost() {
@@ -142,7 +142,7 @@ function NewPost() {
             </div>
             <div className="button-container">
               <div className="inner-button-container">
-                <div className="inner-inner-button-container">
+                {/* <div className="inner-inner-button-container">
                     <div className="listing-delete-button">
                        <div>Delete</div>
                     </div>
@@ -151,10 +151,10 @@ function NewPost() {
                     <div className="listing-cancel-button">
                        <div>Cancel</div>
                     </div>
-                </div>
+                </div> */}
                 <div className="inner-inner-button-container">
                     <div onClick={handleFormSubmit} className="listing-create-button">
-                       <div>Create</div>
+                    <Link to = {`/me/${Auth.getProfile().data._id}`} >   <div>Create</div> </Link>
                     </div>
                 </div>
               </div>
