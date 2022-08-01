@@ -107,13 +107,63 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-
+  
     updatePosting: async (parent, args, context) => {
       if (context.user) {
         return await Posting.findByIdAndUpdate(args.id, args.input, {new: true});
       }
       throw new AuthenticationError('You need to be logged in!');
-    },    
+    }, 
+    applyForJob: async (parent, args, context) => {
+      if (context.user) {
+        const posting = await Posting.findById(args.id)
+                                      .populate('applications')
+                                      .populate('owner')
+                                      .populate('chosenWorker');
+        if (posting.workerNumber === 1) {           
+          if (posting.chosenWorker.length === 1) {
+            throw new AuthenticationError('This job has already been taken!');
+          } else {
+            await Posting.findByIdAndUpdate(args.id, {
+              applications: context.user._id
+            });          
+            await User.findByIdAndUpdate(context.user._id, {
+              $addToSet: { jobApplications: args.id }
+            }, { new: true });
+            return posting;
+          }
+        } else {
+          if (posting.chosenWorker.length >= posting.workerNumber) {
+            throw new AuthenticationError('This job has already been taken!');
+          } else {
+            await Posting.findByIdAndUpdate(args.id, {
+              $addToSet: { applications: context.user._id }
+            });
+            await User.findByIdAndUpdate(context.user._id, {
+              $addToSet: { jobApplications: args.id }
+            }, { new: true });
+            return posting;
+          }
+        }
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removeApplication: async (parent, args, context) => {
+      if (context.user) {
+        const posting = await Posting.findById(args.id)
+                                      .populate('applications')
+                                      .populate('owner')
+                                      .populate('chosenWorker');
+        await Posting.findByIdAndUpdate(args.id, {
+          $pull: { applications: context.user._id }
+        });
+        await User.findByIdAndUpdate(context.user._id, {
+          $pull: { jobApplications: args.id }
+        }, { new: true });
+        return posting;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }   
   },
 };
 

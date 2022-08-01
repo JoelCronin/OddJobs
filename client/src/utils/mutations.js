@@ -36,6 +36,7 @@ export const CREATE_POSTING = gql`
             cost
             title
             description
+            image
             createdAt
         }
     }
@@ -84,3 +85,31 @@ export const UPDATE_POSTING = gql`
         }
     }
 `;
+
+export const APPLY_FOR_JOB = gql`
+    mutation applyForJob($id: ID!) {
+        applyForJob(id: $id) {
+            _id
+            applications {
+            _id
+            }
+            cost
+            title
+            description
+        }
+    }
+`;
+
+export const REMOVE_APPLICATION = gql`
+    mutation removeApplication($id: ID!) {
+        removeApplication(id: $id) {
+            _id
+            applications {
+            _id
+            }
+            cost
+            title
+            description
+        }
+    }
+`; 

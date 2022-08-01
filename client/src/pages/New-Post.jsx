@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
-
+// import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 // import { useQuery } from '@apollo/client';
 import { CREATE_POSTING } from "../utils/mutations";
@@ -11,6 +11,7 @@ import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
 // import Auth from '../utils/auth';
 
+
 function NewPost() {
   
   
@@ -19,9 +20,10 @@ function NewPost() {
     description: '',
     cost: '',
     image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
+    workerNumber: '',
   });
 
-
+  const { id } = useParams();
   const [addPosting] = useMutation(CREATE_POSTING);
 
   const handleChange = (event) => {
@@ -45,10 +47,10 @@ function NewPost() {
           }
         },
       });
-
     } catch (e) {
       console.error(e);
     }
+
   };
 
   return (
@@ -56,8 +58,9 @@ function NewPost() {
     <div className="adminBody">
         <div className="sidebar">
             <div className="sidebar-top">
+              <Link to={`/home`}>
                 <img className="navbar-logo" src={logosvg}/>
-                
+              </Link>  
                 <span>OddJobs</span>
             </div>
             <div className="options">
@@ -68,7 +71,7 @@ function NewPost() {
           <header className="admin-main-header">
             <h1 className="admin-title">Add Post</h1>
             <div className="admin-back-button" >
-                <Link to={`/home`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Home</div> </Link>
+                <Link to={`/me/${ id }`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Myprofile</div> </Link>
             </div>
           </header>
 
@@ -98,13 +101,31 @@ function NewPost() {
                   </div>
                   <div className="status-and-price-container">
                     <div className="status-container">
-                      <h1 className="status-title">Status</h1>
+                      <h1 className="status-title">Worker Number</h1>
                       <div className="status-icon-and-dropdown">
                         <img className="status-icon-for-dropdown" src={active}/>
-                        <select className="status-dropdown-list" name="status-dropdown-list">
-                          <option value="Active">Active</option>
-                          <option value="Pending">Pending</option>
-                          <option value="Completed">Completed</option>
+                        <select className="status-dropdown-list" name="status-dropdown-list" >
+                          {/* create a drop list from 1 to 20 */}
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
                         </select>
                       </div>
                     </div>
