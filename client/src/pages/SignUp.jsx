@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
+import { Navigate } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 import helpers from '../utils/helpers';
@@ -47,39 +48,40 @@ function SignUp() {
     };
 
   return (
-
-    <div>
-      <form onSubmit={handleFormSubmit}>
-                <input
-                  placeholder="Your username"
-                  name="name"
-                  type="text"
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                <input
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-    </div>
-
-
+    (Auth.loggedIn()) ? (
+      <Navigate to="/home" />
+    ) : (
+      <div>
+        <form onSubmit={handleFormSubmit}>
+                  <input
+                    placeholder="Your username"
+                    name="name"
+                    type="text"
+                    value={formState.name}
+                    onChange={handleChange}
+                  />
+                  <input
+                    placeholder="Your email"
+                    name="email"
+                    type="email"
+                    value={formState.email}
+                    onChange={handleChange}
+                  />
+                  <input
+                    placeholder="******"
+                    name="password"
+                    type="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                  />
+                  <button
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </form>
+      </div>
+    )
   );
 }
 
