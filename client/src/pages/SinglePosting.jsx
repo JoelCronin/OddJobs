@@ -17,6 +17,7 @@ import { APPLY_FOR_JOB } from '../utils/mutations';
 import { REMOVE_APPLICATION } from '../utils/mutations';
 import IMAGES from '../img/profiles/index.js';
 
+
 import Auth from "../utils/auth";
 
 
