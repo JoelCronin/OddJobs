@@ -17,7 +17,7 @@ import Applications from './components/Account-Components/Applications';
 import UpdatePosting from './pages/UpdatePosting';
 
 const httpLink = createHttpLink({
-  uri: 'https://oddjobss.herokuapp.com/graphql',
+  uri: 'https://project3-oddjobs.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
