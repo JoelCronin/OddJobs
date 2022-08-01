@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {validateEmail} from '../utils/helpers'
+// import {validateEmail} from '../utils/helpers'
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 import helpers from '../utils/helpers';
-import jwtDecode from 'jwt-decode';
+// import jwtDecode from 'jwt-decode';
 
 function SignUp() {
 
@@ -14,7 +14,7 @@ function SignUp() {
       name: '',
       email: '',
       password: '',
-      image: helpers.getrandomicon(1,20),
+      image: helpers.getrandomicon(1,21),
     });
 
     const [addUser] = useMutation(CREATE_USER);

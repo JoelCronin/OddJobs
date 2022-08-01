@@ -47,7 +47,6 @@ function UpdatePosting() {
           }
         },
       });
-
     } catch (e) {
       console.error(e);
     }
@@ -62,12 +61,10 @@ const singlepost = data?.singlePosting || [];
 console.log(singlepost)
 
     return(
-      
       <div className="adminBody">
           <div className="sidebar">
               <div className="sidebar-top">
                   <img className="navbar-logo" src={logosvg}/>
-                  
                   <span>OddJobs</span>
               </div>
               <div className="options">
@@ -81,7 +78,6 @@ console.log(singlepost)
                   <Link to={`/home`} style={{ textDecoration: 'none', color:'#64FFDB' }}> <div>Home</div> </Link>
               </div>
             </header>
-
             <div className="form-and-buttons-container">
               <div className="form-container">
                 <div className="form-background">
@@ -151,7 +147,6 @@ console.log(singlepost)
             </div>
           </div>
       </div>
-    
     );
 }
 
