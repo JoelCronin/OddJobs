@@ -66,6 +66,8 @@ export const REMOVE_POSTING = gql`
             cost
             title
             description
+        }
+    }
 `;
 
 export const UPDATE_POSTING = gql`
