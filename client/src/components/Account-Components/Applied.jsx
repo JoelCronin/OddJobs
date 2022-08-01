@@ -53,7 +53,7 @@ function Applied() {
             </div>
 
 
-            {(userInfo.jobApplications.length === 0) ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
+            {(!userInfo.jobApplications) ? (<p>YOU DONT HAVE ANY JOBS</p>) : (
             
                 userInfo.jobApplications.map((application) => {
                 <div className='job-box'>

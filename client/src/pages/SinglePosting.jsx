@@ -67,6 +67,7 @@ console.log(here)
 centre.push(latSouth, here[1])
 console.log(centre)
 
+// Calls the Single Posting Query
  
 // Saves URI into a variable to use for searches
 const singlePostingId = useParams();
@@ -80,11 +81,11 @@ const singlepost = data?.singlePosting || [];
 console.log (singlepost)
 
 const owner = data?.singlePosting?.owner || [];
-console.log(owner)
 const jobSite = owner.postCode
 console.log(jobSite)
 //Calls API with postcode got from singleposting Query
-userLocation(jobSite)  
+userLocation(jobSite)
+
 
 
 // Apply for Position Functionallity to show/hide apply button
@@ -101,8 +102,6 @@ if(data) {
   })
 }
     
-
-
     const [applyForPosition] = useMutation(APPLY_FOR_JOB);
     const [removeApplication] = useMutation(REMOVE_APPLICATION);
 
