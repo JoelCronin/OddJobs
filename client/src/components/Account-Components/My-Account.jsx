@@ -3,12 +3,12 @@ import "../../styles/AccountStyles/My-Account.css";
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 import { useParams } from 'react-router-dom';
+import IMAGES from '../../img/profiles/index.js';
 
 import Auth from "../../utils/auth";
 
 
-import profilePic from '../../img/profile-pic-large.png';
-import profile17 from '../../img/profiles/profile17.svg';
+// import profilePic from '../../img/profile-pic-large.png';
 import StarRating from "../StarRating";
 
 function MyAccount() {
@@ -30,6 +30,7 @@ function MyAccount() {
 
 
     const mine = data?.me || [];
+    const userIcon = IMAGES[mine.image];
 
     console.log(mine)
 
@@ -39,7 +40,7 @@ function MyAccount() {
         <div className="my-account-outer-body">
             <div className="my-account-body">
                 <div className="profile-and-signout">
-                    <img className="my-account-profile-pic" src={profile17}/>
+                    <img className="my-account-profile-pic" src={userIcon}/>
                     <div className="admin-signout-button">
                             <div onClick={logout}>Sign out</div>
                     </div>

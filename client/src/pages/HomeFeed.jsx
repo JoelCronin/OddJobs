@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useQuery } from '@apollo/client';
 import { GET_POSTING, GET_ME } from '../utils/queries';
@@ -9,23 +9,125 @@ import { BsFillCheckCircleFill } from 'react-icons/bs';
 import '../styles/HomeFeedStyles/navbar.css';
 import '../styles/HomeFeedStyles/feedBody.css';
 
-import profilepic from '../img/Profile-pic.png';
+// import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
 // import logo from '../img/logo.png';
 import logosvg from '../img/Logo.svg';
 import profile17 from '../img/profiles/profile17.svg'
+import IMAGES from '../img/profiles/index.js';
 
 import Auth from '../utils/auth';
 
-
-
 function HomeFeed() {
+
+  const [minPrice, setMinPrice] = useState('10');
+  const [maxPrice, setMaxPrice] = useState('20');
+  const [activeStatus, setActiveStatus] = useState(true);
+  const [pendingStatus, setPendingStatus] = useState(true);
+  const [completedStatus, setCompletedStatus] = useState(true);
+
+  const [searchInput, setSearchInput] = useState('')
+
+  const filteredPostings = [];
+  const reFilteredPostings =[];
+  const searchFilterPostings =[];
+
+  const handleChange = (event) => {
+    const { target } = event;
+    const inputType = target.id;
+    const inputValue = target.value;
+
+    if (inputType === 'minPrice') {
+      setMinPrice(inputValue);
+    } else if (inputType === 'maxPrice') {
+      setMaxPrice(inputValue);
+    }
+  }
+
+  const handleStatusChange = (event) => {
+    const { target } = event;
+    const inputType = target.id;
+
+    if (inputType === 'activeButton') {
+      setActiveStatus(!activeStatus);
+      console.log("Active Status "+ activeStatus)
+    } else if (inputType === 'pendingButton') {
+      setPendingStatus(!pendingStatus);
+      console.log("Pending Status " + pendingStatus)
+    } else if (inputType === 'completedButton') {
+      setCompletedStatus(!completedStatus);
+      console.log("Completed Status " + completedStatus)
+    }
+  }
+
+  const handleSearchChange = (event) => {
+    const { target } = event;
+    const inputValue = target.value;
+    setSearchInput(inputValue);
+  }
+
+  const handleSubmit = (event) => {
+    postings.map((posting) => {
+      if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
+        filteredPostings.push(posting);
+      }
+    })
+    if(activeStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Active") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(pendingStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Pending") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+    if(completedStatus == true) {
+      filteredPostings.map((posting) => {
+        if(posting.status == "Completed") {
+          reFilteredPostings.push(posting);
+        }
+      })
+    }
+
+    const splitInput = searchInput.toUpperCase().split("");
+
+    reFilteredPostings.map((posting) => {
+      var splitOwner = posting.title.toUpperCase().split("");
+        for(var i=0; i < (splitInput.length + 1); i++){
+
+          if (splitInput.length == i){
+            searchFilterPostings.push(posting);
+          }
+
+          else if(splitInput[i] != splitOwner[i]){
+            break;
+
+          }
+        }
+    })
+
+    setSubmitPostings(searchFilterPostings);
+
+  }
 
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
 
-  console.log(postings)
+  const [submitPostings, setSubmitPostings] = useState([]);
 
+  if((postings.length > 0) && (submitPostings.length == 0)) {
+    setSubmitPostings(postings);
+  }
+
+  const { data: meData } = useQuery(GET_ME);
+  const me = meData?.me || [];
+  const userIcon = IMAGES[me.image];
+  
   return (
     (Auth.loggedIn()) ? (
     (loading) ? (
@@ -40,8 +142,18 @@ function HomeFeed() {
           <div className='sidebar-bottom'>
             <h1 className='price-range'>Price Range</h1>
             <div className='range-box'>
-              <input className='range-start'type="number" placeholder='10'/>
-              <input className='range-start'type="number" placeholder='90'/>
+              <input className='range-start'
+                     id='minPrice' 
+                     type="number" 
+                     placeholder='10'
+                     value={minPrice}
+                     onChange={handleChange}/>
+              <input className='range-start'
+                     id='maxPrice'
+                     type="number" 
+                     placeholder='90'
+                     value={maxPrice}
+                     onChange={handleChange}/>
             </div>
             <hr className='sidebar-line'/>
             <h1 className='dollar-sign-one'>$</h1>
@@ -50,25 +162,34 @@ function HomeFeed() {
               <div className='status-filter-container'>
                 <h1 className='status-filter-title'>Status</h1>
                 <div className='active-container'>
-                  <BsFillCheckCircleFill className='status-checkmark-active'/>
+                  <BsFillCheckCircleFill 
+                    className='status-checkmark-active'
+                    id='activeButton'
+                    onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Active</h1>
                 </div>
               </div>
               <div className='status-filter-container'>
                 <div className='active-container'>
-                  <BsFillCheckCircleFill className='status-checkmark-pending'/>
+                  <BsFillCheckCircleFill 
+                  className='status-checkmark-pending'
+                  id='pendingButton'
+                  onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Pending</h1>
                 </div>
               </div>
               <div className='status-filter-container'>
                 <div className='active-container'>
-                  <BsFillCheckCircleFill className='status-checkmark-completed'/>
+                  <BsFillCheckCircleFill 
+                  className='status-checkmark-completed'
+                  id='completedButton'
+                  onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Completed</h1>
                 </div>
               </div>
             </div>
             <div className='filter-button-container'>
-              <button className='filter-button'>Apply Filters</button>
+              <button className='filter-button' onClick={handleSubmit}>Apply Filters</button>
             </div>
           </div>
       </div>
@@ -80,15 +201,20 @@ function HomeFeed() {
             <div className='search-div'>
               <div className='search-div-collection'>
                 <AiOutlineSearch className='search-icon'/>
-                <input type="text" className='input-search' placeholder='Search'/>
+                <input type="text" 
+                       className='input-search' 
+                       placeholder='Search'
+                       value={searchInput}
+                       onChange={handleSearchChange}
+                       />
               </div>
             </div>
-            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={profile17}/> </Link>
+            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={ userIcon } alt="icon" /> </Link>
           </div>
         </header>
 
         <div className='job-grid-box'>
-          {postings.map((posting) => (
+          {submitPostings.map((posting) => (
             <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
                 <div className='job-box' >
                   <h1 className='job-price'><span>$</span>{posting.cost}</h1>

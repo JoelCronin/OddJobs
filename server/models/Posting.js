@@ -41,10 +41,16 @@ const postingSchema = new Schema({
           ref: 'User'
         }
     ],
-    chosenWorker: {
+    chosenWorker: [
+        {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
+        }
+    ],
+    workerNumber: {
+        type: Number,
+        required:false,
+    }
   }
 );
 
