@@ -5,7 +5,6 @@ import {GET_SINGLE_POSTING} from '../utils/queries';
 import '../styles/single-post.css';
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png';
-import profile65 from '../img/profiles/profile65.svg';
 import StarRating from '../components/StarRating';
 import { Navigate } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
@@ -15,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { APPLY_FOR_JOB } from '../utils/mutations';
 import { REMOVE_APPLICATION } from '../utils/mutations';
+import IMAGES from '../img/profiles/index.js';
 
 
 
@@ -35,20 +35,20 @@ var here = [];
 var centre = [];
 
 //Fetch Request to get longs and lats of job Postcode
-var userLocation = function(cityName){
-    fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${cityName}`)
+var userLocation = async function(cityName){
+    await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${cityName}`)
     .then(function(response){
     return response.json();
     })
     .then(function(data){
         cityLat = data.results[0].locations[0].latLng.lat;
         cityLong = data.results[0].locations[0].latLng.lng;
-        console.log(cityLat);
-        console.log(cityLong);
-        console.log(data);
+        // console.log(cityLat);
+        // console.log(cityLong);
+        // console.log(data);
         //Push longs and lats into one Array as this is the format required by leaflet
         coordinates.push(cityLat, cityLong)
-        console.log(coordinates);
+        // console.log(coordinates);
         //Send to local storage
         localStorage.setItem('coords', JSON.stringify(coordinates))
     })
@@ -59,13 +59,8 @@ here = JSON.parse(localStorage.getItem('coords'))
 
 // Our map displays as a rectangle rather than a square so was centering wrong on the map.
 //This logic takes away 0.4 from the latitude so that it the map centres on the pin
-var latitude = here[0];
-console.log(latitude)
-var latSouth = latitude - 0.4
-console.log(latSouth)
-console.log(here)
-centre.push(latSouth, here[1])
-console.log(centre)
+
+// console.log(centre)
 
 // Calls the Single Posting Query
  
@@ -78,15 +73,24 @@ const {loading, data} = useQuery (GET_SINGLE_POSTING, {
 })
 
 const singlepost = data?.singlePosting || [];
-console.log (singlepost)
+// console.log (singlepost)
 
 const owner = data?.singlePosting?.owner || [];
 const jobSite = owner.postCode
-console.log(jobSite)
+// console.log(jobSite)
 //Calls API with postcode got from singleposting Query
 userLocation(jobSite)
 
+var latitude = here[0];
+// console.log(latitude)
+var latSouth = latitude - 0.4
+// console.log(latSouth)
+// console.log(here)
+centre.push(latSouth, here[1])
 
+console.log(owner)
+const userIcon = IMAGES[owner.image];
+console.log(userIcon)
 
 // Apply for Position Functionallity to show/hide apply button
 const [hasApplied, setHasApplied] = useState(false);
@@ -182,7 +186,7 @@ if(data) {
           <div className='right-job-post-container'>
             <div className="job-applicants-container">
               <div className="username-and-pic-container">
-                  <img src={profile65} className="job-applicant-profile-pic" alt="" />
+                  <img src={userIcon} className="job-applicant-profile-pic" />
                   <h1 className="job-applicant-name">Dave Johnson</h1>
               </div>
               <div className="rating-container">
