@@ -20,7 +20,7 @@ function NewPost() {
     description: '',
     cost: '',
     image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
-    workerNumber: '',
+    // workerNumber: '',
   });
 
   const { id } = useParams();
@@ -154,7 +154,7 @@ function NewPost() {
                 </div> */}
                 <div className="inner-inner-button-container">
                     <div onClick={handleFormSubmit} className="listing-create-button">
-                    <Link to = {`/me/${Auth.getProfile().data._id}`} >   <div>Create</div> </Link>
+                    <div>Create</div>
                     </div>
                 </div>
               </div>

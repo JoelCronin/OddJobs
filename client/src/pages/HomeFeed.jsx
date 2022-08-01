@@ -9,11 +9,12 @@ import { BsFillCheckCircleFill } from 'react-icons/bs';
 import '../styles/HomeFeedStyles/navbar.css';
 import '../styles/HomeFeedStyles/feedBody.css';
 
-import profilepic from '../img/Profile-pic.png';
+// import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
 // import logo from '../img/logo.png';
 import logosvg from '../img/Logo.svg';
 import profile17 from '../img/profiles/profile17.svg'
+import IMAGES from '../img/profiles/index.js';
 
 import Auth from '../utils/auth';
 
@@ -142,8 +143,7 @@ function HomeFeed() {
 
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
-
-
+  const userIcon = IMAGES[me.image];
 
   return (
     (Auth.loggedIn()) ? (
@@ -221,7 +221,7 @@ function HomeFeed() {
                 <input type="text" className='input-search' placeholder='Search'/>
               </div>
             </div>
-            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={profile17}/> </Link>
+            <Link to = {`/me/${Auth.getProfile().data._id}`}> <img className="proflie-pic-corner" src={ userIcon } alt="icon" /> </Link>
           </div>
         </header>
 
