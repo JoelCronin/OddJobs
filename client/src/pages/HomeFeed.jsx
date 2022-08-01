@@ -30,6 +30,8 @@ function HomeFeed() {
   const [pendingStatus, setPendingStatus] = useState(true);
   const [completedStatus, setCompletedStatus] = useState(true);
 
+  const filteredPostings = [];
+  const reFilteredPostings =[];
 
   const handleChange = (event) => {
     const { target } = event;
@@ -86,59 +88,17 @@ function HomeFeed() {
         }
       })
     }
+    setSubmitPostings(reFilteredPostings);
   }
-
 
   const {loading, data } = useQuery(GET_POSTING);
   const postings = data?.posting || [];
 
-  const filteredPostings = [];
-  const reFilteredPostings =[];
+  const [submitPostings, setSubmitPostings] = useState([]);
 
-  if(data) {
-    postings.map((posting) => {
-      if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
-        filteredPostings.push(posting);
-      }
-    })
-    if(activeStatus == true) {
-      filteredPostings.map((posting) => {
-        if(posting.status == "Active") {
-          reFilteredPostings.push(posting);
-        }
-      })
-    }
-    if(pendingStatus == true) {
-      filteredPostings.map((posting) => {
-        if(posting.status == "Pending") {
-          reFilteredPostings.push(posting);
-        }
-      })
-    }
-    if(completedStatus == true) {
-      filteredPostings.map((posting) => {
-        if(posting.status == "Completed") {
-          reFilteredPostings.push(posting);
-        }
-      })
-    }
-
-    // if(activeStatus == true) {
-    //   filteredPostings.map((posting) => {
-    //     if(posting.status == "Active"){
-    //       filteredPostings.remove(posting);
-    //     }
-    //   })
-    // }
-
-    // console.log('Posting');
-    // console.log(postings);
-
-    // console.log('Filter-Posting');
-    // console.log(filteredPostings);
-
-    // console.log('Re-Filter-Posting');
-    // console.log(reFilteredPostings);
+  if((postings.length > 0) && (submitPostings.length == 0)) {
+    console.log(postings)
+    setSubmitPostings(postings);
   }
 
   const { data: meData } = useQuery(GET_ME);
@@ -226,7 +186,7 @@ function HomeFeed() {
         </header>
 
         <div className='job-grid-box'>
-          {reFilteredPostings.map((posting) => (
+          {submitPostings.map((posting) => (
             <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
                 <div className='job-box' >
                   <h1 className='job-price'><span>$</span>{posting.cost}</h1>
