@@ -9,7 +9,7 @@ import { CREATE_POSTING } from "../utils/mutations";
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 
 
 function NewPost() {
@@ -65,7 +65,7 @@ function NewPost() {
         <div className="sidebar">
             <div className="sidebar-top">
               <Link to={`/home`}>
-                <img className="navbar-logo" src={logosvg}/>
+                <img className="navbar-logo" src={logosvg} alt=""/>
               </Link>  
                 <span>OddJobs</span>
             </div>
@@ -109,7 +109,7 @@ function NewPost() {
                     <div className="status-container">
                       <h1 className="status-title">Worker Number</h1>
                       <div className="status-icon-and-dropdown">
-                        <img className="status-icon-for-dropdown" src={active}/>
+                        <img className="status-icon-for-dropdown" src={active} alt=""/>
                         <select className="status-dropdown-list" name="status-dropdown-list" >
                           {/* create a drop list from 1 to 20 */}
                           <option value="1">1</option>

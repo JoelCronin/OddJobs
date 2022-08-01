@@ -4,17 +4,20 @@ import active from '../../img/status/active.png';
 
 import profile65 from '../../img/profiles/profile65.svg'
 import StarRating from "../StarRating";
+// import Auth from "../../utils/auth";
+// import { Navigate } from 'react-router-dom'
 
 function Applications() {
 
     return (
+        
         <div className="applicationsContainer">
             <div className="inner-applications-container">
                 <div className="job-detail-container">
                     <h1 className="applications-job-title">Watier/Watresses</h1>
                     <div className="applications-status-box">
                         <h1 className="applications-status-title">Status</h1>
-                        <img src={active} className="applications-status-icon"/>
+                        <img src={active} className="applications-status-icon" alt=''/>
                     </div>
                 </div>
                 <div className="job-applicants-container">
@@ -122,7 +125,7 @@ function Applications() {
                     <h1 className="applications-job-title">Watier/Watresses</h1>
                     <div className="applications-status-box">
                         <h1 className="applications-status-title">Status</h1>
-                        <img src={active} className="applications-status-icon"/>
+                        <img src={active} className="applications-status-icon" alt=''/>
                     </div>
                 </div>
                 <div className="job-applicants-container">
@@ -158,7 +161,7 @@ function Applications() {
                     <h1 className="applications-job-title">Watier/Watresses</h1>
                     <div className="applications-status-box">
                         <h1 className="applications-status-title">Status</h1>
-                        <img src={active} className="applications-status-icon"/>
+                        <img src={active} className="applications-status-icon" alt=''/>
                     </div>
                 </div>
                 <div className="job-applicants-container">
