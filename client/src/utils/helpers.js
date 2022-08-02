@@ -1,8 +1,3 @@
-// import { useQuery } from '@apollo/client';
-// import {GET_SINGLE_POSTING} from '../utils/queries';
-
-
-//Checks email is in valid format
 class Helpers{
   validateEmail(email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

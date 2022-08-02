@@ -8,36 +8,25 @@ import active from '../img/status/active.png';
 import StarRating from '../components/StarRating';
 import Map from '../components/Map';
 import { motion } from 'framer-motion';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-// import { Icon } from "leaflet";
 import { Navigate } from 'react-router-dom'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REMOVE_APPLICATION, APPLY_FOR_JOB } from '../utils/mutations';
 import IMAGES from '../img/profiles/index.js';
-
-
-
 import Auth from "../utils/auth";
 
 
 function SinglePosting() {
 
   const singlePostingId = useParams();
-  console.log(singlePostingId);
   // Gets single posting using Id
   const {loading, data} = useQuery(GET_SINGLE_POSTING, {
       variables: singlePostingId 
   });
   const singlepost = data?.singlePosting || [];
   const owner = data?.singlePosting?.owner || [];
-
-  // Global variables
-
-
   const userIcon = IMAGES[owner.image];
-  console.log(userIcon);
-  console.log(data);
+  const jobSite = owner.postCode
 
   // Apply for Position Functionallity to show/hide apply button
   const [hasApplied, setHasApplied] = useState(false);
@@ -105,16 +94,6 @@ function SinglePosting() {
         console.error(e);
       }
     }
-
-
-
-  const jobSite = owner.postCode
-  console.log(jobSite);
-   
-  //Once data is loaded, call the userLocation function returning the postcode of the job then return the page
-
-
-
 
   return (
     (Auth.loggedIn()) ? (

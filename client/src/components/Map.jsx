@@ -9,7 +9,7 @@ export default function Map(postCode) {
     var here = [];
     var centre = [];
     
-    userLocation(postCode);
+    userLocation(postCode.postCode);
     
     here = JSON.parse(localStorage.getItem('coords'));
     if (here) {
@@ -35,14 +35,8 @@ export default function Map(postCode) {
       .then(function(data){
           cityLat = data.results[0].locations[0].latLng.lat;
           cityLong = data.results[0].locations[0].latLng.lng;
-          // console.log(cityLat);
-          // console.log(cityLong);
-          // console.log(data);
-          //Push longs and lats into one Array as this is the format required by leaflet
-          coordinates.push(cityLat, cityLong)
-          // console.log(coordinates);
-          //Send to local storage
-          localStorage.setItem('coords', JSON.stringify(coordinates))
+          coordinates.push(cityLat, cityLong);
+          localStorage.setItem('coords', JSON.stringify(coordinates));
       })
     };
     
