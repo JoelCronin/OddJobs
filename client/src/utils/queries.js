@@ -19,7 +19,6 @@ export const GET_ME = gql`
                 createdAt
                 owner {
                     _id
-                    name
                 }
             }
             activeJobs {
@@ -38,17 +37,13 @@ export const GET_ME = gql`
     }
 `;
 
-// export const GET_MY_LISTINGS = gql`
-//     query myListings($id:ID!) {
-//         myListings(id: $id)
-//     }`
-
 export const GET_POSTING = gql`
     query posting {
         posting {
             owner {
                 _id
                 name
+                postCode
             }
             _id
             cost

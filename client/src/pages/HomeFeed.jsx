@@ -1,28 +1,16 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useQuery } from '@apollo/client';
-import { GET_POSTING, GET_ME } from '../utils/queries';
+import { GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
-
 import { AiOutlineSearch} from 'react-icons/ai';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import '../styles/HomeFeedStyles/navbar.css';
 import '../styles/HomeFeedStyles/feedBody.css';
-
-// import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
 import completed from '../img/status/completed.png';
 import pending from '../img/status/pending.png';
-// import logo from '../img/logo.png';
-// import logosvg from '../img/Logo.svg';
-import profile17 from '../img/profiles/17.svg'
-import logosvg from '../img/Logo.svg';
-// import profile17 from '../img/profiles/profile17.svg'
 import IMAGES from '../img/profiles/index.js';
-
-
-// import logosvg from '../img/Logo.svg';
-import profile1 from '../img/profiles/1.svg';
 import Auth from '../utils/auth';
 import { motion } from 'framer-motion';
 import party from "party-js";
@@ -36,7 +24,6 @@ const HomeFeed = ({ posts }) => {
   const [activeStatus, setActiveStatus] = useState(true);
   const [pendingStatus, setPendingStatus] = useState(true);
   const [completedStatus, setCompletedStatus] = useState(true);
-
   const [searchInput, setSearchInput] = useState('')
 
   const filteredPostings = [];
@@ -61,13 +48,10 @@ const HomeFeed = ({ posts }) => {
 
     if (inputType === 'activeButton') {
       setActiveStatus(!activeStatus);
-      console.log("Active Status "+ activeStatus)
     } else if (inputType === 'pendingButton') {
       setPendingStatus(!pendingStatus);
-      console.log("Pending Status " + pendingStatus)
     } else if (inputType === 'completedButton') {
       setCompletedStatus(!completedStatus);
-      console.log("Completed Status " + completedStatus)
     }
   }
 
@@ -77,10 +61,7 @@ const HomeFeed = ({ posts }) => {
     setSearchInput(inputValue);
   }
 
-  const handleSubmit = (event) => {
-
-    console.log('Before');
-    console.log(reFilteredPostings);
+  const handleSubmit = () => {
 
     if(!((activeStatus === false) && (pendingStatus === false) && (completedStatus === false))) {
 
@@ -144,19 +125,6 @@ const HomeFeed = ({ posts }) => {
 
   const [submitPostings, setSubmitPostings] = useState(posts);
 
-
-  const fadeVariant = {
-    hidden:{
-      opacity: 0
-    },
-    visible:{
-      opacity: 1,
-      transition: {
-        duration: 0.4
-      }
-    }
-  }
-
   const headerVariant = {
     hidden:{
       y: -500
@@ -203,6 +171,10 @@ const HomeFeed = ({ posts }) => {
     party.sparkles(e.target, {
       count: party.variation.range(5, 5),
     });
+  }
+
+  function clearLocalStorage () {
+    localStorage.removeItem('coords');
   }
 
 
@@ -317,7 +289,7 @@ const HomeFeed = ({ posts }) => {
           {submitPostings.length != 0 ? (
             <>
             {submitPostings.map((posting) => (
-              <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
+              <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id} onClick={clearLocalStorage}>
                   <div className='job-box' >
                     <h1 className='job-price'><span>$</span>{posting.cost}</h1>
                     <img className='job-post-img' src={posting.image} alt={posting.title}/>

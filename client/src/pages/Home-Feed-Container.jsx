@@ -1,7 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/client';
-import { GET_POSTING, GET_ME } from '../utils/queries';
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { GET_POSTING } from '../utils/queries';
 
 import HomeFeed from "../pages/HomeFeed"
 
@@ -20,7 +19,6 @@ function HomeFeedContainer() {
                 posts={postings}
                 />
             )}
-
         </div>
     )
 }
