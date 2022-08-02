@@ -150,9 +150,9 @@ function HomeFeed() {
 
 // Need to change this, must wait for data before getting data
 
-  // if((postings.length > 0) && (submitPostings.length == 0) && (postings.length != 0)) {
-  //   setSubmitPostings(postings);
-  // }
+  if((postings.length > 0) && (submitPostings.length == 0) && (postings.length != 0)) {
+    setSubmitPostings(postings);
+  }
 
 
   const fadeVariant = {
