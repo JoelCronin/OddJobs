@@ -27,7 +27,7 @@ import party from "party-js";
 
 
 
-function HomeFeed() {
+const HomeFeed = ({ posts }) => {
 
   const [minPrice, setMinPrice] = useState('10');
   const [maxPrice, setMaxPrice] = useState('20');
@@ -82,7 +82,7 @@ function HomeFeed() {
 
     if(!((activeStatus === false) && (pendingStatus === false) && (completedStatus === false))) {
 
-    postings.map((posting) => {
+    posts.map((posting) => {
       if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
         filteredPostings.push(posting);
       }
@@ -113,9 +113,6 @@ function HomeFeed() {
       })
 
     } 
-      // console.log('After');
-      // console.log(reFilteredPostings);
-    
 
     const splitInput = searchInput.toUpperCase().split("");
 
@@ -139,22 +136,11 @@ function HomeFeed() {
   } else {
 
   setSubmitPostings([]);
-
+  
   }
 }
 
-  const {loading, data } = useQuery(GET_POSTING);
-  const postings = data?.posting || [];
-
-  console.log(postings)
-
-  const [submitPostings, setSubmitPostings] = useState([]);
-
-// Need to change this, must wait for data before getting data
-
-  if((postings.length > 0) && (submitPostings.length == 0) && (postings.length != 0)) {
-    setSubmitPostings(postings);
-  }
+  const [submitPostings, setSubmitPostings] = useState(posts);
 
 
   const fadeVariant = {
@@ -223,10 +209,7 @@ function HomeFeed() {
   const userIcon = IMAGES[me.image];
   
   return (
-    (Auth.loggedIn()) ? (
-    (loading) ? (
-      <div>Loading...</div>
-    ) : (       
+    (Auth.loggedIn()) ? (      
     <div className="feedBody">
       <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
           <div className="sidebar-top">
@@ -361,7 +344,7 @@ function HomeFeed() {
 
       </div>
     </div>
-    )
+  
     ) : (
       <Navigate to="/"/>
     )

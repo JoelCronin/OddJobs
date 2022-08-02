@@ -6,7 +6,7 @@ import { setContext } from '@apollo/client/link/context';
 import Login from "./components/Login.jsx"
 import SignUp from "./pages/SignUp.jsx"
 import Admin from "./pages/Admin.jsx" 
-import HomeFeed from './pages/HomeFeed';
+import HomeFeedCont from './pages/Home-Feed-Container';
 import SinglePosting from './pages/SinglePosting';
 import MyListings from './components/Account-Components/My-Listings';
 import NewPost from './pages/New-Post';
@@ -56,7 +56,7 @@ function App() {
 
             <Route path="/signup" element={<SignUp />}/>
 
-            <Route path="/home" element={<HomeFeed />} />
+            <Route path="/home" element={<HomeFeedCont />} />
 
             <Route path="/posting/:id" element={<SinglePosting />} />
 
