@@ -4,38 +4,37 @@ import "../../styles/AccountStyles/My-Listings.css";
 import active from '../../img/status/active.png';
 import { MdModeEdit } from 'react-icons/md';
 import { BsPlusCircleFill } from 'react-icons/bs';
-// import { AiFillCloseCircle } from 'react-icons/ai';
+
 import { Link, useNavigate } from 'react-router-dom';
-// import { TbCloudUpload } from 'react-icons/tb';
+
 import Auth from '../../utils/auth'
 import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
-import UpdatePosting from "../../pages/UpdatePosting";
+
 import { motion } from 'framer-motion';
-// import UpdatePosting from "../../pages/UpdatePosting";
+
 
 
 function MyListings() {
 
-  const navigate = useNavigate()
 
+//Refresh page once when visiting to show latest listing changes
+  const navigate = useNavigate()
   navigate(0);
 
     const iD = useParams()
 
-    console.log(iD)
+    
 
     const {loading, data} = useQuery (GET_ME, {
         variables: iD
     });
 
-    console.log(data)
+  
 
     const mine = data?.me || [];
-
-    console.log(mine)
 
     const componentVariant = {
       hidden:{
@@ -48,13 +47,6 @@ function MyListings() {
         }
       }
     }
-    // return (
-        
-    //   (Auth.loggedIn()) ? (
-    //     (loading) ? (
-    //       <div>Loading...</div>
-    //     ) : ( 
-    //     <div id="myListingsContainer">
 
     return (
         

@@ -39,6 +39,7 @@ export const CREATE_POSTING = gql`
             description
             image
             createdAt
+            workerNumber
         }
     }
 `;

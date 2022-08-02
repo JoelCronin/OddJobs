@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import { Navigate } from 'react-router-dom'
@@ -44,7 +43,8 @@ function Login() {
 
         } catch (e) {
             console.error(e);
-            toast.error('Invalid input/s', {
+            let error = e.graphQLErrors[0].message;
+            toast.error(error, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,

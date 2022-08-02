@@ -57,7 +57,6 @@
     font-weight: 500;
     font-size: 17px;
     line-height: 40px;
-    /* border: 1px solid white; */
     width: 120px;
     height: 40px;
     text-align: center;
@@ -95,20 +94,36 @@
     border: 3px solid #64FFDB;
     border-radius: 8px;
     text-align: center;
-    color: #64FFDB;
+    color: #203354;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.5s, color 0.5s;
-    background: #203354;
+    background: #64FFDB;
     cursor: pointer;
     margin-top: 48px;
 }
 
 .job-post-apply-button:hover{
-    /* cursor: pointer; */
-    background-color: #64FFDB;
-    color: #132948;
+    background-color: #203354;
+    color: #64FFDB;
+}
+
+
+.cancel{
+    background-color: #EF8A6A;
+    color: #203354;
+    border: 3px solid #EF8A6A;
+
+
+}
+
+.cancel:hover{
+    background-color: #203354;
+    color: #EF8A6A;
+    border: 3px solid #EF8A6A;
+    
+
 }
 
 

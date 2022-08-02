@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
-// import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
-// import { useQuery } from '@apollo/client';
 import { CREATE_POSTING } from "../utils/mutations";
-// import { GET_ME } from '../utils/queries';
 import logosvg from '../img/Logo.svg'
 import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
@@ -17,13 +14,12 @@ import Auth from '../utils/auth';
 
 function NewPost() {
 
-
   const [formState, setFormState] = useState({
     title: '',
     description: '',
     cost: '',
     image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
-    // workerNumber: '',
+    workerNumber: '',
   });
 
   const navigate = useNavigate();
@@ -34,16 +30,11 @@ function NewPost() {
   const handleDropChange = (event) => {
     const { target } = event;
     const inputType = target.value;
-
-    console.log(typeof(inputType))
-
-    // setFormState({
-    //   ...formState,
-    //   workerNumber: inputType
-    // })
+    setFormState({
+      ...formState,
+      workerNumber: inputType
+    })    
   }
-
-  console.log(formState);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -56,8 +47,6 @@ function NewPost() {
 
   const handleFormSubmit = async (event) => {
     // event.preventDefault();
-    console.log(formState);
-
     try {
       const { data } = await addPosting({
         variables: {
@@ -92,9 +81,6 @@ function NewPost() {
 
   };
 
-
-
-
   const sidebarVariant = {
     hidden:{
       x: -800
@@ -117,9 +103,6 @@ function NewPost() {
         }
     }
   }
-  // const testNavigate = () => {
-  //   navigate('/home');
-  // }
 
   return (
 
