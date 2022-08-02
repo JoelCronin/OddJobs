@@ -44,11 +44,7 @@ function Applied() {
     }
 
     return (
-      // <div>
-      //   {applied.map((app) => (
-      //     <p>{app.cost}</p>
-      //   ))}
-      // </div>
+
 
       (Auth.loggedIn()) ? (
         (loading) ? (

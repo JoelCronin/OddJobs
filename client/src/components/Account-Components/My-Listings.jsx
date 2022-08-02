@@ -72,6 +72,7 @@ function MyListings() {
               {mine.activeJobs.length === 0 || mine.activeJobs === null  ? (<p></p>) : (
                 <>
                   {mine.activeJobs.map((singlejob) => (
+                  <Link to= {`/posting/${singlejob._id}`}>
                   <div className='job-box' key = {singlejob._id}>
                   <h1 className='job-price'><span>$</span>{singlejob.cost}</h1>
                   <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png" alt=''/>
@@ -92,6 +93,7 @@ function MyListings() {
                   </div>
                   <Link to= {`/updatePosting/${singlejob._id}`}><MdModeEdit className="edit-button"/></Link> 
                   </div>
+                  </Link>
                   ))}
                 </>
               )}
