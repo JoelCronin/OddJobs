@@ -1,3 +1,7 @@
+// import { useQuery } from '@apollo/client';
+// import {GET_SINGLE_POSTING} from '../utils/queries';
+
+
 //Checks email is in valid format
 class Helpers{
   validateEmail(email) {
@@ -12,3 +16,6 @@ class Helpers{
 }
 
 export default new Helpers();
+
+
+

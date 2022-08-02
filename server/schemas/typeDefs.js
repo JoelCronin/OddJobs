@@ -27,6 +27,7 @@ const typeDefs = gql`
         createdAt: String
         applications: [User]
         chosenWorker: User
+        workerNumber: Int
     }
 
     type Rating {
@@ -77,11 +78,11 @@ const typeDefs = gql`
     }
 
     input createPostingInput {
-        cost: String
+        cost: Int
         description: String
         title: String
         image: String
-        workerName: String
+        workerNumber: Int
     }
 
     input RatingInput {

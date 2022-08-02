@@ -5,6 +5,8 @@ import active from '../../img/status/active.png';
 import profile65 from '../../img/profiles/2.svg'
 import StarRating from "../StarRating";
 import { motion } from 'framer-motion';
+import { GET_ME, GET_SINGLE_USER } from "../../utils/queries";
+
 
 // import Auth from "../../utils/auth";
 // import { Navigate } from 'react-router-dom';

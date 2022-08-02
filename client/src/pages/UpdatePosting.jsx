@@ -10,11 +10,13 @@ import active from '../img/status/active.png'
 import { TbCloudUpload } from 'react-icons/tb';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
+import StarRating from '../components/StarRating';
 
 import {GET_SINGLE_POSTING} from '../utils/queries';
 import { Navigate } from 'react-router-dom'
 import { REMOVE_POSTING } from "../utils/mutations";
 import Auth from '../utils/auth';
+import profile1 from '../img/profiles/profile1.svg';
 
 function UpdatePosting() {
   const [formState, setFormState] = useState ({
@@ -166,6 +168,15 @@ const handleDeleteSubmit = async (event) => {
                       <h1 className="my-acccount-form-title">Description</h1>
                       <textarea onChange={handleChange} value={formState.description} name="description" type="text" placeholder={singlepost.description} className="description-text-area"></textarea>
                     </div>
+                    <div className="job-applicants-container">
+                    <div className="username-and-pic-container">
+                        <img src={profile1} className="job-applicant-profile-pic" alt="icon"/>
+                        <h1 className="job-applicant-name">Dave Johnson</h1>
+                    </div>
+                    <div className="rating-container">
+                        <StarRating rating={4} />
+                    </div>
+                </div>
                   </div>
                   <div className="form-right">
                     <div className="upload-pic-box">

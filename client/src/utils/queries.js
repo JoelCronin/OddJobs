@@ -25,6 +25,9 @@ export const GET_ME = gql`
                 description
                 status
                 createdAt
+                jobApplications {
+                    _id
+                }
             }
         }
     }
@@ -41,6 +44,7 @@ export const GET_POSTING = gql`
             owner {
                 _id
                 name
+                postCode
             }
             _id
             cost
