@@ -68,6 +68,7 @@ const typeDefs = gql`
         email: String
         password: String
         image: String
+        postCode: String
     }
 
     input PostingInput {

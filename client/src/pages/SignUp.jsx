@@ -19,6 +19,7 @@ function SignUp() {
       name: '',
       email: '',
       password: '',
+      postCode: '',
       image: helpers.getrandomicon(1,21),
     });
 
@@ -96,6 +97,7 @@ function SignUp() {
 
   return (
 
+
     <div className='signup-container'>
       <motion.div variants={leftVariant} initial="hidden" animate="visible" className='left-signup-container'>
         <div className="left-inner-container">
@@ -134,7 +136,7 @@ function SignUp() {
               <input className='signup-input' type="text" placeholder="Username" name="name" value={formState.name} onChange={handleChange}/>
               <input className='signup-input' type="email" placeholder="Email" name="email" value={formState.email} onChange={handleChange}/>
               <input className='signup-input' type="password" placeholder="Password" name="password" value={formState.password} onChange={handleChange}/>
-              <input className='signup-input' type="text" placeholder="Postal Code"/>
+              <input className='signup-input' type="text" placeholder="Postal Code" name="postCode" value={formState.postCode} onChange={handleChange}/>
             </div>
             <button className="signup-button" type="submit" onClick={handleFormSubmit}>SUBMIT</button>
           </div>
