@@ -17,6 +17,10 @@ export const GET_ME = gql`
                 description
                 status
                 createdAt
+                owner {
+                    _id
+                    name
+                }
             }
             activeJobs {
                 _id

@@ -31,6 +31,20 @@ function NewPost() {
   const { id } = useParams();
   const [addPosting] = useMutation(CREATE_POSTING);
 
+  const handleDropChange = (event) => {
+    const { target } = event;
+    const inputType = target.value;
+
+    console.log(typeof(inputType))
+
+    // setFormState({
+    //   ...formState,
+    //   workerNumber: inputType
+    // })
+  }
+
+  console.log(formState);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -48,7 +62,7 @@ function NewPost() {
       const { data } = await addPosting({
         variables: {
           input: {
-            ...formState
+            ...formState,
           }
         },
       });
@@ -62,7 +76,7 @@ function NewPost() {
         progress: undefined,
       });
 
-      navigate('/home');
+      navigate(`/me/${Auth.getProfile().data._id}`);
     } catch (e) {
       console.error(e);
       toast.error('Invalid input/s', {
@@ -158,7 +172,7 @@ function NewPost() {
                       <h1 className="status-title">Worker Number</h1>
                       <div className="status-icon-and-dropdown">
                         <img className="status-icon-for-dropdown" src={active} alt=""/>
-                        <select className="status-dropdown-list" name="status-dropdown-list" >
+                        <select className="status-dropdown-list" name="status-dropdown-list" onChange={handleDropChange}>
                           {/* create a drop list from 1 to 20 */}
                           <option value="1">1</option>
                           <option value="2">2</option>

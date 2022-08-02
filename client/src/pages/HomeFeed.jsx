@@ -27,7 +27,7 @@ import party from "party-js";
 
 
 
-function HomeFeed() {
+const HomeFeed = ({ posts }) => {
 
   const [minPrice, setMinPrice] = useState('10');
   const [maxPrice, setMaxPrice] = useState('20');
@@ -82,7 +82,7 @@ function HomeFeed() {
 
     if(!((activeStatus === false) && (pendingStatus === false) && (completedStatus === false))) {
 
-    postings.map((posting) => {
+    posts.map((posting) => {
       if((minPrice <= posting.cost) && (posting.cost <= maxPrice)){
         filteredPostings.push(posting);
       }
@@ -113,9 +113,6 @@ function HomeFeed() {
       })
 
     } 
-      // console.log('After');
-      // console.log(reFilteredPostings);
-    
 
     const splitInput = searchInput.toUpperCase().split("");
 
@@ -139,20 +136,11 @@ function HomeFeed() {
   } else {
 
   setSubmitPostings([]);
-
+  
   }
 }
 
-  const {loading, data } = useQuery(GET_POSTING);
-  const postings = data?.posting || [];
-  console.log(postings);
-  const [submitPostings, setSubmitPostings] = useState([]);
-
-// Need to change this, must wait for data before getting data
-
-  if((postings.length > 0) && (submitPostings.length == 0) && (postings.length != 0)) {
-    setSubmitPostings(postings);
-  }
+  const [submitPostings, setSubmitPostings] = useState(posts);
 
 
   const fadeVariant = {
@@ -222,15 +210,12 @@ function HomeFeed() {
   console.log(me);
   
   return (
-    (Auth.loggedIn()) ? (
-    (loading) ? (
-      <div>Loading...</div>
-    ) : (       
+    (Auth.loggedIn()) ? (      
     <div className="feedBody">
       <motion.div variants={sidebarVariant} initial="hidden" animate="visible" className="sidebar">
           <div className="sidebar-top">
               <svg className="navbar-logo"  width="73" height="66" viewBox="0 0 73 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0_15_13)">
+                  <g clipPath="url(#clip0_15_13)">
                   <motion.path variants={logoVariant} d="M9.98819 49.8924C12.6652 51.7582 17.0054 51.7582 19.6824 49.8924C22.3592 48.0265 22.3592 45.0012 19.6824 43.1353C17.0054 41.2695 12.6652 41.2695 9.98819 43.1353C7.31123 45.0012 7.31123 48.0265 9.98819 49.8924Z" fill="#25CAAC"/>
                   <motion.path variants={logoVariant} d="M37.7726 24.5539C41.7881 27.3527 48.2983 27.3527 52.3139 24.5539C56.3292 21.755 56.3292 17.2173 52.3139 14.4185C48.2983 11.6197 41.7881 11.6197 37.7726 14.4185C33.7573 17.2173 33.7573 21.755 37.7726 24.5539Z" fill="#25CAAC"/>
                   <motion.path variants={logoVariant} d="M23.0235 37.2231C26.3697 39.5554 31.795 39.5554 35.1411 37.2231C38.4873 34.8907 38.4873 31.1093 35.1411 28.7769C31.795 26.4447 26.3697 26.4447 23.0235 28.7769C19.6773 31.1093 19.6773 34.8907 23.0235 37.2231Z" fill="#25CAAC"/>
@@ -360,7 +345,7 @@ function HomeFeed() {
 
       </div>
     </div>
-    )
+  
     ) : (
       <Navigate to="/"/>
     )
