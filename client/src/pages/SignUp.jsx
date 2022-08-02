@@ -14,6 +14,7 @@ function SignUp() {
       name: '',
       email: '',
       password: '',
+      postCode: '',
       image: helpers.getrandomicon(1,21),
     });
 
@@ -69,6 +70,13 @@ function SignUp() {
                   name="password"
                   type="password"
                   value={formState.password}
+                  onChange={handleChange}
+                />
+                <input
+                  placeholder="Post Code"
+                  name="postCode"
+                  type="text"
+                  value={formState.postCode}
                   onChange={handleChange}
                 />
                 <button

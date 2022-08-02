@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { Navigate } from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { APPLY_FOR_JOB } from '../utils/mutations';
 import { REMOVE_APPLICATION } from '../utils/mutations';
@@ -23,7 +23,10 @@ import Auth from "../utils/auth";
 
 function SinglePosting() {
 
+ 
+
   
+
 // Global variables
   var apiKey = "95hcXeOsnd4dIFUnbepjXbFxyLKnwAAA";
   var cityLat;
@@ -41,14 +44,15 @@ var userLocation = async function(cityName){
     .then(function(data){
         cityLat = data.results[0].locations[0].latLng.lat;
         cityLong = data.results[0].locations[0].latLng.lng;
-        // console.log(cityLat);
-        // console.log(cityLong);
-        // console.log(data);
+        console.log(cityLat);
+        console.log(cityLong);
+        console.log(data);
         //Push longs and lats into one Array as this is the format required by leaflet
         coordinates.push(cityLat, cityLong)
-        // console.log(coordinates);
+        console.log(coordinates);
         //Send to local storage
         localStorage.setItem('coords', JSON.stringify(coordinates))
+
     })
 };
 
@@ -58,7 +62,7 @@ here = JSON.parse(localStorage.getItem('coords'))
 // Our map displays as a rectangle rather than a square so was centering wrong on the map.
 //This logic takes away 0.4 from the latitude so that it the map centres on the pin
 
-// console.log(centre)
+
 
 // Calls the Single Posting Query
  
@@ -74,8 +78,9 @@ const singlepost = data?.singlePosting || [];
 // console.log (singlepost)
 
 const owner = data?.singlePosting?.owner || [];
+console.log(owner)
 const jobSite = owner.postCode
-// console.log(jobSite)
+console.log(jobSite)
 //Calls API with postcode got from singleposting Query
 userLocation(jobSite)
 
@@ -85,8 +90,9 @@ var latSouth = latitude - 0.4
 // console.log(latSouth)
 // console.log(here)
 centre.push(latSouth, here[1])
+console.log(centre)
 
-console.log(owner)
+
 const userIcon = IMAGES[owner.image];
 console.log(userIcon)
 
