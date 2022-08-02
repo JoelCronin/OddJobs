@@ -14,22 +14,16 @@ export default function Map(postCode) {
     here = JSON.parse(localStorage.getItem('coords'));
     if (here) {
         var latitude = here[0];
-        // console.log(latitude)
         var latSouth = latitude - 0.4
-        // console.log(latSouth)
-        // console.log(here) 
         centre.push(latSouth, here[1])
     } else {
         setInterval(() => {
             here = JSON.parse(localStorage.getItem('coords'));
             var latitude = here[0];
-            // console.log(latitude)
             var latSouth = latitude - 0.4
-            // console.log(latSouth)
-            // console.log(here) 
             centre.push(latSouth, here[1])
             window.location.reload();
-        } , 700);
+        } , 600);
     }
 
     // Retrieve co-ords from local storage

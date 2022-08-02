@@ -18,7 +18,7 @@ const typeDefs = gql`
     type Posting {
         _id: ID!
         owner: User
-        cost: Int
+        cost: String
         title: String
         description: String
         image: String
@@ -27,7 +27,7 @@ const typeDefs = gql`
         createdAt: String
         applications: [User]
         chosenWorker: User
-        workerNumber: Int
+        workerNumber: String
     }
 
     type Rating {
@@ -69,6 +69,7 @@ const typeDefs = gql`
         email: String
         password: String
         image: String
+        postCode: String
     }
 
     input PostingInput {
@@ -78,11 +79,11 @@ const typeDefs = gql`
     }
 
     input createPostingInput {
-        cost: Int
+        cost: String
         description: String
         title: String
         image: String
-        workerNumber: Int
+        workerNumber: String
     }
 
     input RatingInput {

@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 // import { Icon } from "leaflet";
 import { Navigate } from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REMOVE_APPLICATION, APPLY_FOR_JOB } from '../utils/mutations';
 import IMAGES from '../img/profiles/index.js';

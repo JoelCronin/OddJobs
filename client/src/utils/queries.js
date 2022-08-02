@@ -28,6 +28,10 @@ export const GET_ME = gql`
                 description
                 status
                 createdAt
+                applications{
+                    _id
+                    name
+                }
             }
         }
     }

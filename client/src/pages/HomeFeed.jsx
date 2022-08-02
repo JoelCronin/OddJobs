@@ -205,6 +205,10 @@ const HomeFeed = ({ posts }) => {
     });
   }
 
+  function clearLocalStorage () {
+    localStorage.removeItem('coords');
+  }
+
 
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
@@ -317,7 +321,7 @@ const HomeFeed = ({ posts }) => {
           {submitPostings.length != 0 ? (
             <>
             {submitPostings.map((posting) => (
-              <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id}>
+              <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id} onClick={clearLocalStorage}>
                   <div className='job-box' >
                     <h1 className='job-price'><span>$</span>{posting.cost}</h1>
                     <img className='job-post-img' src={posting.image} alt={posting.title}/>
