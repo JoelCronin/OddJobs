@@ -13,14 +13,14 @@ import '../styles/HomeFeedStyles/feedBody.css';
 import active from '../img/status/active.png';
 // import logo from '../img/logo.png';
 // import logosvg from '../img/Logo.svg';
-// import profile17 from '../img/profiles/17.svg'
-// import logosvg from '../img/Logo.svg';
+import profile17 from '../img/profiles/17.svg'
+import logosvg from '../img/Logo.svg';
 // import profile17 from '../img/profiles/profile17.svg'
 import IMAGES from '../img/profiles/index.js';
 
 
 // import logosvg from '../img/Logo.svg';
-// import profile1 from '../img/profiles/1.svg';
+import profile1 from '../img/profiles/1.svg';
 import Auth from '../utils/auth';
 import { motion } from 'framer-motion';
 import party from "party-js";
@@ -207,7 +207,6 @@ const HomeFeed = ({ posts }) => {
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
   const userIcon = IMAGES[me.image];
-  console.log(me);
   
   return (
     (Auth.loggedIn()) ? (      
