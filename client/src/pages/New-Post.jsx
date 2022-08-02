@@ -23,7 +23,7 @@ function NewPost() {
     description: '',
     cost: '',
     image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
-
+    workerNumber: '',
   });
 
   const navigate = useNavigate();
@@ -37,10 +37,10 @@ function NewPost() {
 
     console.log(typeof(inputType))
 
-    // setFormState({
-    //   ...formState,
-    //   workerNumber: inputType
-    // })
+    setFormState({
+      ...formState,
+      workerNumber: inputType
+    })    
   }
 
   console.log(formState);
