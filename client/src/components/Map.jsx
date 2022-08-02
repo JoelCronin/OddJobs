@@ -8,19 +8,19 @@ export default function Map(postCode) {
     var coordinates = [];
     var here = [];
     var centre = [];
-    
+
     userLocation(postCode.postCode);
     
     here = JSON.parse(localStorage.getItem('coords'));
     if (here) {
         var latitude = here[0];
-        var latSouth = latitude - 0.4
+        var latSouth = latitude - 0.6
         centre.push(latSouth, here[1])
     } else {
         setInterval(() => {
             here = JSON.parse(localStorage.getItem('coords'));
             var latitude = here[0];
-            var latSouth = latitude - 0.4
+            var latSouth = latitude - 0.6
             centre.push(latSouth, here[1])
             window.location.reload();
         } , 600);
