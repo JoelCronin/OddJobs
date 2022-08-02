@@ -207,6 +207,7 @@ const HomeFeed = ({ posts }) => {
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
   const userIcon = IMAGES[me.image];
+  console.log(userIcon);
   
   return (
     (Auth.loggedIn()) ? (      

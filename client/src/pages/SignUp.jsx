@@ -15,7 +15,7 @@ function SignUp() {
       name: '',
       email: '',
       password: '',
-      image: helpers.getrandomicon(1,21),
+      image: helpers.getrandomicon(1,22),
     });
 
     const [addUser] = useMutation(CREATE_USER);
