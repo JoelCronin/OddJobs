@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import "../styles/AccountStyles/Account-Header.css";
 import { Link } from 'react-router-dom';
 
-
 import Auth from '../utils/auth';
 import logosvg from '../img/Logo.svg';
 
@@ -14,9 +13,6 @@ import Applied from "../components/Account-Components/Applied";
 import Applications from "../components/Account-Components/Applications"
 import UpdatePosting from "./UpdatePosting";
 import { motion } from 'framer-motion';
-
-
-
 
 function Account() {
     const [currentPage, setCurrentPage] = useState('myAccount');
