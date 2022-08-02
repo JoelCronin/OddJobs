@@ -73,8 +73,7 @@ function App() {
             <Route path="/myApplicationsReceived/:id" element={<Applications />} />
 
             <Route path="/updatePosting/:id" element={<UpdatePosting />} />
-
-            
+           
           </Routes>
         </AnimatePresence>
       </>

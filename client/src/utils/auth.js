@@ -1,5 +1,5 @@
 import decode from 'jwt-decode';
-import { Navigate } from 'react-router-dom'
+
 
 class AuthService {
     // get user data
@@ -34,14 +34,18 @@ class AuthService {
     login(idToken) {
       // Saves user token to localStorage
       localStorage.setItem('id_token', idToken);
-      <Navigate to="/home" />
+
+      window.location.reload();
     }
   
     logout() {
       // Clear user token and profile data from localStorage
+      
       localStorage.removeItem('id_token');
+
+      window.location.assign('/');
+
       // this will reload the page and reset the state of the application
-      <Navigate to="/" />
     }
   }
   
