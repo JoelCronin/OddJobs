@@ -81,7 +81,7 @@ const typeDefs = gql`
         description: String
         title: String
         image: String
-        workerName: String
+        workerNumber: String
     }
 
     input RatingInput {
