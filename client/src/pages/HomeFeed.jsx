@@ -11,6 +11,8 @@ import '../styles/HomeFeedStyles/feedBody.css';
 
 // import profilepic from '../img/Profile-pic.png';
 import active from '../img/status/active.png';
+import completed from '../img/status/completed.png';
+import pending from '../img/status/pending.png';
 // import logo from '../img/logo.png';
 // import logosvg from '../img/Logo.svg';
 import profile17 from '../img/profiles/17.svg'
@@ -207,6 +209,8 @@ const HomeFeed = ({ posts }) => {
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
   const userIcon = IMAGES[me.image];
+
+  console.log(submitPostings);
   
   return (
     (Auth.loggedIn()) ? (      
@@ -323,7 +327,15 @@ const HomeFeed = ({ posts }) => {
                         <div className='status-box'>
                           <h1 className='status-main-post'>Status</h1>
                           <span>
-                            <img className='status-symbol-main' src={active} alt= ""/>
+                            {posting.status == 'Active' ? ( 
+                              <img className='status-symbol-main' src={active} alt= ""/>
+                            ) : (<div></div>)}
+                            {posting.status == 'Pending' ? ( 
+                              <img className='status-symbol-main' src={pending} alt= ""/>
+                            ) : (<div></div>)}
+                            {posting.status == 'Completed' ? ( 
+                              <img className='status-symbol-main' src={completed} alt= ""/>
+                            ) : (<div></div>)}
                           </span>
                         </div>
                       </div>
