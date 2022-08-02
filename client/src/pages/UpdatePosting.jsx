@@ -127,8 +127,27 @@ const handleDeleteSubmit = async (event) => {
       },
     });
     navigate(`/me/${Auth.getProfile().data._id}`);
+    toast.success('Job posting deleted!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   } catch (e) {
     console.error(e);
+    toast.error('Error, please try again', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 };
 
@@ -215,7 +234,7 @@ const handleDeleteSubmit = async (event) => {
                   </div>
                   <div className="inner-inner-button-container">
                     <div className="listing-create-button" onClick={handleFormSubmit}>
-                    <Link to = {`/me/${Auth.getProfile().data._id}`}> <div>Update</div>  </Link> 
+                    <div>Update</div>  
                       </div> 
                   </div>
                 </div>
