@@ -17,6 +17,14 @@ import Auth from '../utils/auth';
 import profile1 from '../img/profiles/profile1.svg';
 
 function UpdatePosting() {
+
+  const postId = useParams()
+  const {loading, data} = useQuery (GET_SINGLE_POSTING, {
+    variables: postId 
+  });
+
+  const singlepost = data?.singlePosting || [];
+
   const [formState, setFormState] = useState ({
     title: '',
     description: '',
@@ -24,7 +32,6 @@ function UpdatePosting() {
     status:'',
   });
 
-  const postId = useParams()
   const [updatePosting] = useMutation(UPDATE_POSTING);
 
   const handleDropChange = (event) => {
@@ -112,16 +119,7 @@ function UpdatePosting() {
       }
   }
 
-  const {loading, data} = useQuery (GET_SINGLE_POSTING, {
-    variables: postId 
-  });
-
-  const singlepost = data?.singlePosting || [];
-
-  console.log(singlepost)
-
   const [deletePosting] = useMutation(REMOVE_POSTING)
-
 
   const handleDeleteSubmit = async (event) => {
     event.preventDefault();
