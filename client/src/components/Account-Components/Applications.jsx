@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
-import IMAGES from '../../img/profiles/index';
+
 
 
 function Applications() {
@@ -32,7 +32,7 @@ function Applications() {
             }
         }
     }
-    const userIcon = IMAGES[received[0].applications[0].image]; 
+ 
 
     return (
         <motion.div variants={componentVariant} initial="hidden" animate="visible" className="applicationsContainer">
@@ -51,8 +51,8 @@ function Applications() {
                 <div className="job-applicants-container">
                     
                     <div className="username-and-pic-container">
-                        <img src={userIcon} className="job-applicant-profile-pic" alt="icon"/>
-                        <h1 className="job-applicant-name"> {next.name}</h1>
+                        <img src={profile65} className="job-applicant-profile-pic" alt="icon"/>
+                        <h1 className="job-applicant-name"> {next.name} </h1>
                     </div>
                     <div className="rating-container">
                         <StarRating rating={5} />
