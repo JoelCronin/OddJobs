@@ -48,7 +48,10 @@ function NewPost() {
 
   const handleFormSubmit = async (event) => {
     // event.preventDefault();
-    try {
+    if (formState.workerNumber === '') {
+      toast.error('Please enter a worker number');
+    } else {
+      try{
       await addPosting({
         variables: {
           input: {
@@ -64,9 +67,9 @@ function NewPost() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+         
       });
-
-      navigate(`/me/${Auth.getProfile().data._id}`);
+      navigate(`/me/${Auth.getProfile().data._id}`); 
     } catch (e) {
       console.error(e);
       toast.error('Invalid input/s', {
@@ -79,6 +82,7 @@ function NewPost() {
         progress: undefined,
       });
     }
+  }
 
   };
 
@@ -158,6 +162,7 @@ function NewPost() {
                         <img className="status-icon-for-dropdown" src={active} alt=""/>
                         <select className="status-dropdown-list" name="status-dropdown-list" onChange={handleDropChange}>
                           {/* create a drop list from 1 to 20 */}
+                          <option value="1"> </option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
