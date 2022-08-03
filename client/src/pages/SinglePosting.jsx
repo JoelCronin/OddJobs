@@ -29,7 +29,7 @@ function SinglePosting() {
   const owner = data?.singlePosting?.owner || [];
   const userIcon = IMAGES[owner.image];
   const jobSite = owner.postCode
-
+  console.log(owner);
   // Apply for Position Functionallity to show/hide apply button
   const [hasApplied, setHasApplied] = useState(false);
   const ID = Auth.getProfile().data._id;
@@ -165,7 +165,7 @@ function SinglePosting() {
             <div className="job-applicants-container">
               <div className="username-and-pic-container">
                   <img src={userIcon} className="job-applicant-profile-pic" alt='userIcon'/>
-                  <h1 className="job-applicant-name">Dave Johnson</h1>
+                  <h1 className="job-applicant-name">{owner.name}</h1>
               </div>
               <div className="rating-container">
                   <StarRating rating={5}/>

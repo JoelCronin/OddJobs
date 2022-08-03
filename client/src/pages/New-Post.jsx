@@ -72,7 +72,8 @@ function NewPost() {
       navigate(`/me/${Auth.getProfile().data._id}`); 
     } catch (e) {
       console.error(e);
-      toast.error('Invalid input/s', {
+      let error = e.graphQLErrors[0].message;
+      toast.error(error, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
