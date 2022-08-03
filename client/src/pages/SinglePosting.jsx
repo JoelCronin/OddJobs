@@ -73,7 +73,7 @@ function SinglePosting() {
       event.preventDefault();
 
       try {
-        const { data } = await applyForPosition({
+        await applyForPosition({
           variables: singlePostingId
         });
 
@@ -96,7 +96,7 @@ function SinglePosting() {
       event.preventDefault();
 
       try {
-        const { data } = await removeApplication({
+        await removeApplication({
           variables: singlePostingId
         });
 
@@ -164,7 +164,7 @@ function SinglePosting() {
           <motion.div variants={rightVariant} initial="hidden" animate="visible" className='right-job-post-container'>
             <div className="job-applicants-container">
               <div className="username-and-pic-container">
-                  <img src={userIcon} className="job-applicant-profile-pic" />
+                  <img src={userIcon} className="job-applicant-profile-pic" alt='userIcon'/>
                   <h1 className="job-applicant-name">Dave Johnson</h1>
               </div>
               <div className="rating-container">

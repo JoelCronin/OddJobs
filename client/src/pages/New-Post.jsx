@@ -20,6 +20,7 @@ function NewPost() {
     cost: '',
     image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
     workerNumber: '',
+    status: 'Active',
   });
 
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function NewPost() {
   const handleFormSubmit = async (event) => {
     // event.preventDefault();
     try {
-      const { data } = await addPosting({
+      await addPosting({
         variables: {
           input: {
             ...formState,

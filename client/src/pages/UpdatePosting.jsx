@@ -17,17 +17,31 @@ import Auth from '../utils/auth';
 import profile1 from '../img/profiles/profile1.svg';
 
 function UpdatePosting() {
+
+  const postId = useParams()
+  const {loading, data} = useQuery (GET_SINGLE_POSTING, {
+    variables: postId 
+  });
+
+  const singlepost = data?.singlePosting || [];
+
   const [formState, setFormState] = useState ({
     title: '',
     description: '',
     cost: '',
+    status:'',
   });
 
-  const postId = useParams()
-
-  console.log(postId)
-
   const [updatePosting] = useMutation(UPDATE_POSTING);
+
+  const handleDropChange = (event) => {
+    const { target } = event;
+    const inputType = target.value;
+    setFormState({
+      ...formState,
+      status: inputType
+    })    
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -46,7 +60,7 @@ function UpdatePosting() {
     console.log(formState);
 
     try {
-      const { data } = await updatePosting({
+      await updatePosting({
         variables: {
           ...postId, 
           input:{
@@ -105,22 +119,13 @@ function UpdatePosting() {
       }
   }
 
-  const {loading, data} = useQuery (GET_SINGLE_POSTING, {
-    variables: postId 
-  });
-
-  const singlepost = data?.singlePosting || [];
-
-  console.log(singlepost)
-
   const [deletePosting] = useMutation(REMOVE_POSTING)
-
 
   const handleDeleteSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await deletePosting({
+      await deletePosting({
         variables: {
           ...postId
         },
@@ -210,7 +215,7 @@ function UpdatePosting() {
                       <h1 className="status-title">Status</h1>
                       <div className="status-icon-and-dropdown">
                         <img className="status-icon-for-dropdown" src={active} alt=""/>
-                        <select className="status-dropdown-list" name="status-dropdown-list">
+                        <select className="status-dropdown-list" name="status-dropdown-list" onChange={handleDropChange}>
                           <option value="Active">Active</option>
                           <option value="Pending">Pending</option>
                           <option value="Completed">Completed</option>

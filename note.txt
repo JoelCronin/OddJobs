@@ -1,2 +1,0 @@
-MONGODB_URI
-mongodb+srv://yuchen-admin:xiaocui0206@cluster0.tuzes.mongodb.net/oddJobsDB?retryWrites=true&w=majority

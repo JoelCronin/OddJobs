@@ -76,6 +76,7 @@ const typeDefs = gql`
         title: String
         description: String
         cost: String
+        status: String
     }
 
     input createPostingInput {
@@ -84,6 +85,7 @@ const typeDefs = gql`
         title: String
         image: String
         workerNumber: String
+        status: String
     }
 
     input RatingInput {

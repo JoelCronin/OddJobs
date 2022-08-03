@@ -177,12 +177,9 @@ const HomeFeed = ({ posts }) => {
     localStorage.removeItem('coords');
   }
 
-
   const { data: meData } = useQuery(GET_ME);
   const me = meData?.me || [];
   const userIcon = IMAGES[me.image];
-
-  console.log(submitPostings);
   
   return (
     (Auth.loggedIn()) ? (      
@@ -233,7 +230,7 @@ const HomeFeed = ({ posts }) => {
                 <h1 className='status-filter-title'>Status</h1>
                 <div className='active-container'>
                   <BsFillCheckCircleFill 
-                    className={activeStatus == true ? 'status-checkmark-active' : 'not-true'}
+                    className={activeStatus === true ? 'status-checkmark-active' : 'not-true'}
                     id='activeButton'
                     onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Active</h1>
@@ -242,7 +239,7 @@ const HomeFeed = ({ posts }) => {
               <div className='status-filter-container'>
                 <div className='active-container'>
                   <BsFillCheckCircleFill 
-                  className={pendingStatus == true ? 'status-checkmark-pending' : 'not-true'}
+                  className={pendingStatus === true ? 'status-checkmark-pending' : 'not-true'}
                   id='pendingButton'
                   onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Pending</h1>
@@ -251,7 +248,7 @@ const HomeFeed = ({ posts }) => {
               <div className='status-filter-container'>
                 <div className='active-container'>
                   <BsFillCheckCircleFill 
-                  className={completedStatus == true ? 'status-checkmark-completed' : 'not-true'}
+                  className={completedStatus === true ? 'status-checkmark-completed' : 'not-true'}
                   id='completedButton'
                   onClick={handleStatusChange}/>
                   <h1 className='active-check-name'>Completed</h1>
@@ -286,7 +283,7 @@ const HomeFeed = ({ posts }) => {
         </motion.header>
 
         <div className='job-grid-box'>
-          {submitPostings.length != 0 ? (
+          {submitPostings.length !== 0 ? (
             <>
             {submitPostings.map((posting) => (
               <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id} onClick={clearLocalStorage}>
@@ -299,13 +296,13 @@ const HomeFeed = ({ posts }) => {
                         <div className='status-box'>
                           <h1 className='status-main-post'>Status</h1>
                           <span>
-                            {posting.status == 'Active' ? ( 
+                            {posting.status === 'Active' ? ( 
                               <img className='status-symbol-main' src={active} alt= ""/>
                             ) : (<div></div>)}
-                            {posting.status == 'Pending' ? ( 
+                            {posting.status === 'Pending' ? ( 
                               <img className='status-symbol-main' src={pending} alt= ""/>
                             ) : (<div></div>)}
-                            {posting.status == 'Completed' ? ( 
+                            {posting.status === 'Completed' ? ( 
                               <img className='status-symbol-main' src={completed} alt= ""/>
                             ) : (<div></div>)}
                           </span>
