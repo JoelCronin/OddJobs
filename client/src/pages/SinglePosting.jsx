@@ -71,7 +71,7 @@ function SinglePosting() {
       event.preventDefault();
 
       try {
-        const { data } = await applyForPosition({
+        await applyForPosition({
           variables: singlePostingId
         });
 
@@ -85,7 +85,7 @@ function SinglePosting() {
       event.preventDefault();
 
       try {
-        const { data } = await removeApplication({
+        await removeApplication({
           variables: singlePostingId
         });
 

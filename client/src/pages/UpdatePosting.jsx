@@ -22,13 +22,20 @@ function UpdatePosting() {
     title: '',
     description: '',
     cost: '',
+    status:'',
   });
 
   const postId = useParams()
-
-  console.log(postId)
-
   const [updatePosting] = useMutation(UPDATE_POSTING);
+
+  const handleDropChange = (event) => {
+    const { target } = event;
+    const inputType = target.value;
+    setFormState({
+      ...formState,
+      status: inputType
+    })    
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -211,7 +218,7 @@ function UpdatePosting() {
                       <h1 className="status-title">Status</h1>
                       <div className="status-icon-and-dropdown">
                         <img className="status-icon-for-dropdown" src={active} alt=""/>
-                        <select className="status-dropdown-list" name="status-dropdown-list">
+                        <select className="status-dropdown-list" name="status-dropdown-list" onChange={handleDropChange}>
                           <option value="Active">Active</option>
                           <option value="Pending">Pending</option>
                           <option value="Completed">Completed</option>

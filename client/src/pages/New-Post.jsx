@@ -20,6 +20,7 @@ function NewPost() {
     cost: '',
     image: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
     workerNumber: '',
+    status: 'Active',
   });
 
   const navigate = useNavigate();
