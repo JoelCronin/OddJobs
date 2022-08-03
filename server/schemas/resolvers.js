@@ -154,11 +154,11 @@ const resolvers = {
                                       .populate('applications')
                                       .populate('owner')
                                       .populate('chosenWorker');
-        await Posting.findByIdAndRemove(args.id, {
-          applications: context.user._id
-          });
+        await Posting.findByIdAndUpdate(args.id, {
+          $pull: { applications: context.user._id }
+        });
         await User.findByIdAndUpdate(context.user._id, {
-          $pull: { activeJobs: args.id }
+          $pull: { jobApplications: args.id }
         }, { new: true });
         return posting;
       }
@@ -166,6 +166,5 @@ const resolvers = {
     }   
   },
 };
-
 
 module.exports = resolvers;
