@@ -13,7 +13,7 @@ function Applications() {
 
     const iD = useParams()
 
-    const {loading, data} = useQuery (GET_ME, {
+    const {data} = useQuery (GET_ME, {
         variables: iD
     });
 

@@ -283,7 +283,7 @@ const HomeFeed = ({ posts }) => {
         </motion.header>
 
         <div className='job-grid-box'>
-          {submitPostings.length != 0 ? (
+          {submitPostings.length !== 0 ? (
             <>
             {submitPostings.map((posting) => (
               <Link to= {`/posting/${posting._id}`} className="feed-post-link" style={{textDecoration: 'none'}} key={posting._id} onClick={clearLocalStorage}>

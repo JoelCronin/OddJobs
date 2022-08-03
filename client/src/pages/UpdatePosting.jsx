@@ -53,7 +53,7 @@ function UpdatePosting() {
     console.log(formState);
 
     try {
-      const { data } = await updatePosting({
+      await updatePosting({
         variables: {
           ...postId, 
           input:{
@@ -127,7 +127,7 @@ function UpdatePosting() {
     event.preventDefault();
 
     try {
-      const { data } = await deletePosting({
+      await deletePosting({
         variables: {
           ...postId
         },
