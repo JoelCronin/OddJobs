@@ -49,9 +49,6 @@ As a user I want to be able to look for, and post tasks I need completed...
 * WHEN I click on the applications received tab
 * THEN I can view the applications I have received for each of my postings
 
-![Fullsize webpage](./client/src/img/screenshot/listing.png)
-![Fullsize webpage](./client/src/img/screenshot/single.png)
-
 ## Technologies Used
 
 ### Front-End
@@ -73,4 +70,5 @@ As a user I want to be able to look for, and post tasks I need completed...
 
 ## Pictures of Application
 
-<!-- INSET PICTURES OF FINAL APPLICATION -->
+![Fullsize webpage](./client/src/img/screenshot/listing.png)
+![Fullsize webpage](./client/src/img/screenshot/single.png)
