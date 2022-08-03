@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REMOVE_APPLICATION, APPLY_FOR_JOB } from '../utils/mutations';
 import IMAGES from '../img/profiles/index.js';
+import { toast } from 'react-toastify';
+
 import Auth from "../utils/auth";
 
 
@@ -76,6 +78,15 @@ function SinglePosting() {
         });
 
         window.location.reload();
+        toast.success('Applied!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } catch (e) {
         console.error(e);
       }
@@ -90,6 +101,16 @@ function SinglePosting() {
         });
 
         window.location.reload();
+        toast.success('Canceled application', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
       } catch (e) {
         console.error(e);
       }
@@ -133,8 +154,7 @@ function SinglePosting() {
               </div>
               {hasApplied ? (
               <div>
-                <button className='job-post-apply-button'>Already Applied</button>
-                <button className='job-post-apply-button' onClick={handleCancleApply} style={{ color:'#B22222' }}>Cancel Apply</button>
+                <button className='job-post-apply-button cancel' onClick={handleCancleApply}>Cancel Apply</button>
               </div>             
               ) : (
               <button className='job-post-apply-button' onClick={handleApply}>APPLY</button>

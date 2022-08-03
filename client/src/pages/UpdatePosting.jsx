@@ -10,7 +10,6 @@ import { TbCloudUpload } from 'react-icons/tb';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import StarRating from '../components/StarRating';
-
 import {GET_SINGLE_POSTING} from '../utils/queries';
 import { Navigate } from 'react-router-dom'
 import { REMOVE_POSTING } from "../utils/mutations";
@@ -233,11 +232,7 @@ function UpdatePosting() {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="button-container">
-              <div className="inner-button-container">
+                  <div className="inner-button-container">
                 <div className="inner-inner-button-container">
                     <div className="listing-delete-button" onClick={handleDeleteSubmit}>
                       <div>Delete</div>
@@ -252,6 +247,8 @@ function UpdatePosting() {
                   <div className="listing-create-button" onClick={handleFormSubmit}>
                   <div>Update</div>  
                     </div> 
+                </div>
+                  </div>
                 </div>
               </div>
             </div>

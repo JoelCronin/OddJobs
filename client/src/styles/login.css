@@ -54,6 +54,8 @@
 .left-inner-container{
     /* border: 1px solid white; */
     padding: 10px;
+    position: relative;
+    bottom: 106px;
 }
 
 .signup-title-container{
@@ -124,6 +126,8 @@
     /* border: 1px solid green; */
     padding: 10px;
     width: 76%;
+    position: relative;
+    bottom: 106px;
 }
 
 .create-your-account-text{
@@ -210,11 +214,21 @@
     text-decoration: none;
 }
 
+.right-signup-container{
+    /* border: 1px solid white; */
+    width: 55%;
+    min-width: 700px;
+    background:rgb(237, 237, 237);
+}
 
 @media  screen and (max-width: 1227px) {
     .signup-container {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .right-signup-container{
+        width: 100%;
     }
 }
 
@@ -227,12 +241,4 @@
 
 
 
-
-
-.right-signup-container{
-    /* border: 1px solid white; */
-    width: 55%;
-    min-width: 700px;
-    background:rgb(237, 237, 237);
-}
 
