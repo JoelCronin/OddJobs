@@ -33,6 +33,7 @@ function Applied() {
 
     return (
 
+
       (Auth.loggedIn()) ? (
         (loading) ? (
           <div>Loading...</div>
