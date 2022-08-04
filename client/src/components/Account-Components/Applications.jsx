@@ -9,6 +9,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 
 
+
 function Applications() {
 
     const iD = useParams()
@@ -31,7 +32,8 @@ function Applications() {
             }
         }
     }
-      
+ 
+
     return (
         <motion.div variants={componentVariant} initial="hidden" animate="visible" className="applicationsContainer">
             {/* Map through Users active jobs  to render on screen */}
@@ -50,7 +52,7 @@ function Applications() {
                     
                     <div className="username-and-pic-container">
                         <img src={profile65} className="job-applicant-profile-pic" alt="icon"/>
-                        <h1 className="job-applicant-name"> {next.name}</h1>
+                        <h1 className="job-applicant-name"> {next.name} </h1>
                     </div>
                     <div className="rating-container">
                         <StarRating rating={5} />

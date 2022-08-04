@@ -48,7 +48,7 @@ function MyListings() {
           ) :(
         <motion.div variants={componentVariant} initial="hidden" animate="visible" id="myListingsContainer">
             <div className="inner-my-listing-container">
-              <Link to={`/me/newPost/${Auth.getProfile().data._id}`}>
+              <Link to={`/me/newPost/${Auth.getProfile().data._id}`} style={{textDecoration: 'none'}}>
                 <div className='job-box add-box'>
                     <BsPlusCircleFill className="add-button"/>
                 </div>
@@ -56,7 +56,7 @@ function MyListings() {
               {mine.activeJobs.length === 0 || mine.activeJobs === null  ? (<p></p>) : (
                 <>
                   {mine.activeJobs.map((singlejob) => (
-                  <Link to= {`/posting/${singlejob._id}`}>
+                  <Link to= {`/posting/${singlejob._id}`} style={{textDecoration: 'none'}}>
                   <div className='job-box' key = {singlejob._id}>
                   <h1 className='job-price'><span>$</span>{singlejob.cost}</h1>
                   <img className='job-post-img' src="https://designshack.net/wp-content/uploads/placeholder-image.png" alt=''/>
@@ -83,7 +83,7 @@ function MyListings() {
                       <h1 className='job-post-date'> {singlejob.createdAt}</h1>
                     </div>
                   </div>
-                  <Link to= {`/updatePosting/${singlejob._id}`}><MdModeEdit className="edit-button"/></Link> 
+                  <Link to= {`/updatePosting/${singlejob._id}`} style={{textDecoration: 'none'}}><MdModeEdit className="edit-button"/></Link> 
                   </div>
                   </Link>
                   ))}

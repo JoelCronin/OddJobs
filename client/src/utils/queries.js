@@ -31,6 +31,7 @@ export const GET_ME = gql`
                 applications{
                     _id
                     name
+                    image
                 }
             }
         }
@@ -62,6 +63,7 @@ export const GET_SINGLE_POSTING = gql`
                 _id
                 postCode
                 image
+                name
             }
             _id
             cost
